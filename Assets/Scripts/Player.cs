@@ -4,6 +4,8 @@ using TMPro;
 [Serializable]
 public class Player
 {
+    private int _maxEssence;
+    public int MaxEssence;
 
 	private int _currentEssence;
     public int CurrentEssence;
