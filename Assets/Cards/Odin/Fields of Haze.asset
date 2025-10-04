@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Fields of Haze
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Confuse All Enemies
-  TurnDelay: 0
-  EssenceCost: -1
+  EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 1
   RandomEnemy: 0
@@ -27,7 +26,7 @@ MonoBehaviour:
   Confuse: 1
   Souls: -1
   Curse: -1
-  DeathChance: 0
+  DeathChance: -1
   Draw: -1
   Heal: -1
   Block: -1
@@ -35,8 +34,9 @@ MonoBehaviour:
   Strength: -1
   EssenceGain: -1
   MultHit: -1
+  doubleDamageHits: -1
   Power: 0
   Sacrifice: 0
-  Frenzy: 0
+  RepeatAllNext: 0
   Foretell: 0
   Afflict: 0
