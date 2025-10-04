@@ -72,7 +72,7 @@ public class Game : MonoSingleton<Game>
 
 		foreach(var c in defaultDeck)
 		{
-			var card = Instantiate(cardPrefab);
+			var card = Instantiate(cardPrefab, deckLocation);
 			card.OnCardInitialize(c);
 			card.SetInitialParent(handContainer);
 			card.SetInPile(deckLocation);
@@ -86,11 +86,9 @@ public class Game : MonoSingleton<Game>
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
 	{
-        var enemy = Instantiate(enemyPrefab);
+        var enemy = Instantiate(enemyPrefab, enemyContainer);
         enemy.OnIntitialize(enemyTemplate);
         activeEnemies.Add(enemy);
-
-        enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
     }
 
 	IEnumerator DrawHand()
