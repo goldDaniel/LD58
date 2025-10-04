@@ -50,6 +50,8 @@ public class Game : MonoSingleton<Game>
 			card.SetInitialParent(handContainer);
 			card.rectTransform.SetParent(deckLocation);
 
+			card.SetInPile();
+
 			deck.Add(card);
 		}
 		deck.Shuffle();
@@ -63,6 +65,7 @@ public class Game : MonoSingleton<Game>
 		{
 			Card card = deck.Draw();
 			card.gameObject.SetActive(true);
+			card.SetInHand();
 
 			var tween = card.rectTransform.DOMove(MathUtils.RectTransformToScreenSpace(handContainer).position, 0.4f).SetEase(Ease.InCirc);
 			while (tween.IsActive() && !tween.IsComplete())
@@ -140,6 +143,7 @@ public class Game : MonoSingleton<Game>
 		}
 
 		discard.Add(card);
+		card.SetInPile();
 
 		attackInProgress = false;
 	}

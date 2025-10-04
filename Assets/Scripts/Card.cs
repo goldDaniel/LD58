@@ -15,23 +15,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField]
 	private Image cardFront;
 
+	[SerializeField]
+	private CanvasGroup raycastBlocker;
+
 	public bool Highlighted => borderHighlight.activeSelf;
 
 	private RectTransform initialParent;
-	private int intitialSiblingIndex; 
 	public RectTransform rectTransform;
 
-	public bool EnableRaycast { get => cardFront.raycastTarget; set => cardFront.raycastTarget = value; }
+	public bool EnableRaycast { get => raycastBlocker.blocksRaycasts; set => raycastBlocker.blocksRaycasts = value; }
 
 	public CardTemplate cardTemplate;
 
 	public TextMeshProUGUI title;
 	public TextMeshProUGUI description;
 
-	public void Start()
-	{
-		intitialSiblingIndex = transform.GetSiblingIndex();
-	}
 
 	public void OnCardInitialize(CardTemplate card)
 	{
@@ -64,7 +62,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 			UIController.Instance.SetSelectedCard(null);
 			rectTransform.SetParent(initialParent);
-			transform.SetSiblingIndex(intitialSiblingIndex);
 		}
 	}
 
@@ -74,6 +71,19 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerExit(PointerEventData eventData) => borderHighlight.SetActive(false);
 
+	public void SetInHand()
+	{
+		cardFront.gameObject.SetActive(true);
+		cardBack.gameObject.SetActive(false);
+		EnableRaycast = true;
+	}
+
+	public void SetInPile()
+	{
+		cardFront.gameObject.SetActive(false);
+		cardBack.gameObject.SetActive(true);
+		EnableRaycast = false;
+	}
 }
 
 [Serializable]
