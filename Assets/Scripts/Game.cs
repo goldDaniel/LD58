@@ -2,7 +2,9 @@ using Assets.Scripts;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,12 +66,8 @@ public class Game : MonoSingleton<Game>
 	{
 		foreach (var enemyTemplate in testLevel.Enemies)
 		{
-			var enemy = Instantiate(enemyPrefab);
-			enemy.OnIntitialize(enemyTemplate);
-			activeEnemies.Add(enemy);
-
-			enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
-		}
+            SpawnEnemy(enemyTemplate);
+        }
 
 		foreach(var c in defaultDeck)
 		{
@@ -84,6 +82,15 @@ public class Game : MonoSingleton<Game>
 
 		yield return DrawHand();
 	}
+
+	private void SpawnEnemy(EnemyTemplate enemyTemplate)
+	{
+        var enemy = Instantiate(enemyPrefab);
+        enemy.OnIntitialize(enemyTemplate);
+        activeEnemies.Add(enemy);
+
+        enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
+    }
 
 	IEnumerator DrawHand()
 	{
@@ -233,9 +240,170 @@ public class Game : MonoSingleton<Game>
 		OnTurnStart();
 	}
 
+
+	//Ben
 	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
 	{
-		yield return null;
+        var Attack = attacker.Attacks.Attacks.FirstOrDefault();
+
+        //Start Attack Block
+        if (Attack.ClearNegative)
+        {
+			attacker.Doom = 0;
+			attacker.Jinxed = false;
+			attacker.Confused = false;
+			attacker.Weak = 0;
+			attacker.Curse = 0;
+        }
+
+		if (Attack.SpawnEnemy != null)
+		{
+            SpawnEnemy(Attack.SpawnEnemy);
+        }
+
+		if (Attack.ApplyLethergy)
+		{
+			player.Lethargic = true;
+        }
+
+		if (Attack.Heal != -1)
+		{
+			if (Attack.TargetAllEnemies)
+			{
+                attacker.CurrentHealth += Attack.Heal;
+                foreach (var enemy in otherEnemies)
+                {
+                    enemy.CurrentHealth += Attack.Heal;
+                }
+            }
+			else if (Attack.TargetAllOtherEnemies)
+			{
+				foreach (var enemy in otherEnemies)
+				{
+					enemy.CurrentHealth += Attack.Heal;
+				}
+			}
+			else if (Attack.TargetRandomEnemy)
+			{
+				int index = UnityEngine.Random.Range(0, otherEnemies.Count-1);
+				otherEnemies[index].CurrentHealth += Attack.Heal;
+            }
+			else if (Attack.TargetSelf)
+			{
+                attacker.CurrentHealth += Attack.Heal;
+            }
+		}
+
+		if (Attack.Block != -1)
+		{
+            if (Attack.TargetAllEnemies)
+            {
+                attacker.Block += Attack.Block;
+                foreach (var enemy in otherEnemies)
+                {
+                    enemy.Block += Attack.Block;
+                }
+            }
+            else if (Attack.TargetAllOtherEnemies)
+            {
+                foreach (var enemy in otherEnemies)
+                {
+                    enemy.Block += Attack.Block;
+                }
+            }
+            else if (Attack.TargetRandomEnemy)
+            {
+                int index = UnityEngine.Random.Range(0, otherEnemies.Count - 1);
+                otherEnemies[index].Block += Attack.Block;
+            }
+            else if (Attack.TargetSelf)
+            {
+                attacker.Block += Attack.Block;
+            }
+        }
+
+        if (Attack.Curse != -1)
+        {
+            player.Curse = Attack.Curse;
+        }
+
+		if (Attack.Strength != -1)
+		{
+            if (Attack.TargetAllEnemies)
+            {
+                attacker.Strength += Attack.Strength;
+                foreach (var enemy in otherEnemies)
+                {
+                    enemy.Strength += Attack.Strength;
+                }
+            }
+            else if (Attack.TargetAllOtherEnemies)
+            {
+                foreach (var enemy in otherEnemies)
+                {
+                    enemy.Strength += Attack.Strength;
+                }
+            }
+            else if (Attack.TargetRandomEnemy)
+            {
+                int index = UnityEngine.Random.Range(0, otherEnemies.Count - 1);
+                otherEnemies[index].Strength += Attack.Strength;
+            }
+            else if (Attack.TargetSelf)
+            {
+                attacker.Strength += Attack.Strength;
+            }
+        }
+
+		if (Attack.Damage != -1)
+		{
+			int TotalDamage = Attack.Damage;
+
+			if (attacker.Strength != -1)
+			{
+				TotalDamage += attacker.Strength;
+			}
+
+			if (Attack.MassBonus)
+			{
+				TotalDamage += otherEnemies.Count;
+			}
+
+            if (Attack.BlockBonus)
+            {
+				TotalDamage += attacker.Block;
+            }
+
+            if (Attack.MissingHealthBonus)
+            {
+				TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
+            }
+
+			if (Attack.NumberOfAttacks > 1)
+			{
+				for (int i = 0; i < Attack.NumberOfAttacks; i++)
+				{
+					PlayerDamage(TotalDamage, player);
+				}
+			}
+			else
+			{
+				PlayerDamage(TotalDamage, player);
+			}
+        }
+
+        //End Attack Block
+
+        EnemyAttackTemplate OldAttack = attacker.Attacks.Attacks[0];
+		attacker.Attacks.Attacks.RemoveAt(0);
+        attacker.Attacks.Attacks.Add(OldAttack);
+
+        yield return null;
+	}
+
+	private void PlayerDamage(int Damage, Player player)
+	{
+		player.CurrentHealth -= Damage;
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)

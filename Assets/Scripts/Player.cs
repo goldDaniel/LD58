@@ -49,6 +49,8 @@ public class Player
 	[NonSerialized] public int PowerCounter = 0;
 	[NonSerialized] public int CurseEachPlay = 0;
 	[NonSerialized] public int Lucky = 0;
+    [NonSerialized] public int Curse = 0;
+    [NonSerialized] public bool Lethargic = false;
 
     public IEnumerator ApplyEffectSequence(Card card)
     {

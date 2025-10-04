@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,26 +15,29 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI text;
 
-	private int maxHealth;
+	public int maxHealth;
 
 	private int _currentHealth;
-    private int CurrentHealth
+    public int CurrentHealth
 	{
 		get => _currentHealth;
 		set 
 		{
-			_currentHealth = value;
+            _currentHealth = Math.Clamp(value, 0, maxHealth);
 			text.text = $"HP: {_currentHealth}/{maxHealth}";
 		}
 	}
 
-    private int doom = 0;
-    private bool jinxed = false;
-    private int block = 0;
-    private bool confused = false;
-    private int weak = 0;
-    private int bonusSouls = 0;
-    private int curse = 0;
+    public int Doom = 0;
+    public bool Jinxed = false;
+    public int Block = 0;
+    public bool Confused = false;
+    public int Weak = 0;
+    public int BonusSouls = 0;
+    public int Curse = 0;
+    public int Strength = 0;
+
+    public EnemyAttack Attacks = new EnemyAttack();
 
     private void Awake()
     {
@@ -43,8 +48,9 @@ public class Enemy : MonoBehaviour
 	{
 		maxHealth = template.MaxHealth;
 		CurrentHealth = maxHealth;
-		// TODO (rest of the things)
-	}
+        Attacks = template.AttackList;
+        // TODO (rest of the things)
+    }
 
     public bool IsIntersectingMouse()
     {
@@ -65,11 +71,11 @@ public class Enemy : MonoBehaviour
         
         if (card.cardTemplate.Souls > 0)
         {
-            bonusSouls += card.cardTemplate.Souls;
+            BonusSouls += card.cardTemplate.Souls;
         }
         if (card.cardTemplate.DeathChance > 0)
         {
-            if (Random.Range(0, 100) > card.cardTemplate.DeathChance)
+            if (UnityEngine.Random.Range(0, 100) > card.cardTemplate.DeathChance)
             {
                 takeDamage(1000);
             }
@@ -82,7 +88,7 @@ public class Enemy : MonoBehaviour
                 int damage = 0;
                 for (int j = 0; j < Game.Instance.player.Lucky + 1; j++)
                 {
-                    damage = Mathf.Max(damage, Random.Range(card.cardTemplate.MinDamage, card.cardTemplate.MaxDamage));
+                    damage = Mathf.Max(damage, UnityEngine.Random.Range(card.cardTemplate.MinDamage, card.cardTemplate.MaxDamage));
                 }
                 damage *= 1<<Game.Instance.player.doubleDamageHit;
                 repeatCount++;
@@ -90,16 +96,16 @@ public class Enemy : MonoBehaviour
         } while (repeatCount <= card.cardTemplate.MultHit);
         if (card.cardTemplate.Doomed > 0)
         {
-            doom += card.cardTemplate.Doomed;
-            if (doom >= 3)
+            Doom += card.cardTemplate.Doomed;
+            if (Doom >= 3)
             {
-                takeDamage(doom * 20);
-                doom = 0;
+                takeDamage(Doom * 20);
+                Doom = 0;
             }
         }
         if (card.cardTemplate.Jinxed)
         {
-            jinxed = true;
+            Jinxed = true;
         }
         if (card.cardTemplate.FateSealed)
         {
@@ -113,15 +119,15 @@ public class Enemy : MonoBehaviour
         }
         if (card.cardTemplate.Confuse)
         {
-            confused = true;
+            Confused = true;
         }
         if (card.cardTemplate.Weak > 0)
         {
-            weak += card.cardTemplate.Weak;
+            Weak += card.cardTemplate.Weak;
         }
         if (card.cardTemplate.Curse > 0)
         {
-            curse += card.cardTemplate.Curse;
+            Curse += card.cardTemplate.Curse;
         }
 
         /*
@@ -136,7 +142,7 @@ public class Enemy : MonoBehaviour
 
          */
         //Bonus souls only apply for this attack
-        bonusSouls = 0;
+        BonusSouls = 0;
 
         yield return null;
     }

@@ -29,7 +29,7 @@ public class EnemyTemplate : ScriptableObject
     public int MaxHealth = -1;
     public int Block = -1;
 
-    public EnemyAttack Attack = new EnemyAttack();
+    public EnemyAttack AttackList = new EnemyAttack();
 }
 
 [Serializable]
