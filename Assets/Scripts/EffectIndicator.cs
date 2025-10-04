@@ -58,6 +58,18 @@ public class EffectIndicator : MonoBehaviour
         {
             icon.sprite = damageIcon;
         }
+        if (effectType == EffectType.Shield)
+        {
+            icon.sprite = shieldIcon;
+        }
+        if (effectType == EffectType.Heal)
+        {
+            icon.sprite = healIcon;
+        }
+        if (effectType == EffectType.Other)
+        {
+            icon.sprite = OtherIcon;
+        }
         if (isFade)
         {
             yield return Fade(fadeTime);

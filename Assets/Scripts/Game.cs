@@ -93,6 +93,7 @@ public class Game : MonoSingleton<Game>
 		deck.Shuffle();
 
 		yield return DrawHand();
+		yield return OnTurnStart();
 
 
 	}
@@ -215,7 +216,7 @@ public class Game : MonoSingleton<Game>
 		StartCoroutine(DoEnemyTurn());
 	}
 
-	public void OnTurnStart()
+	public IEnumerator OnTurnStart()
 	{
 		endTurnButton.interactable = true;
 		IsPlayerTurn = true;
@@ -388,7 +389,7 @@ public class Game : MonoSingleton<Game>
 		CheckDeadEnemies();
 
 		enemyTurnIndex = -1;
-		OnTurnStart();
+		yield return OnTurnStart();
 	}
 	IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{

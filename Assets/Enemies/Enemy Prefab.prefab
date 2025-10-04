@@ -1279,8 +1279,8 @@ MonoBehaviour:
   highlight: {fileID: 9024711384981322707}
   healthText: {fileID: 2186650436009500617}
   damageLocation: {fileID: 8902365351960425333}
-  effect1Location: {fileID: 0}
-  effect2Location: {fileID: 0}
+  effect1Location: {fileID: 3570070042821337353}
+  effect2Location: {fileID: 901083615936460182}
   effect1: {fileID: 0}
   effect2: {fileID: 0}
   maxHealth: 10
@@ -1526,7 +1526,7 @@ RectTransform:
   m_GameObject: {fileID: 8704395830127681881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2749918144243590502}
