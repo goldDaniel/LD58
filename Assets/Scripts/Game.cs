@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,6 +93,8 @@ public class Game : MonoSingleton<Game>
 		deck.Shuffle();
 
 		yield return DrawHand();
+
+
 	}
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
@@ -221,8 +224,155 @@ public class Game : MonoSingleton<Game>
 		player.Block = 0;
 		player.RepeatAllCurrentTurn = player.RepeatAllNext;
 		player.RepeatAllNext = 0;
+		foreach (Enemy e in activeEnemies)
+		{
+			yield return PrepareAttack(e);
+		}
 
 		StartCoroutine(DrawHand());
+	}
+	IEnumerator PrepareAttack(Enemy enemy)
+	{
+        var Attack = enemy.Attacks.Attacks.FirstOrDefault();
+        if (Attack.ClearNegative)
+        {
+            yield return DisplayEnemyEffect(enemy,EffectType.Other, 0, "Cleanse");
+        }
+
+        if (Attack.SpawnEnemy != null)
+        {
+            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Spawn");
+        }
+
+        if (Attack.ApplyLethergy)
+        {
+            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
+        }
+
+
+        if (Attack.Heal != -1)
+        {
+            if (Attack.TargetAllEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} All");
+            }
+            else if (Attack.TargetAllOtherEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Other");
+            }
+            else if (Attack.TargetRandomEnemy)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Random");
+            }
+            else if (Attack.TargetSelf)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Self");
+            }
+        }
+
+        if (Attack.Block != -1)
+        {
+            if (Attack.TargetAllEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} All");
+            }
+            else if (Attack.TargetAllOtherEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Other");
+            }
+            else if (Attack.TargetRandomEnemy)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Random");
+            }
+            else if (Attack.TargetSelf)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Self");
+            }
+        }
+
+        if (Attack.Curse != -1)
+        {
+            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Curse {Attack.Curse}");
+        }
+
+        if (Attack.Strength != -1)
+        {
+            if (Attack.TargetAllEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} All");
+            }
+            else if (Attack.TargetAllOtherEnemies)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Other");
+            }
+            else if (Attack.TargetRandomEnemy)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Random");
+            }
+            else if (Attack.TargetSelf)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Self");
+            }
+        }
+
+        if (Attack.Damage != -1)
+        {
+            int TotalDamage = Attack.Damage;
+
+            if (enemy.Weak != -1)
+            {
+                TotalDamage -= enemy.Weak;
+            }
+
+            if (enemy.Strength != -1)
+            {
+                TotalDamage += enemy.Strength;
+            }
+
+            if (Attack.MassBonus)
+            {
+                TotalDamage += activeEnemies.Count - 1;
+            }
+
+            if (Attack.BlockBonus)
+            {
+                TotalDamage += enemy.Block;
+            }
+
+            if (Attack.MissingHealthBonus)
+            {
+                TotalDamage += (enemy.CurrentHealth / enemy.maxHealth) * 10;
+            }
+
+
+            if (Attack.NumberOfAttacks > 1)
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage, $"{Attack.Damage}x{Attack.NumberOfAttacks}");
+            }
+            else
+            {
+                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage,null );
+            }
+        }
+    }
+
+	IEnumerator DisplayEnemyEffect(Enemy enemy, EffectType type, int value, string textOverride)
+	{
+		if (enemy.effect1 == null)
+		{
+			enemy.effect1 = Instantiate(effectPrefab, enemy.effect1Location);
+			yield return enemy.effect1.DoEffectVisual(type, value,false, textOverride);
+
+		} else
+		{
+            if (enemy.effect2 == null)
+            {
+                enemy.effect2 = Instantiate(effectPrefab, enemy.effect2Location);
+                yield return enemy.effect2.DoEffectVisual(type, value, false,textOverride);
+
+            }
+        }
+		yield return null;
 	}
 
 	IEnumerator DoEnemyTurn()
@@ -240,6 +390,22 @@ public class Game : MonoSingleton<Game>
 		enemyTurnIndex = -1;
 		OnTurnStart();
 	}
+	IEnumerator NextAttack(Enemy enemy, bool prepare)
+	{
+        //End Attack Block
+
+        EnemyAttackTemplate OldAttack = enemy.Attacks.Attacks[0];
+        enemy.Attacks.Attacks.RemoveAt(0);
+        enemy.Attacks.Attacks.Add(OldAttack);
+        if ( prepare )
+        {
+            yield return PrepareAttack(enemy);
+        } else
+		{
+			yield return null;
+		}
+        
+    }
 
 	//Ben
 	public void CheckDeadEnemies()
@@ -453,13 +619,8 @@ public class Game : MonoSingleton<Game>
             }
         }
 
-        //End Attack Block
-
-        EnemyAttackTemplate OldAttack = attacker.Attacks.Attacks[0];
-		attacker.Attacks.Attacks.RemoveAt(0);
-        attacker.Attacks.Attacks.Add(OldAttack);
-
-        yield return null;
+		yield return NextAttack(attacker, false);
+        
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
@@ -467,7 +628,16 @@ public class Game : MonoSingleton<Game>
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 
         hand.Remove(card);
-		int currentRepeat = 0;
+        // animate to discard pile
+        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+        while (tween.IsActive() && !tween.IsComplete())
+        {
+            yield return null;
+        }
+
+        discard.Add(card);
+        card.SetInPile(discardLocation);
+        int currentRepeat = 0;
 		do
 		{
 			currentRepeat++;
@@ -486,15 +656,7 @@ public class Game : MonoSingleton<Game>
 			yield return enemy.ApplyEffectSequence(card);
 		} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
-        // animate to discard pile
-        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
-		while(tween.IsActive() && !tween.IsComplete())
-		{
-			yield return null;
-		}
-
-		discard.Add(card);
-		card.SetInPile(discardLocation);
+        
 		attackInProgress = false;
 
         CheckDeadEnemies();

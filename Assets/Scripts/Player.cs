@@ -130,7 +130,7 @@ public class Player
     public IEnumerator TakeDamage(int damage)
     {
         var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
-        yield return effect.DoEffectVisual(EffectType.Damage, damage,true);
+        yield return effect.DoEffectVisual(EffectType.Damage, damage,true, null);
         GameObject.Destroy(effect.gameObject);
         if (Block >= damage)
         {

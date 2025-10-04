@@ -22,6 +22,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private RectTransform damageLocation;
 
+    [SerializeField]
+    public RectTransform effect1Location;
+    public RectTransform effect2Location;
+
+    public EffectIndicator effect1;
+    public EffectIndicator effect2;
+
     public int maxHealth;
 
     private int _currentHealth;
@@ -166,7 +173,7 @@ public class Enemy : MonoBehaviour
         Weak = 0;
         Jinxed = false;
         Confused = false;
-
+        
 		image.sprite = template.sprite;
 
         // TODO (rest of the things)
@@ -195,7 +202,7 @@ public class Enemy : MonoBehaviour
         }
         if (card.cardTemplate.DeathChance > 0)
         {
-            if (UnityEngine.Random.Range(0, 100) > card.cardTemplate.DeathChance)
+            if (UnityEngine.Random.Range(0, 100) < card.cardTemplate.DeathChance)
             {
                 yield return takeDamage(1000);
             }
@@ -214,7 +221,7 @@ public class Enemy : MonoBehaviour
                 repeatCount++;
                 yield return takeDamage(damage);
             }
-        } while (repeatCount <= card.cardTemplate.MultHit);
+        } while (repeatCount < card.cardTemplate.MultHit);
         if (card.cardTemplate.Doomed > 0)
         {
             Doom += card.cardTemplate.Doomed;
@@ -271,7 +278,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator takeDamage(int damage)
     {
         var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
-        yield return effect.DoEffectVisual(EffectType.Damage, damage, true);
+        yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
         GameObject.Destroy(effect.gameObject);
         CurrentHealth -= damage;
         yield return null;
