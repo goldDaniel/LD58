@@ -1354,6 +1354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267163963}
   - component: {fileID: 1267163964}
+  - component: {fileID: 1267163965}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1424,6 +1425,18 @@ MonoBehaviour:
   endTurnButton: {fileID: 386296896}
   effectPrefab: {fileID: -4558534857157238076, guid: 5e8049257adff22499a7ccf13f4da873, type: 3}
   playerDamageLocation: {fileID: 1113699706}
+--- !u!114 &1267163965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267163962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f290a4f3a5b52954db3820f2ee656872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1271276918
 GameObject:
   m_ObjectHideFlags: 0
