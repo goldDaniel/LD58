@@ -372,13 +372,13 @@ public class Game : MonoSingleton<Game>
 			{
 				for (int i = 0; i < Attack.NumberOfAttacks; i++)
 				{
-					PlayerDamage(TotalDamage, player);
+					yield return player.TakeDamage(TotalDamage);
 				}
 			}
 			else
 			{
-				PlayerDamage(TotalDamage, player);
-			}
+                yield return player.TakeDamage(TotalDamage);
+            }
         }
 
         //End Attack Block
@@ -388,11 +388,6 @@ public class Game : MonoSingleton<Game>
         attacker.Attacks.Attacks.Add(OldAttack);
 
         yield return null;
-	}
-
-	private void PlayerDamage(int Damage, Player player)
-	{
-		player.CurrentHealth -= Damage;
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)

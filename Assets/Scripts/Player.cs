@@ -126,13 +126,22 @@ public class Player
 
         yield return null;
     }
-    public void TakeDamage(int damage)
+    public IEnumerator TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (Block >= damage)
         {
-            //TODO die-
+            Block -= damage;
+        } else
+        {
+            CurrentHealth -= damage - Block;
+            Block = 0;
+            if (CurrentHealth <= 0)
+            {
+                //TODO die-
+            }
         }
+        return null;
+        
     }
     public void Heal(int healing)
     {
