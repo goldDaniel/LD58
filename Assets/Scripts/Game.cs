@@ -406,7 +406,7 @@ public class Game : MonoSingleton<Game>
 				player.PowerCounter++;
 				if (player.PowerCounter >= 3)
 				{
-					player.TakeDamage(3 * player.PactOfPower);
+					yield return player.TakeDamage(3 * player.PactOfPower);
 					player.CurrentEssence += player.PactOfPower;
 				}
 			}
