@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
-  m_Name: Soldier Level 1
+  m_Name: Soldier 2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Common Foot Solider
   EnemyModel: 7

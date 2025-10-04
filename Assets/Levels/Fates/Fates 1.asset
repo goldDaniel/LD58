@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37f5d54df104534d8cbd501536cc783, type: 3}
   m_Name: Fates 1
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.LevelTemplate
-  LevelDescription: 
-  LevelNumber: -1
-  Type: 0
-  Enemies: []
+  LevelDescription: Fates Level 1
+  LevelNumber: 1
+  Type: 5
+  Enemies:
+  - {fileID: 11400000, guid: 5b36d4bdf3445f941a09454549130580, type: 2}
+  - {fileID: 11400000, guid: 6c6852a2e5e1087498e767b14c8abe0b, type: 2}
+  - {fileID: 11400000, guid: 7d4367519dd6e024ca96358aad381a66, type: 2}
