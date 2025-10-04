@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI;`
 
 public class Game : MonoSingleton<Game>
 {
@@ -177,10 +177,11 @@ public class Game : MonoSingleton<Game>
 		if (attackInProgress)
 			return false;
 
-        if (/*player.CurrentEssence >= card.currentCost && */selectedEnemy != null)
+        if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
         {
-            //player.CurrentEssence -= card.currentCost;
-			//do
+            player.CurrentEssence -= card.currentCost;
+			currentRepeat++;
+			do
 			{
 				if (player.PactOfPower > 0)
 				{
@@ -197,7 +198,7 @@ public class Game : MonoSingleton<Game>
 				attackInProgress = true;
 				StartCoroutine(AttackEnemySeqeunce(enemy, card));
 
-			} //while (currentRepeat <= player.RepeatAllCurrentTurn);
+			} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
             return true;
         }
