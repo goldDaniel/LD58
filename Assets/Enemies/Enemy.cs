@@ -13,7 +13,20 @@ public class Enemy : MonoBehaviour
     private RectTransform rectTransform;
 
 	[SerializeField]
-	private TextMeshProUGUI text;
+	private TextMeshProUGUI healthText;
+
+    public int maxHealth;
+
+    private int _currentHealth;
+    public int CurrentHealth
+    {
+        get => _currentHealth;
+        set
+        {
+            _currentHealth = Math.Clamp(value, 0, maxHealth);
+            healthText.text = $"HP: {_currentHealth}/{maxHealth}";
+        }
+    }
 
     [SerializeField]
     private TextMeshProUGUI blockText;
@@ -25,30 +38,107 @@ public class Enemy : MonoBehaviour
         set
         {
             _block = Math.Max(value, 0);
-            blockText.text = $"Block {_block}";
+            blockText.text = $"Block: {_block}";
         }
     }
 
-    public int maxHealth;
+    [SerializeField]
+    private TextMeshProUGUI doomText;
 
-	private int _currentHealth;
-    public int CurrentHealth
-	{
-		get => _currentHealth;
-		set 
-		{
-            _currentHealth = Math.Clamp(value, 0, maxHealth);
-			text.text = $"HP: {_currentHealth}/{maxHealth}";
-		}
-	}
+    private int _doom = 0;
+    public int Doom
+    {
+        get => _doom;
+        set
+        {
+            _doom = Math.Max(value, 0);
+            doomText.text = $"Doom: {_doom}";
+        }
+    }
 
-    public int Doom = 0;
-    public bool Jinxed = false;
-    public bool Confused = false;
-    public int Weak = 0;
+    [SerializeField]
+    private TextMeshProUGUI curseText;
+
+    private int _curse = 0;
+    public int Curse
+    {
+        get => _curse;
+        set
+        {
+            _curse = Math.Max(value, 0);
+            curseText.text = $"Curse: {_curse}";
+        }
+    }
+
+    [SerializeField]
+    private TextMeshProUGUI strengthText;
+
+    private int _strength = 0;
+    public int Strength
+    {
+        get => _strength;
+        set
+        {
+            _strength = Math.Max(value, 0);
+            curseText.text = $"Strength: {_strength}";
+        }
+    }
+
+    [SerializeField]
+    private TextMeshProUGUI weakText;
+
+    private int _weak = 0;
+    public int Weak
+    {
+        get => _weak;
+        set
+        {
+            _weak = Math.Max(value, 0);
+            weakText.text = $"Weak: {_weak}";
+        }
+    }
+
+    [SerializeField]
+    private TextMeshProUGUI jinxText;
+
+    private bool _jinxed = false;
+    public bool Jinxed
+    {
+        get => _jinxed;
+        set
+        {
+            if (value)
+            {
+                jinxText.text = "Jinxed!";
+            }
+            else
+            {
+                jinxText.text = string.Empty;
+            }   
+        }
+    }
+
+    [SerializeField]
+    private TextMeshProUGUI confusedText;
+
+    private bool _confused = false;
+    public bool Confused
+    {
+        get => _confused;
+        set
+        {
+            if (value)
+            {
+                confusedText.text = "Confused!";
+            }
+            else
+            {
+                confusedText.text = string.Empty;
+            }
+        }
+    }
+
     public int BonusSouls = 0;
-    public int Curse = 0;
-    public int Strength = 0;
 
     public EnemyAttack Attacks = new EnemyAttack();
 
@@ -62,8 +152,14 @@ public class Enemy : MonoBehaviour
 		maxHealth = template.MaxHealth;
 		CurrentHealth = maxHealth;
         Attacks = template.AttackList;
-
         Block = template.Block;
+        Doom = 0;
+        Curse = 0;
+        Strength = 0;
+        Weak = 0;
+        Jinxed = false;
+        Confused = false;
+
         // TODO (rest of the things)
     }
 
@@ -162,13 +258,14 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
-    public void takeDamage(int damage)
+    public IEnumerator takeDamage(int damage)
     {
 		CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
             // Death Effect
         }
+        return null;
     }
 
     public void SetHighlight(bool active) => highlight.SetActive(active);

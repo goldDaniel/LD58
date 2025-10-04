@@ -72,7 +72,7 @@ public class Game : MonoSingleton<Game>
 
 		foreach(var c in defaultDeck)
 		{
-			var card = Instantiate(cardPrefab);
+			var card = Instantiate(cardPrefab, deckLocation);
 			card.OnCardInitialize(c);
 			card.SetInitialParent(handContainer);
 			card.SetInPile(deckLocation);
@@ -86,11 +86,9 @@ public class Game : MonoSingleton<Game>
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
 	{
-        var enemy = Instantiate(enemyPrefab);
+        var enemy = Instantiate(enemyPrefab, enemyContainer);
         enemy.OnIntitialize(enemyTemplate);
         activeEnemies.Add(enemy);
-
-        enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
     }
 
 	IEnumerator DrawHand()
@@ -257,6 +255,16 @@ public class Game : MonoSingleton<Game>
 			player.Lethargic = true;
         }
 
+		if (attacker.Jinxed)
+		{
+			if (Attack.TargetAllEnemies || Attack.TargetAllOtherEnemies)
+			{
+				Attack.TargetAllEnemies = false;
+				Attack.TargetAllOtherEnemies = false;
+				Attack.TargetRandomEnemy = true;
+			}
+		}
+
 		if (Attack.Heal != -1)
 		{
 			if (Attack.TargetAllEnemies)
@@ -350,6 +358,11 @@ public class Game : MonoSingleton<Game>
 		{
 			int TotalDamage = Attack.Damage;
 
+			if (attacker.Weak != -1)
+			{
+				TotalDamage -= attacker.Weak;
+			}
+
 			if (attacker.Strength != -1)
 			{
 				TotalDamage += attacker.Strength;
@@ -370,16 +383,42 @@ public class Game : MonoSingleton<Game>
 				TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
             }
 
+			var IsConfused = false;
+			if (attacker.Confused)
+			{
+				var ConfusedChance = 50;
+				if (UnityEngine.Random.Range(0, 100) < ConfusedChance)
+				{
+					IsConfused = true;
+				}
+			}
+
 			if (Attack.NumberOfAttacks > 1)
 			{
 				for (int i = 0; i < Attack.NumberOfAttacks; i++)
 				{
-					yield return player.TakeDamage(TotalDamage);
+					if (IsConfused)
+					{
+						yield return attacker.takeDamage(TotalDamage);
+					}
+
+					else
+					{
+                        yield return player.TakeDamage(TotalDamage);
+                    }
 				}
 			}
 			else
 			{
-                yield return player.TakeDamage(TotalDamage);
+                if (IsConfused)
+                {
+                    yield return attacker.takeDamage(TotalDamage);
+                }
+
+                else
+                {
+                    yield return player.TakeDamage(TotalDamage);
+                }
             }
         }
 
