@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EffectType { Damage };
+public enum EffectType { Damage, Shield, Heal, Other };
 
 public class EffectIndicator : MonoBehaviour
 {
@@ -17,6 +17,9 @@ public class EffectIndicator : MonoBehaviour
 
     [SerializeField]
     private Sprite damageIcon;
+    [SerializeField] private Sprite shieldIcon;
+    [SerializeField] private Sprite healIcon;
+    [SerializeField] private Sprite OtherIcon;
     [SerializeField]
 
     private float fadeTime = 0.4f;
@@ -32,10 +35,24 @@ public class EffectIndicator : MonoBehaviour
     {
         
     }
-    public IEnumerator DoEffectVisual(EffectType effectType, int value, bool isFade)
+    public IEnumerator DoEffectVisual(EffectType effectType, int value, bool isFade, string textOverride)
     {
         canvasGroup.alpha = 1;
-        valueText.text = $"{value}";
+        if (textOverride != null)
+        {
+            valueText.text = textOverride;
+        }
+        else
+        {
+            if (value >= 0)
+            {
+                valueText.text = $"{value}";
+            }
+            else
+            {
+                valueText.text = "";
+            }
+        }
 
         if (effectType == EffectType.Damage)
         {
@@ -58,6 +75,5 @@ public class EffectIndicator : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = 0;
-        //GameObject.Destroy(this);
     }
 }
