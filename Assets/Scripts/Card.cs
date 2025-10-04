@@ -22,7 +22,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (Highlighted && UIController.Instance.IsSelectedCard(null));
+        if (Highlighted && UIController.Instance.IsSelectedCard(null))
         {
             UIController.Instance.SetSelectedCard(this);
         }
