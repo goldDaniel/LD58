@@ -15,7 +15,21 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI text;
 
-	public int maxHealth;
+    [SerializeField]
+    private TextMeshProUGUI blockText;
+
+    private int _block = 0;
+    public int Block
+    {
+        get => _block;
+        set
+        {
+            _block = Math.Max(value, 0);
+            blockText.text = $"Block {_block}";
+        }
+    }
+
+    public int maxHealth;
 
 	private int _currentHealth;
     public int CurrentHealth
@@ -30,7 +44,6 @@ public class Enemy : MonoBehaviour
 
     public int Doom = 0;
     public bool Jinxed = false;
-    public int Block = 0;
     public bool Confused = false;
     public int Weak = 0;
     public int BonusSouls = 0;
@@ -49,6 +62,8 @@ public class Enemy : MonoBehaviour
 		maxHealth = template.MaxHealth;
 		CurrentHealth = maxHealth;
         Attacks = template.AttackList;
+
+        Block = template.Block;
         // TODO (rest of the things)
     }
 
