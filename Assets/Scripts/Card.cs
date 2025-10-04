@@ -102,6 +102,7 @@ public class CardGroup
 
 	public Card Draw()
 	{
+		Debug.Assert(cards.Count > 0, "Attempting to draw from empty card group");
 		if(cards.Count == 0) 
 			return null;
 
