@@ -18,13 +18,13 @@ public class Player
 	public TextMeshProUGUI healthText;
 	public TextMeshProUGUI essenceText;
 
-	private int _maxHealth;
+	private int _maxHealth = 100;
 	public int MaxHealth
 	{
 		get => _maxHealth;
 		set
 		{
-			_maxHealth = Math.Max(_maxHealth, 1);
+			_maxHealth = Math.Max(value, 1);
 			healthText.text = $"Health {CurrentHealth} / {_maxHealth}";
 		}
 	}
@@ -35,7 +35,7 @@ public class Player
 		get => _currentHealth;
 		set
 		{
-			_currentHealth = Math.Max(_currentHealth, 0);
+			_currentHealth = Math.Max(value, 0);
 			healthText.text = $"Health {_currentHealth} / {MaxHealth}";
 		}
 	}

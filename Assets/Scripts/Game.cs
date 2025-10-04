@@ -64,6 +64,8 @@ public class Game : MonoSingleton<Game>
 
 	public IEnumerator Start()
 	{
+		player.CurrentHealth = player.MaxHealth;
+
 		foreach (var enemyTemplate in testLevel.Enemies)
 		{
             SpawnEnemy(enemyTemplate);
@@ -175,10 +177,10 @@ public class Game : MonoSingleton<Game>
 		if (attackInProgress)
 			return false;
 
-        if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
+        if (/*player.CurrentEssence >= card.currentCost && */selectedEnemy != null)
         {
-            player.CurrentEssence -= card.currentCost;
-			do
+            //player.CurrentEssence -= card.currentCost;
+			//do
 			{
 				if (player.PactOfPower > 0)
 				{
@@ -195,7 +197,7 @@ public class Game : MonoSingleton<Game>
 				attackInProgress = true;
 				StartCoroutine(AttackEnemySeqeunce(enemy, card));
 
-			} while (currentRepeat <= player.RepeatAllCurrentTurn);
+			} //while (currentRepeat <= player.RepeatAllCurrentTurn);
 
             return true;
         }
