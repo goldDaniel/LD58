@@ -14,6 +14,8 @@ public class Player
     public int Block;
     
 
+	public TextMeshProUGUI healthText;
+	public TextMeshProUGUI essenceText;
 
 	private int _maxHealth;
 	public int MaxHealth
