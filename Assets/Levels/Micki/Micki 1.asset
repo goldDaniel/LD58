@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37f5d54df104534d8cbd501536cc783, type: 3}
   m_Name: Micki 1
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.LevelTemplate
-  LevelDescription: 
-  LevelNumber: -1
-  Type: 0
-  Enemies: []
+  LevelDescription: Micki Level 1
+  LevelNumber: 1
+  Type: 2
+  Enemies:
+  - {fileID: 11400000, guid: ec263ba37a3ec0a4991d932ace016355, type: 2}
+  - {fileID: 11400000, guid: 146239dc655c0524a8f081b9d02429cb, type: 2}
+  - {fileID: 11400000, guid: 88b196f88ec1a7e40af94c69d6087a18, type: 2}

@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37f5d54df104534d8cbd501536cc783, type: 3}
-  m_Name: Reaper 1
+  m_Name: Micki 2
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.LevelTemplate
-  LevelDescription: Reaper Level 1
-  LevelNumber: 1
-  Type: 4
+  LevelDescription: Micki Level 2
+  LevelNumber: 2
+  Type: 2
   Enemies:
-  - {fileID: 11400000, guid: 0289e923c3b2f90409d12d6860a5257b, type: 2}
-  - {fileID: 11400000, guid: 0a53e9490b18d9444898339e9b9938a0, type: 2}
-  - {fileID: 11400000, guid: ad584bf8e01d5094db0c1844810333d0, type: 2}
-  - {fileID: 11400000, guid: e0a588470856b3146b9a1353f2421dae, type: 2}
+  - {fileID: 11400000, guid: 6008a04025c592049a3e819b14e07cac, type: 2}
+  - {fileID: 11400000, guid: 9950af624131ae945855b275da3e5027, type: 2}
