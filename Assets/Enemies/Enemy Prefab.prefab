@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -737,8 +737,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285143086
-  m_fontColor: {r: 0.18085611, g: 0.09594162, b: 0.41509432, a: 1}
+    rgba: 4292431732
+  m_fontColor: {r: 0.45344242, g: 0.30838373, b: 0.8490566, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   image: {fileID: 8475713908703636263}
   highlight: {fileID: 9024711384981322707}
   healthText: {fileID: 2186650436009500617}
-  maxHealth: 0
+  maxHealth: 10
   blockText: {fileID: 4327742053686878823}
   doomText: {fileID: 859780638715123952}
   curseText: {fileID: 2707003756004675310}

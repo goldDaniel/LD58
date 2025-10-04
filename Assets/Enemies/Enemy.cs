@@ -268,10 +268,6 @@ public class Enemy : MonoBehaviour
     public IEnumerator takeDamage(int damage)
     {
 		CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
-        {
-            // Death Effect
-        }
         return null;
     }
 
