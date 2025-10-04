@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Deal 8 Damage, 5% Chance to Instant Kill
+  Type: 4
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

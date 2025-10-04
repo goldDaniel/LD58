@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cacophany
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: 
+  Type: 5
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

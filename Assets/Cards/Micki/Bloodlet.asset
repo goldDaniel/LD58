@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bloodlet
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Take 5 Damage, Gain 2 Essence
+  Type: 2
   EssenceCost: 0
   SelfDamage: 5
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

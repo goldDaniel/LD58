@@ -1,10 +1,13 @@
 using UnityEngine;
 
+public enum CardType { None, Anubis, Micki, Odin, Reaper, Fates };
+
 [CreateAssetMenu(fileName = "NewCard", menuName = "New Card", order = 1)]
 public class CardTemplate : ScriptableObject
 {
     //Card Properties
     public string CardDescription;
+    public CardType Type = CardType.None;
 
     //Cost
     public int EssenceCost = -1;

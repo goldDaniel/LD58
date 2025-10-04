@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Strategize
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: All cards next turn play twice
+  Type: 3
   EssenceCost: 3
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 1
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

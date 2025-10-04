@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Hex
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Jinx Enemy and Deal 1-15 Damage
-  TurnDelay: 0
+  Type: 5
   EssenceCost: 2
   SelfDamage: -1
-  TargerAllEnemies: 0
+  TargetAllEnemies: 0
   RandomEnemy: 0
   MinDamage: 1
   MaxDamage: 5
@@ -35,8 +35,9 @@ MonoBehaviour:
   Strength: -1
   EssenceGain: -1
   MultHit: -1
+  doubleDamageHits: -1
   Power: 0
   Sacrifice: 0
-  Frenzy: 0
+  RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

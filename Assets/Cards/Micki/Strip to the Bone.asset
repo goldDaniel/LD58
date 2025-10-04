@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Strip to the Bone
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: 10% Bloody Strike
+  Type: 2
   EssenceCost: 0
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

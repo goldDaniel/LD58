@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Protection From the Future
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Block 20, then deal 5-15
+  Type: 5
   EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 0
+  CurseEachPlay: 0

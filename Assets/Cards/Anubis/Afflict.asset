@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Afflict
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Gain AFFLICT
+  Type: 1
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  Afflict: 1
+  CurseEachPlay: 0
