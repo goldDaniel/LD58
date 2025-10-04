@@ -9,9 +9,6 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
 	[SerializeField]
-	private GameObject borderHighlight;
-
-	[SerializeField]
 	private Image cardBack;
 	[SerializeField]
 	private Image cardFront;
@@ -19,7 +16,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField]
 	private CanvasGroup raycastBlocker;
 
-	public bool Highlighted => borderHighlight.activeSelf;
+	public bool Highlighted => dummy.activeSelf;
 
 	private int previousChildIndex = -1;
 	private RectTransform initialParent;
@@ -33,6 +30,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public TextMeshProUGUI title;
 	public TextMeshProUGUI description;
 
+	private GameObject dummy;
 
 	public void OnCardInitialize(CardTemplate card)
 	{
@@ -41,15 +39,30 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		title.text = card.name;
 		description.text = card.CardDescription;
 		currentCost = card.EssenceCost;
+
+		Card dummyCard = Instantiate(this, UIController.Instance.transform);
+		dummyCard.EnableRaycast = false;
+		dummy = dummyCard.gameObject;
+		Destroy(dummyCard);
+		dummy.transform.localScale = new Vector2(1.2f, 1.2f);
+		dummy.gameObject.SetActive(false);
+
 	}
 
 	public void SetInitialParent(RectTransform rt) => initialParent = rt;
-	
+
+	public void Update()
+	{
+		if (UIController.Instance.IsSelectedCard(this))
+			dummy.gameObject.SetActive(false);
+	}
+
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (Highlighted && UIController.Instance.IsSelectedCard(null))
 		{
 			UIController.Instance.SetSelectedCard(this);
+			dummy.gameObject.SetActive(false);
 		}
 	}
 
@@ -66,7 +79,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 			UIController.Instance.SetSelectedCard(null);
 			rectTransform.SetParent(initialParent);
-			rectTransform.localScale = new Vector2(1.0f, 1.0f);
+			dummy.gameObject.SetActive(false);
 		}
 	}
 
@@ -74,15 +87,20 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		borderHighlight.SetActive(true);
-		rectTransform.localScale = new Vector2(1.1f, 1.1f);
 		previousChildIndex = transform.parent.GetSiblingIndex();
+
+		var rect = dummy.GetComponent<RectTransform>();
+		rect.position = this.rectTransform.position;
+
+		dummy.gameObject.transform.SetSiblingIndex(2);
+		dummy.gameObject.SetActive(true);
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		borderHighlight.SetActive(false);
 		rectTransform.localScale = new Vector2(1.0f, 1.0f);
+
+		dummy.gameObject.SetActive(false);
 	}
 
 	public void SetInHand()
