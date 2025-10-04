@@ -129,7 +129,9 @@ public class Player
     }
     public IEnumerator TakeDamage(int damage)
     {
-        //var effect = GameObject.Instantiate(Game.Instance.effectPrefab);
+        var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
+        yield return effect.DoEffectVisual(EffectType.Damage, damage,true);
+        //GameObject.Destroy(effect.gameObject);
         if (Block >= damage)
         {
             Block -= damage;
@@ -142,7 +144,7 @@ public class Player
                 //TODO die-
             }
         }
-        return null;
+        yield return null;
         
     }
     public void Heal(int healing)

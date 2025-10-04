@@ -52,6 +52,9 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	public EffectIndicator effectPrefab;
 
+	[SerializeField]
+	public RectTransform playerDamageLocation;
+
 	private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
@@ -212,7 +215,7 @@ public class Game : MonoSingleton<Game>
 		enemyTurnIndex = -1;
 		player.CurrentEssence = player.MaxEssence;
 		player.Block = 0;
-		player.RepeatAllCurrentTurn = 3;
+		player.RepeatAllCurrentTurn = player.RepeatAllNext;
 		player.RepeatAllNext = 0;
 
 		StartCoroutine(DrawHand());

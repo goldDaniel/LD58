@@ -50,10 +50,14 @@ public class EffectIndicator : MonoBehaviour
 
     private IEnumerator Fade(float time)
     {
-        while (canvasGroup.alpha > 0)
+        float t = time;
+        while (t > 0)
         {
-            canvasGroup.alpha -= Time.deltaTime / time;
+            canvasGroup.alpha = Mathf.Clamp01(t / time);
+            t -= Time.deltaTime;
+            yield return null;
         }
-        return null;
+        canvasGroup.alpha = 0;
+        //GameObject.Destroy(this);
     }
 }

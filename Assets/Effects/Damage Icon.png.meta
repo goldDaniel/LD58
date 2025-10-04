@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c5a7c6f1989e5784e9a0b97405119a36
+guid: 62bf66a45c248c64582c80ee223811ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5252403369247824349
-    second: Damage Icon_0
+      213: 7145864476781540566
+    second: Damage Icon 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Damage Icon_0
+      name: Damage Icon 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 126
-        height: 149
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd9d411390944e840800000000000000
-      internalID: 5252403369247824349
+      spriteID: 6d475a791e53b2360800000000000000
+      internalID: 7145864476781540566
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Damage Icon_0: 5252403369247824349
+      Damage Icon 1_0: 7145864476781540566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
