@@ -1394,17 +1394,26 @@ MonoBehaviour:
     blockText: {fileID: 564553691}
   activeEnemies: []
   defaultDeck:
-  - {fileID: 11400000, guid: bd8f1c2e24f464c48b7a05c3c60b7159, type: 2}
-  - {fileID: 11400000, guid: 0fc389b7ace57a743815d0b232dc0504, type: 2}
-  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
-  - {fileID: 11400000, guid: c22f4a0aa360ef340a1f3ec7178921f1, type: 2}
-  - {fileID: 11400000, guid: 95be5e7b6046b324bb8bf340b4646cdc, type: 2}
-  - {fileID: 11400000, guid: 38684793b8b329f4781c2e5613d3d1bf, type: 2}
-  - {fileID: 11400000, guid: bc0570290988ae945ba33ee356699e88, type: 2}
-  - {fileID: 11400000, guid: 4dbd6c1138f88394e9aa77ddc3103b47, type: 2}
-  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
-  - {fileID: 11400000, guid: 8b90678502bc8eb4696612d6ba27648c, type: 2}
-  - {fileID: 11400000, guid: acbe20bd65964d241bc294d5d27a6be2, type: 2}
+  - {fileID: 11400000, guid: 7d512bf3a0a6f8c4da5c50790dd1f94f, type: 2}
+  - {fileID: 11400000, guid: 8027249cac69cae42ad739943a35b7f6, type: 2}
+  - {fileID: 11400000, guid: bd279e71e8cd9d4499d005a60ddf9ccc, type: 2}
+  - {fileID: 11400000, guid: e1485aa5616529040aab3e4e1d41ccd9, type: 2}
+  - {fileID: 11400000, guid: 3060aa3a3bdc7d842acba85bd5d845f6, type: 2}
+  - {fileID: 11400000, guid: 886bf6709ebb5a44d8ebec3b08b1a2bc, type: 2}
+  - {fileID: 11400000, guid: 06781b9c6fbebb34b8141c2334262971, type: 2}
+  - {fileID: 11400000, guid: ae9985c00c9f7854380f52441e31295b, type: 2}
+  - {fileID: 11400000, guid: 7ed56af88e0408b40855c566f6ee9994, type: 2}
+  - {fileID: 11400000, guid: 2142884f989059b47adefe0c02329ae1, type: 2}
+  - {fileID: 11400000, guid: 7f0e487ea85cab44886ade30b05f9fc5, type: 2}
+  - {fileID: 11400000, guid: 0f7acded3f564984893952cb8cc5ba38, type: 2}
+  - {fileID: 11400000, guid: b2dd5253c31705146b3d8b91eac08cf9, type: 2}
+  - {fileID: 11400000, guid: 84589b37a99b2fb4d807455aef8abe04, type: 2}
+  - {fileID: 11400000, guid: c94d084cb9e2bac4490eb40595cd0056, type: 2}
+  - {fileID: 11400000, guid: a7d17a779f199384d9dffc6174810994, type: 2}
+  - {fileID: 11400000, guid: 2c4c9174de713e94db4bf8faf4bd4753, type: 2}
+  - {fileID: 11400000, guid: 621a34e00b002274eb81ac1a55171904, type: 2}
+  - {fileID: 11400000, guid: 3fffc3d798f7a004d952dd7a939bfd0f, type: 2}
+  - {fileID: 11400000, guid: 3e177aed1398db34f9c7945373977e1c, type: 2}
   handContainer: {fileID: 2056663529}
   cardPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
   deckLocation: {fileID: 1015732010}

@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using DG.Tweening;
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -231,24 +232,31 @@ public class Game : MonoSingleton<Game>
 			enemyTurnIndex++;
 		}
 
-		checkDeadEnemies();
+		CheckDeadEnemies();
 
 		enemyTurnIndex = -1;
 		OnTurnStart();
 	}
 
 	//Ben
-	public void checkDeadEnemies()
+	public void CheckDeadEnemies()
 	{
-		foreach (var enemy in activeEnemies)
+		List<Enemy> savedEnemies = new List<Enemy>();
+
+		for (int i = 0; i < activeEnemies.Count; i++)
 		{
-			if (enemy.CurrentHealth <= 0)
+			if (activeEnemies[i].CurrentHealth <= 0)
 			{
-				Destroy(enemy.gameObject);
-				activeEnemies.Remove(enemy);
+				savedEnemies.Add(activeEnemies[i]);
 			}
 		}
-	}
+
+        foreach (var Enemy in savedEnemies)
+		{
+			Destroy(Enemy.gameObject);
+			activeEnemies.Remove(Enemy);
+		}
+    }
 
 	//Ben
 	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
@@ -486,6 +494,6 @@ public class Game : MonoSingleton<Game>
 		card.SetInPile(discardLocation);
 		attackInProgress = false;
 
-        checkDeadEnemies();
+        CheckDeadEnemies();
     }
 }
