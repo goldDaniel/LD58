@@ -1,10 +1,11 @@
 using Assets.Scripts;
 using DG.Tweening;
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Game : MonoSingleton<Game>
 {
@@ -45,10 +46,18 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	private Enemy enemyPrefab;
 
+	[SerializeField]
+	private Button endTurnButton;
+
+	private int enemyTurnIndex;
+	public bool IsPlayerTurn { get; private set; }
+
 	public override void Awake()
 	{
 		base.Awake();
 		DontDestroyOnLoad(this);
+		enemyTurnIndex = -1;
+		IsPlayerTurn = true;
 	}
 
 	public IEnumerator Start()
@@ -57,9 +66,9 @@ public class Game : MonoSingleton<Game>
 		{
 			var enemy = Instantiate(enemyPrefab);
 			enemy.OnIntitialize(enemyTemplate);
+			activeEnemies.Add(enemy);
 
 			enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
-
 		}
 
 		foreach(var c in defaultDeck)
@@ -82,17 +91,35 @@ public class Game : MonoSingleton<Game>
 	{
 		while (hand.Size < handSize)
 		{
+			if(deck.Size == 0)
+				yield return RefillDeck();
+
 			Card card = deck.Draw();
 			card.gameObject.SetActive(true);
 			card.SetInHand();
 
-			var tween = card.rectTransform.DOMove(MathUtils.RectTransformToScreenSpace(handContainer).position, 0.4f).SetEase(Ease.InCirc);
+			var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 
 			card.rectTransform.SetParent(handContainer);
 			hand.Add(card);
 		}
+	}
+
+	IEnumerator RefillDeck()
+	{
+		while (discard.Size > 0)
+		{
+			var card = discard.Draw();
+			deck.Add(card);
+
+			var tween = card.rectTransform.DOMove(deckLocation.position, 0.2f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
+
+		deck.Shuffle();
 	}
 
 	public void SelectEnemy(Enemy enemy)
@@ -143,6 +170,43 @@ public class Game : MonoSingleton<Game>
 		}
 
 		return false;
+	}
+
+	public void OnTurnEnd()
+	{
+		endTurnButton.interactable = false;
+		IsPlayerTurn = false;
+		enemyTurnIndex = 0;
+
+		StartCoroutine(DoEnemyTurn());
+	}
+
+	public void OnTurnStart()
+	{
+		endTurnButton.interactable = true;
+		IsPlayerTurn = true;
+		enemyTurnIndex = -1;
+
+		StartCoroutine(DrawHand());
+	}
+
+	IEnumerator DoEnemyTurn()
+	{
+		while(enemyTurnIndex < activeEnemies.Count)
+		{
+			var active = activeEnemies[enemyTurnIndex];
+			var others = activeEnemies.Where(e => e != active).ToList();
+			yield return AttackPlayerSequence(active, others, player);
+			enemyTurnIndex++;
+		}
+
+		enemyTurnIndex = -1;
+		OnTurnStart();
+	}
+
+	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
+	{
+		yield return null;
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
