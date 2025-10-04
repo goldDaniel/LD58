@@ -23,6 +23,7 @@ public class CardTemplate : ScriptableObject
     public int Souls = -1;
     public int Curse = -1; //DoT
     public int DeathChance = -1; //when triggered, this per cent has a chance to instantly kill all non-boss enemies
+    public int Weak = -1; //reduces enemy damage by 1
 
     //Self Effect
     public int Draw = -1;
