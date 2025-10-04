@@ -7,28 +7,35 @@ public class CardTemplate : ScriptableObject
     public string CardDescription;
 
     //Cost
-    public bool TurnDelay = false;
     public int EssenceCost = -1;
     public int SelfDamage = -1;
 
     //Enemy Effect
-    public bool TargerAllEnemies = false;
+    public bool TargetAllEnemies = false;
     public bool RandomEnemy = false;
     public int MinDamage = -1;
     public int MaxDamage = -1;
-    public int Doomed = -1;
-    public bool Jinxed = false;
-    public bool FateSealed = false;
-    public bool Confuse = false;
+    public int BloodyStrike = -1; //take % health damage, do amount to enemy
+    public int Doomed = -1; //if Doom >= 3, enemy instantly dies
+    public bool Jinxed = false; //enemy has a 50% chance to miss
+    public bool FateSealed = false; //enemy goes to next attack in cycle
+    public bool Confuse = false; //enemy has a chance to hit itself
     public int Souls = -1;
-    public int Curse = -1;
+    public int Curse = -1; //DoT
+    public int DeathChance = -1; //when triggered, this per cent has a chance to instantly kill all non-boss enemies
 
     //Self Effect
+    public int Draw = -1;
     public int Heal = -1;
     public int Block = -1;
     public bool GetLucky = false; //reroll damage, take highest result
     public int Strength = -1; //add value to future attacks
     public int EssenceGain = -1;
     public int MultHit = -1;
-    public bool Power = false;//every 3 cards played, take 3 damage, gain 1 essence
+    public int doubleDamageHits = -1;
+    public bool Power = false; //every 3 cards played, take 3 damage, gain 1 essence
+    public bool Sacrifice = false; //self-inflicted damage is done to all enemies
+    public bool RepeatAllNext = false; //cards trigger twice next turn
+    public bool Foretell = false; //draw 1 and reduce its cost to 0
+    public bool Afflict = false;
 }

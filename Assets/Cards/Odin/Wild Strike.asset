@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Curse
+  m_Name: Wild Strike
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: 
+  CardDescription: Deal 12 Damage to a Random Enemy
   TurnDelay: 0
-  EssenceCost: -1
+  EssenceCost: 1
   SelfDamage: -1
   TargerAllEnemies: 0
-  MinDamage: -1
-  MaxDamage: -1
+  RandomEnemy: 1
+  MinDamage: 12
+  MaxDamage: 12
   Doomed: -1
   Jinxed: 0
   FateSealed: 0
   Confuse: 0
   Souls: -1
-  Poison: -1
+  Curse: -1
   Heal: -1
   Block: -1
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
   MultHit: -1
+  Power: 0
+  Sacrifice: 0
+  Frenzy: 0
