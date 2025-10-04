@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -28,9 +29,22 @@ public class Enemy : MonoBehaviour
             Game.Instance.DeselectEnemy(this);
     }
 
-    public void ApplyEffects(Card card)
+    public IEnumerator ApplyEffectSequence(Card card)
     {
+        /*
+        if (SomeCardEffectApplies)
+        {
+            yield return DoTheAnimationForEffect(); (daniel will take care of this, leave comment saying it needs to be implemented)
+            
+            this.health -= ......
+            this.hasStatusEffect = true;
+            etc....
+        }
 
+         */
+
+
+        yield return null;
     }
 
     public void SetHighlight(bool active) => highlight.SetActive(active);

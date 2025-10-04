@@ -1,4 +1,9 @@
+using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoSingleton<Game>
 {
@@ -6,15 +11,54 @@ public class Game : MonoSingleton<Game>
 
 	private Enemy selectedEnemy = null;
 
-	public override void Awake()
+	private int handSize = 3;
+    private CardGroup hand = new();
+
+	[SerializeField]
+	private RectTransform cardContainer;
+
+	[SerializeField] 
+	private Card cardPrefab;
+
+	[SerializeField]
+    private RectTransform deckLocation;
+    private CardGroup deck = new();
+
+    [SerializeField]
+    private RectTransform discardLocation;
+    private CardGroup discard = new();
+	
+	
+	private bool attackInProgress = false;
+
+    public override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
+	public void Start()
 	{
-		base.Awake();
-		DontDestroyOnLoad(this);
+		for (int i = 0; i < handSize; i++)
+		{
+			var card = Instantiate(cardPrefab);
+
+			var hue = Random.Range(0f, 1f);
+            var saturation = Random.Range(0.6f, 0.8f);
+			var brightness = Random.Range(0.8f, 1f);
+            card.GetComponent<Image>().color = Color.HSVToRGB(hue, saturation, brightness);
+
+			card.rectTransform.SetParent(cardContainer);
+			card.SetInitialParent(cardContainer);
+		}
 	}
 
 	public void SelectEnemy(Enemy enemy)
 	{
-		if (UIController.Instance.IsSelectedCard(null))
+        if (attackInProgress)
+            return;
+		
+        if (UIController.Instance.IsSelectedCard(null))
 		{
 			DeselectEnemy(enemy);
 			return;
@@ -31,6 +75,9 @@ public class Game : MonoSingleton<Game>
 
     public void DeselectEnemy(Enemy enemy)
     {
+		if (attackInProgress)
+			return;
+
 		if (selectedEnemy == enemy)
 		{
             selectedEnemy = null;
@@ -40,12 +87,40 @@ public class Game : MonoSingleton<Game>
 
     public bool AttackEnemyWith(Card card)
 	{
-		if (selectedEnemy != null)
+        if (attackInProgress)
+            return false;
+
+        if (selectedEnemy != null)
 		{
-			selectedEnemy.ApplyEffects(card);
+			var enemy = selectedEnemy;
+            DeselectEnemy(selectedEnemy);
+
+            attackInProgress = true;
+            StartCoroutine(AttackEnemySeqeunce(enemy, card));
 			return true;
 		}
 
 		return false;
+	}
+
+	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
+	{
+        Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
+		
+		hand.Remove(card);
+
+		yield return enemy.ApplyEffectSequence(card);
+
+        // animate to discard pile
+        var targetPosition = discardLocation.position + new Vector3(-card.rectTransform.rect.width / 2f, card.rectTransform.rect.height / 2f, 0);
+        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+		while(tween.IsActive() && !tween.IsComplete())
+		{
+			yield return null;
+		}
+
+		discard.Add(card);
+
+		attackInProgress = false;
 	}
 }

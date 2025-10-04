@@ -15,7 +15,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     private RectTransform initialParent;
     private int intitialSiblingIndex; 
-    private Vector2 initialPosition;
     public RectTransform rectTransform;
 
     public bool EnableRaycast { get => cardImage.raycastTarget; set => cardImage.raycastTarget = value; }
@@ -25,10 +24,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        initialPosition = rectTransform.localPosition;
-        initialParent = rectTransform.parent.GetComponent<RectTransform>();
         intitialSiblingIndex = transform.GetSiblingIndex();
     }
+
+    public void SetInitialParent(RectTransform rt) => initialParent = rt;
     
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -51,7 +50,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
             UIController.Instance.SetSelectedCard(null);
             rectTransform.SetParent(initialParent);
-            rectTransform.localPosition = initialPosition;
             transform.SetSiblingIndex(intitialSiblingIndex);
         }
     }
@@ -64,8 +62,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 }
 
-
 public class CardGroup
 {
-    List<Card> cards = new();
+    private List<Card> cards = new();
+    public bool Contains(Card card) => cards.Contains(card);
+    public void Remove(Card card) => cards.Remove(card);
+
+    public void Add(Card card) => cards.Add(card);
 }
