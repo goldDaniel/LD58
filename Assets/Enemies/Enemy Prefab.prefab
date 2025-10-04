@@ -1237,6 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cc327a5498aac41b6efcccb4bee851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  image: {fileID: 8475713908703636263}
   highlight: {fileID: 9024711384981322707}
   healthText: {fileID: 2186650436009500617}
   maxHealth: 0

@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
+	[SerializeField]
+	private Image image;
+
+	[SerializeField]
     private GameObject highlight;
 
     private RectTransform rectTransform;
@@ -159,6 +163,8 @@ public class Enemy : MonoBehaviour
         Weak = 0;
         Jinxed = false;
         Confused = false;
+
+		image.sprite = template.sprite;
 
         // TODO (rest of the things)
     }
