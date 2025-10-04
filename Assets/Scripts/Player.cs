@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEngine;
 
 [Serializable]
 public class Player
@@ -128,6 +129,7 @@ public class Player
     }
     public IEnumerator TakeDamage(int damage)
     {
+        //var effect = GameObject.Instantiate(Game.Instance.effectPrefab);
         if (Block >= damage)
         {
             Block -= damage;

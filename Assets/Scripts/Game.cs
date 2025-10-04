@@ -49,6 +49,9 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	private Button endTurnButton;
 
+	[SerializeField]
+	public EffectIndicator effectPrefab;
+
 	private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 

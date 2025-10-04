@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0, 100) > card.cardTemplate.DeathChance)
             {
-                takeDamage(1000);
+                yield return takeDamage(1000);
             }
         }
         int repeatCount = 0;
@@ -203,6 +203,7 @@ public class Enemy : MonoBehaviour
                 }
                 damage *= 1<<Game.Instance.player.doubleDamageHit;
                 repeatCount++;
+                yield return takeDamage(damage);
             }
         } while (repeatCount <= card.cardTemplate.MultHit);
         if (card.cardTemplate.Doomed > 0)
@@ -210,7 +211,7 @@ public class Enemy : MonoBehaviour
             Doom += card.cardTemplate.Doomed;
             if (Doom >= 3)
             {
-                takeDamage(Doom * 20);
+                yield return takeDamage(Doom * 20);
                 Doom = 0;
             }
         }
@@ -225,8 +226,8 @@ public class Enemy : MonoBehaviour
         if (card.cardTemplate.BloodyStrike > 0)
         {
             int currentHealth = Game.Instance.player.CurrentHealth;
-            // Have player take damage
-            takeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
+            yield return Game.Instance.player.TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
+            yield return takeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
         }
         if (card.cardTemplate.Confuse)
         {
