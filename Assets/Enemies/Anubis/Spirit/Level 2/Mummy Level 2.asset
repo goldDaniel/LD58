@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
-  m_Name: Spirit Level 1
+  m_Name: Mummy Level 2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
-  EnemyDescription: A Spooky Spirit
-  EnemyModel: 0
-  MaxHealth: 10
-  Block: 0
+  EnemyDescription: A Mummy!
+  EnemyModel: 2
+  MaxHealth: 25
+  Block: -1
   Attack:
     Attacks:
-    - {fileID: 11400000, guid: 13b055f4649552747bc734e737cce19d, type: 2}
-    - {fileID: 11400000, guid: 4244a80fab574ac4bb08fa9cb61585a5, type: 2}
-    - {fileID: 11400000, guid: 29b3a03720da6ca4c928ca4dbf626c6a, type: 2}
+    - {fileID: 11400000, guid: d5e7bc1b1aff8b841aed1a9564381a6e, type: 2}
+    - {fileID: 11400000, guid: b48c57df722bfd647b370b958f86e148, type: 2}
+    - {fileID: 11400000, guid: 157083bf4ce1ec4479c92e24b0c04983, type: 2}

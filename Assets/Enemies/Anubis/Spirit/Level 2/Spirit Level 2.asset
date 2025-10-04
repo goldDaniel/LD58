@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
-  m_Name: Spirit Level 1
+  m_Name: Spirit Level 2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Spooky Spirit
   EnemyModel: 0
@@ -18,6 +18,6 @@ MonoBehaviour:
   Block: 0
   Attack:
     Attacks:
-    - {fileID: 11400000, guid: 13b055f4649552747bc734e737cce19d, type: 2}
-    - {fileID: 11400000, guid: 4244a80fab574ac4bb08fa9cb61585a5, type: 2}
-    - {fileID: 11400000, guid: 29b3a03720da6ca4c928ca4dbf626c6a, type: 2}
+    - {fileID: 11400000, guid: d26ba47bf0920e84fa33c2df23f22bfc, type: 2}
+    - {fileID: 11400000, guid: 2ef49bcc0ce1ea64c8490a8604759a3d, type: 2}
+    - {fileID: 11400000, guid: 00c73c445ca04b1429d01de1cc267a49, type: 2}

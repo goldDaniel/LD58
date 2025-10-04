@@ -20,7 +20,6 @@ public class EnemyAttackTemplate : ScriptableObject
 	public bool MissingHealthBonus = false; //gives extra damage based on Enemy missing health
 	public bool ApplyLethergy = false; //reduce players draw by one
 
-	public bool TargetPlayer = false;
 	public bool TargetAllEnemies = false;
 	public bool TargetAllOtherEnemies = false;
 	public bool TargetRandomEnemy = false;
