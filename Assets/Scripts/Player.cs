@@ -5,18 +5,43 @@ using TMPro;
 [Serializable]
 public class Player
 {
-    private int _maxEssence;
-    public int MaxEssence;
+    private int _maxEssence = 3;
+    public int MaxEssence
+    {
+        get => _maxEssence;
+        set
+        {
+            _maxEssence = Math.Max(value, 1);
+            essenceText.text = $"Essence {CurrentEssence} / {_maxEssence}";
+        }
+    }
 
 	private int _currentEssence;
-    public int CurrentEssence;
+    public int CurrentEssence
+    {
+        get => _currentEssence;
+        set
+        {
+            _currentEssence = Math.Max(value, 0);
+            essenceText.text = $"Essence {_currentEssence} / {MaxEssence}";
+        }
+    }
 
-	private int _block;
-    public int Block;
-    
+    private int _block = 0;
+    public int Block
+    {
+        get => _block;
+        set
+        {
+            _block = Math.Max(value, 0);
+            blockText.text = $"Block {_block}";
+        }
+    }
 
-	public TextMeshProUGUI healthText;
+
+    public TextMeshProUGUI healthText;
 	public TextMeshProUGUI essenceText;
+    public TextMeshProUGUI blockText;
 
 	private int _maxHealth = 100;
 	public int MaxHealth

@@ -65,6 +65,7 @@ public class Game : MonoSingleton<Game>
 	public IEnumerator Start()
 	{
 		player.CurrentHealth = player.MaxHealth;
+		player.CurrentEssence = player.MaxEssence;
 
 		foreach (var enemyTemplate in testLevel.Enemies)
 		{
@@ -172,33 +173,18 @@ public class Game : MonoSingleton<Game>
 
 	public bool AttackEnemyWith(Card card)
 	{
-		int currentRepeat = 0;
-
 		if (attackInProgress)
 			return false;
 
         if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
         {
             player.CurrentEssence -= card.currentCost;
-			currentRepeat++;
-			do
-			{
-				if (player.PactOfPower > 0)
-				{
-					player.PowerCounter++;
-					if (player.PowerCounter >= 3)
-					{
-						player.TakeDamage(3 * player.PactOfPower);
-						player.CurrentEssence += player.PactOfPower;
-					}
-				}
-				var enemy = selectedEnemy;
-				DeselectEnemy(selectedEnemy);
+			
+			var enemy = selectedEnemy;
+			DeselectEnemy(selectedEnemy);
 
-				attackInProgress = true;
-				StartCoroutine(AttackEnemySeqeunce(enemy, card));
-
-			} while (currentRepeat <= player.RepeatAllCurrentTurn);
+			attackInProgress = true;
+			StartCoroutine(AttackEnemySeqeunce(enemy, card));
 
             return true;
         }
@@ -223,7 +209,7 @@ public class Game : MonoSingleton<Game>
 		enemyTurnIndex = -1;
 		player.CurrentEssence = player.MaxEssence;
 		player.Block = 0;
-		player.RepeatAllCurrentTurn = player.RepeatAllNext;
+		player.RepeatAllCurrentTurn = 3;
 		player.RepeatAllNext = 0;
 
 		StartCoroutine(DrawHand());
@@ -414,13 +400,27 @@ public class Game : MonoSingleton<Game>
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 
         hand.Remove(card);
+		int currentRepeat = 0;
+		do
+		{
+			currentRepeat++;
+			if (player.PactOfPower > 0)
+			{
+				player.PowerCounter++;
+				if (player.PowerCounter >= 3)
+				{
+					player.TakeDamage(3 * player.PactOfPower);
+					player.CurrentEssence += player.PactOfPower;
+				}
+			}
 
-		yield return player.ApplyEffectSequence(card);
+			yield return player.ApplyEffectSequence(card);
 
-		yield return enemy.ApplyEffectSequence(card);
+			yield return enemy.ApplyEffectSequence(card);
+		} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
-		// animate to discard pile
-		var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+        // animate to discard pile
+        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
 		while(tween.IsActive() && !tween.IsComplete())
 		{
 			yield return null;
