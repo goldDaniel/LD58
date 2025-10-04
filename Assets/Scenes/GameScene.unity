@@ -214,6 +214,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2081318510}
   - {fileID: 2056663529}
   - {fileID: 1198677413}
   - {fileID: 1755593977}
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game
   activeEnemies: []
-  cardContainer: {fileID: 2056663529}
+  handContainer: {fileID: 2056663529}
   cardPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
   deckLocation: {fileID: 1015732010}
   discardLocation: {fileID: 1755593977}
@@ -1112,7 +1113,7 @@ GameObject:
   - component: {fileID: 2056663529}
   - component: {fileID: 2056663530}
   m_Layer: 5
-  m_Name: Card Container
+  m_Name: Hand Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1163,6 +1164,37 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &2081318509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081318510}
+  m_Layer: 0
+  m_Name: DeckContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081318510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081318509}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 641.3919, y: -99.016716, z: 0}
+  m_LocalScale: {x: 1.1475931, y: 1.1475931, z: 1.1475931}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 279265567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7602509101646793346
 PrefabInstance:
   m_ObjectHideFlags: 0

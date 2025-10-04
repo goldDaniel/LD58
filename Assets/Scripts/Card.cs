@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -63,9 +64,23 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 public class CardGroup
 {
+    public int Size => cards.Count;
+
     private List<Card> cards = new();
     public bool Contains(Card card) => cards.Contains(card);
     public void Remove(Card card) => cards.Remove(card);
 
     public void Add(Card card) => cards.Add(card);
+
+    public void Shuffle() => cards.Sort((x, y) => (int)(Random.value * int.MaxValue));
+
+    public Card Draw()
+    {
+        if(cards.Count == 0) 
+            return null;
+
+        var result = cards[0];
+        cards.RemoveAt(0);
+        return result;;
+    }
 }
