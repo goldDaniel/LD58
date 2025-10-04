@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -118,7 +119,20 @@ public class CardGroup
 
 	public void Add(Card card) => cards.Add(card);
 
-	public void Shuffle() => cards.Sort((x, y) => (int)(UnityEngine.Random.value * int.MaxValue));
+	public void Shuffle()
+	{
+        System.Random rng = new();
+
+        int n = cards.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            Card value = cards[k];
+            cards[k] = cards[n];
+            cards[n] = value;
+        }
+    }
 
 	public Card Draw()
 	{
