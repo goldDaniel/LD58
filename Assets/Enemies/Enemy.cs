@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     private RectTransform rectTransform;
 
+    private int health;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -31,6 +33,8 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ApplyEffectSequence(Card card)
     {
+
+        if (card.cardTemplate.)
         /*
         if (SomeCardEffectApplies)
         {

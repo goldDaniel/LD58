@@ -37,5 +37,5 @@ public class CardTemplate : ScriptableObject
     public bool Sacrifice = false; //self-inflicted damage is done to all enemies
     public bool RepeatAllNext = false; //cards trigger twice next turn
     public bool Foretell = false; //draw 1 and reduce its cost to 0
-    public bool Afflict = false;
+    public bool CurseEachPlay = false;
 }

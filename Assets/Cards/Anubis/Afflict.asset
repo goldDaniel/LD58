@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: Afflict
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: 
-  TurnDelay: 0
-  EssenceCost: -1
+  CardDescription: Gain AFFLICT
+  EssenceCost: 1
   SelfDamage: -1
-  TargerAllEnemies: 0
+  TargetAllEnemies: 0
   RandomEnemy: 0
   MinDamage: -1
   MaxDamage: -1
@@ -35,7 +34,9 @@ MonoBehaviour:
   Strength: -1
   EssenceGain: -1
   MultHit: -1
+  doubleDamageHits: -1
   Power: 0
   Sacrifice: 0
-  Frenzy: 0
+  RepeatAllNext: 0
   Foretell: 0
+  Afflict: 1

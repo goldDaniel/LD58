@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Game : MonoSingleton<Game>
 {
+	public Player player = new();
 	public List<Enemy> activeEnemies = new();
 
 	private Enemy selectedEnemy = null;
@@ -109,6 +110,7 @@ public class Game : MonoSingleton<Game>
         Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 		
 		hand.Remove(card);
+
 
 		yield return enemy.ApplyEffectSequence(card);
 
