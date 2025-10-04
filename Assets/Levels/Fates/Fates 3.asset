@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37f5d54df104534d8cbd501536cc783, type: 3}
-  m_Name: Odin 1
+  m_Name: Fates 3
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.LevelTemplate
-  LevelDescription: Odin Level 1
-  LevelNumber: 1
-  Type: 3
-  Enemies:
-  - {fileID: 11400000, guid: d557a34d4619da3418402fcb7ce17d39, type: 2}
-  - {fileID: 11400000, guid: 6d0e4621a8ac74b479c621e7b7daa6f5, type: 2}
+  LevelDescription: Fates Level 3
+  LevelNumber: 3
+  Type: 5
+  Enemies: []
