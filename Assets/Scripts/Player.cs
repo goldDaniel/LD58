@@ -131,7 +131,7 @@ public class Player
     {
         var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
         yield return effect.DoEffectVisual(EffectType.Damage, damage,true);
-        //GameObject.Destroy(effect.gameObject);
+        GameObject.Destroy(effect.gameObject);
         if (Block >= damage)
         {
             Block -= damage;
