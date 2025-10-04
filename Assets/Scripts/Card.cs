@@ -26,6 +26,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public bool EnableRaycast { get => raycastBlocker.blocksRaycasts; set => raycastBlocker.blocksRaycasts = value; }
 
 	public CardTemplate cardTemplate;
+	public int currentCost;
 
 	public TextMeshProUGUI title;
 	public TextMeshProUGUI description;
@@ -37,6 +38,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		cardFront.sprite = card.cardFront;
 		title.text = card.name;
 		description.text = card.CardDescription;
+		currentCost = card.EssenceCost;
 	}
 
 	public void SetInitialParent(RectTransform rt) => initialParent = rt;
