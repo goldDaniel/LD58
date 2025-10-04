@@ -2,9 +2,7 @@ using Assets.Scripts;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -195,6 +193,10 @@ public class Game : MonoSingleton<Game>
 
 	public void OnTurnEnd()
 	{
+		Debug.Assert(IsPlayerTurn, "Cannot end turn!");
+		if (!IsPlayerTurn)
+			return;
+
 		endTurnButton.interactable = false;
 		IsPlayerTurn = false;
 		enemyTurnIndex = 0;
