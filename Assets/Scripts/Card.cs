@@ -20,6 +20,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public bool Highlighted => borderHighlight.activeSelf;
 
+	private int previousChildIndex = -1;
 	private RectTransform initialParent;
 	public RectTransform rectTransform;
 
@@ -64,14 +65,24 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 			UIController.Instance.SetSelectedCard(null);
 			rectTransform.SetParent(initialParent);
+			rectTransform.localScale = new Vector2(1.0f, 1.0f);
 		}
 	}
 
 	public void SetPosition(Vector2 position) => rectTransform.position = position;
 
-	public void OnPointerEnter(PointerEventData eventData) => borderHighlight.SetActive(true);
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		borderHighlight.SetActive(true);
+		rectTransform.localScale = new Vector2(1.1f, 1.1f);
+		previousChildIndex = transform.parent.GetSiblingIndex();
+	}
 
-	public void OnPointerExit(PointerEventData eventData) => borderHighlight.SetActive(false);
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		borderHighlight.SetActive(false);
+		rectTransform.localScale = new Vector2(1.0f, 1.0f);
+	}
 
 	public void SetInHand()
 	{
