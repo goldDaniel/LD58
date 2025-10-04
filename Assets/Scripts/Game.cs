@@ -143,6 +143,7 @@ public class Game : MonoSingleton<Game>
 		}
 
 		discard.Add(card);
+		card.rectTransform.SetParent(discardLocation);
 		card.SetInPile();
 
 		attackInProgress = false;
