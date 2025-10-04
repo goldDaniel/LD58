@@ -1,6 +1,5 @@
 using Assets.Scripts;
 using DG.Tweening;
-using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,9 +76,7 @@ public class Game : MonoSingleton<Game>
 			var card = Instantiate(cardPrefab);
 			card.OnCardInitialize(c);
 			card.SetInitialParent(handContainer);
-			card.rectTransform.SetParent(deckLocation);
-
-			card.SetInPile();
+			card.SetInPile(deckLocation);
 
 			deck.Add(card);
 		}
@@ -259,9 +256,7 @@ public class Game : MonoSingleton<Game>
 		}
 
 		discard.Add(card);
-		card.rectTransform.SetParent(discardLocation);
-		card.SetInPile();
-
+		card.SetInPile(discardLocation);
 		attackInProgress = false;
 	}
 }

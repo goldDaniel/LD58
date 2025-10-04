@@ -80,11 +80,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		EnableRaycast = true;
 	}
 
-	public void SetInPile()
+	public void SetInPile(RectTransform parent)
 	{
 		cardFront.gameObject.SetActive(false);
 		cardBack.gameObject.SetActive(true);
 		EnableRaycast = false;
+		rectTransform.SetParent(parent);
+
+		rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+		rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+		rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+		rectTransform.anchoredPosition = new Vector2(0, 0);
 	}
 }
 

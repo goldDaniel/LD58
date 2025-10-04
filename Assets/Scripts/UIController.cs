@@ -22,7 +22,7 @@ public class UIController : MonoSingleton<UIController>
 		if(card != null)
 		{
 			card.rectTransform.SetParent(rectTransform);
-			card.transform.SetAsFirstSibling();
+			card.transform.SetSiblingIndex(1);
 		}
 	}
 
