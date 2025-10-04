@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Gain POWER
   Type: 2
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -28,6 +29,7 @@ MonoBehaviour:
   Souls: -1
   Curse: -1
   DeathChance: 0
+  Weak: -1
   Draw: -1
   Heal: -1
   Block: -1

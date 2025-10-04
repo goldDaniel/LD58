@@ -652,6 +652,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game
   activeEnemies: []
+  defaultDeck:
+  - {fileID: 11400000, guid: bd8f1c2e24f464c48b7a05c3c60b7159, type: 2}
+  - {fileID: 11400000, guid: 0fc389b7ace57a743815d0b232dc0504, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: c22f4a0aa360ef340a1f3ec7178921f1, type: 2}
+  - {fileID: 11400000, guid: 95be5e7b6046b324bb8bf340b4646cdc, type: 2}
+  - {fileID: 11400000, guid: 38684793b8b329f4781c2e5613d3d1bf, type: 2}
+  - {fileID: 11400000, guid: bc0570290988ae945ba33ee356699e88, type: 2}
+  - {fileID: 11400000, guid: 4dbd6c1138f88394e9aa77ddc3103b47, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: 8b90678502bc8eb4696612d6ba27648c, type: 2}
+  - {fileID: 11400000, guid: acbe20bd65964d241bc294d5d27a6be2, type: 2}
   handContainer: {fileID: 2056663529}
   cardPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
   deckLocation: {fileID: 1015732010}
@@ -1136,7 +1148,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -500, y: 260}
+  m_SizeDelta: {x: -500, y: 300}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2056663530
 MonoBehaviour:

@@ -12,8 +12,10 @@ public class Game : MonoSingleton<Game>
 	private Enemy selectedEnemy = null;
 
 	private int handSize = 3;
-	private int deckSize = 20;
-    private CardGroup hand = new();
+	private CardGroup hand = new();
+
+	[SerializeField]
+	private List<CardTemplate> defaultDeck;
 
 	[SerializeField]
 	private RectTransform handContainer;
@@ -21,39 +23,37 @@ public class Game : MonoSingleton<Game>
 	[SerializeField] 
 	private Card cardPrefab;
 
-    [SerializeField]
-    private RectTransform deckLocation;
-    private CardGroup deck = new();
+	[SerializeField]
+	private RectTransform deckLocation;
 
-    [SerializeField]
-    private RectTransform discardLocation;
-    private CardGroup discard = new();
+	private CardGroup deck = new();
+
+	[SerializeField]
+	private RectTransform discardLocation;
+	private CardGroup discard = new();
 	
 	
 	private bool attackInProgress = false;
 
-    public override void Awake()
-    {
-        base.Awake();
-        DontDestroyOnLoad(this);
-    }
+	public override void Awake()
+	{
+		base.Awake();
+		DontDestroyOnLoad(this);
+	}
 
 	public IEnumerator Start()
 	{
-		for(int i = 0; i < deckSize; ++i)
+		foreach(var c in defaultDeck)
 		{
-            var card = Instantiate(cardPrefab);
-
-            var hue = Random.Range(0f, 1f);
-            var saturation = Random.Range(0.6f, 0.8f);
-            var brightness = Random.Range(0.8f, 1f);
-            card.GetComponent<Image>().color = Color.HSVToRGB(hue, saturation, brightness);
-            card.SetInitialParent(handContainer);
-
+			var card = Instantiate(cardPrefab);
+			card.OnCardInitialize(c);
+			card.SetInitialParent(handContainer);
 			card.rectTransform.SetParent(deckLocation);
 
+			card.SetInPile();
+
 			deck.Add(card);
-        }
+		}
 		deck.Shuffle();
 
 		yield return DrawHand();
@@ -65,22 +65,23 @@ public class Game : MonoSingleton<Game>
 		{
 			Card card = deck.Draw();
 			card.gameObject.SetActive(true);
+			card.SetInHand();
 
-            var tween = card.rectTransform.DOMove(MathUtils.RectTransformToScreenSpace(handContainer).position, 0.4f).SetEase(Ease.InCirc);
-            while (tween.IsActive() && !tween.IsComplete())
-                yield return null;
+			var tween = card.rectTransform.DOMove(MathUtils.RectTransformToScreenSpace(handContainer).position, 0.4f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
 
-            card.rectTransform.SetParent(handContainer);
-            hand.Add(card);
-        }
-    }
+			card.rectTransform.SetParent(handContainer);
+			hand.Add(card);
+		}
+	}
 
 	public void SelectEnemy(Enemy enemy)
 	{
-        if (attackInProgress)
-            return;
+		if (attackInProgress)
+			return;
 		
-        if (UIController.Instance.IsSelectedCard(null))
+		if (UIController.Instance.IsSelectedCard(null))
 		{
 			DeselectEnemy(enemy);
 			return;
@@ -90,35 +91,35 @@ public class Game : MonoSingleton<Game>
 			return;
 
 		if(enemy != null)
-            enemy.SetHighlight(true);
+			enemy.SetHighlight(true);
 
-        selectedEnemy = enemy;
-    }
+		selectedEnemy = enemy;
+	}
 
-    public void DeselectEnemy(Enemy enemy)
-    {
+	public void DeselectEnemy(Enemy enemy)
+	{
 		if (attackInProgress)
 			return;
 
 		if (selectedEnemy == enemy)
 		{
-            selectedEnemy = null;
+			selectedEnemy = null;
 			enemy.SetHighlight(false);
-        }
-    }
+		}
+	}
 
-    public bool AttackEnemyWith(Card card)
+	public bool AttackEnemyWith(Card card)
 	{
-        if (attackInProgress)
-            return false;
+		if (attackInProgress)
+			return false;
 
-        if (selectedEnemy != null)
+		if (selectedEnemy != null)
 		{
 			var enemy = selectedEnemy;
-            DeselectEnemy(selectedEnemy);
+			DeselectEnemy(selectedEnemy);
 
-            attackInProgress = true;
-            StartCoroutine(AttackEnemySeqeunce(enemy, card));
+			attackInProgress = true;
+			StartCoroutine(AttackEnemySeqeunce(enemy, card));
 			return true;
 		}
 
@@ -127,21 +128,22 @@ public class Game : MonoSingleton<Game>
 
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
 	{
-        Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
+		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 		
 		hand.Remove(card);
 
 
 		yield return enemy.ApplyEffectSequence(card);
 
-        // animate to discard pile
-        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+		// animate to discard pile
+		var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
 		while(tween.IsActive() && !tween.IsComplete())
 		{
 			yield return null;
 		}
 
 		discard.Add(card);
+		card.SetInPile();
 
 		attackInProgress = false;
 	}

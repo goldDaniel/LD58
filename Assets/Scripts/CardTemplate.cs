@@ -8,6 +8,7 @@ public class CardTemplate : ScriptableObject
     //Card Properties
     public string CardDescription;
     public CardType Type = CardType.None;
+	public Sprite cardFront;
 
     //Cost
     public int EssenceCost = -1;
