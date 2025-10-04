@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     private bool confused = false;
     private int weak = 0;
     private int bonusSouls = 0;
+    private int curse = 0;
 
     private void Awake()
     {
@@ -95,6 +96,10 @@ public class Enemy : MonoBehaviour
         if (card.cardTemplate.Weak > 0)
         {
             weak += card.cardTemplate.Weak;
+        }
+        if (card.cardTemplate.Curse > 0)
+        {
+            curse += card.cardTemplate.Curse;
         }
 
         /*
