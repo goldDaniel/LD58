@@ -67,12 +67,15 @@ public class Game : MonoSingleton<Game>
 		IsPlayerTurn = true;
 	}
 
-	public IEnumerator Start()
+	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
+
+	private IEnumerator LoadLevel_Internal()
 	{
 		player.CurrentHealth = player.MaxHealth;
 		player.CurrentEssence = player.MaxEssence;
 
-		foreach (var enemyTemplate in testLevel.Enemies)
+		var level = GameProgress.Instance.selectedLevel ?? testLevel;
+		foreach (var enemyTemplate in level.Enemies)
 		{
             SpawnEnemy(enemyTemplate);
         }

@@ -31,6 +31,10 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 		{
 			Destroy(this.gameObject);
 		}
+		else
+		{
+			_instance = (T)this;
+		}
 	}
 }
 

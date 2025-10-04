@@ -10,15 +10,16 @@ public class GameProgress : MonoSingleton<GameProgress>
 
 	public Dictionary<LevelTemplate, bool> completedLevels = new();
 
-	public List<LevelTemplate> anubisLevels;
-	public List<LevelTemplate> fateLevels;
-	public List<LevelTemplate> mickiLevels;
-	public List<LevelTemplate> odinLevels;
-	public List<LevelTemplate> reaperLevels;
+	public List<LevelTemplate> anubisLevels = new();
+	public List<LevelTemplate> fateLevels = new();
+	public List<LevelTemplate> mickiLevels = new();
+	public List<LevelTemplate> odinLevels = new();
+	public List<LevelTemplate> reaperLevels = new();
 
 	public override void Awake()
 	{
 		base.Awake();
+		DontDestroyOnLoad(this);
 
 		foreach (var a in anubisLevels)
 			completedLevels.Add(a, false);
