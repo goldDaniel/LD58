@@ -178,6 +178,7 @@ public class Game : MonoSingleton<Game>
         if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
         {
             player.CurrentEssence -= card.currentCost;
+			currentRepeat++;
 			do
 			{
 				if (player.PactOfPower > 0)
