@@ -12,7 +12,7 @@ public enum EnemyModel
     Chiefton,
     Skeleton,
     MegaSkelebro,
-    Solider,
+    Soldier,
     Knight,
     Priest,
     Demigod

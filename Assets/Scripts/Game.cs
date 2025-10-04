@@ -92,21 +92,26 @@ public class Game : MonoSingleton<Game>
 	{
 		while (hand.Size < handSize)
 		{
-			if(deck.Size == 0)
-				yield return RefillDeck();
-
-			Card card = deck.Draw();
-			card.gameObject.SetActive(true);
-			card.SetInHand();
-
-			var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
-			while (tween.IsActive() && !tween.IsComplete())
-				yield return null;
-
-			card.rectTransform.SetParent(handContainer);
-			hand.Add(card);
+			yield return DrawCardFromDeck();
 		}
 	}
+
+	public IEnumerator DrawCardFromDeck()
+	{
+        if (deck.Size == 0)
+            yield return RefillDeck();
+
+        Card card = deck.Draw();
+        card.gameObject.SetActive(true);
+        card.SetInHand();
+
+        var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
+        while (tween.IsActive() && !tween.IsComplete())
+            yield return null;
+
+        card.rectTransform.SetParent(handContainer);
+        hand.Add(card);
+    }
 
 	IEnumerator RefillDeck()
 	{
@@ -160,7 +165,11 @@ public class Game : MonoSingleton<Game>
 		if (attackInProgress)
 			return false;
 
-		if (selectedEnemy != null)
+        if (player.CurrentEssence >= card.car
+        {
+            
+        }
+        if (selectedEnemy != null)
 		{
 			var enemy = selectedEnemy;
 			DeselectEnemy(selectedEnemy);
@@ -213,8 +222,12 @@ public class Game : MonoSingleton<Game>
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
-		
-		hand.Remove(card);
+		Player player = Game.Instance.player;
+
+
+        hand.Remove(card);
+
+		yield return player.ApplyEffectSequence(card);
 
 		yield return enemy.ApplyEffectSequence(card);
 
