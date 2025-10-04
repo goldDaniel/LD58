@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
             doom += card.cardTemplate.Doomed;
             if (doom >= 3)
             {
-                takeDamage(doom *= 20);
+                takeDamage(doom * 20);
                 doom = 0;
             }
         }
