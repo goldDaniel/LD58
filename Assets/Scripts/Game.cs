@@ -65,6 +65,7 @@ public class Game : MonoSingleton<Game>
 	public IEnumerator Start()
 	{
 		player.CurrentHealth = player.MaxHealth;
+		player.CurrentEssence = player.MaxEssence;
 
 		foreach (var enemyTemplate in testLevel.Enemies)
 		{
@@ -223,7 +224,7 @@ public class Game : MonoSingleton<Game>
 		enemyTurnIndex = -1;
 		player.CurrentEssence = player.MaxEssence;
 		player.Block = 0;
-		player.RepeatAllCurrentTurn = player.RepeatAllNext;
+		player.RepeatAllCurrentTurn = 3;
 		player.RepeatAllNext = 0;
 
 		StartCoroutine(DrawHand());
