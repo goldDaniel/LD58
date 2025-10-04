@@ -102,10 +102,6 @@ public class Enemy : MonoBehaviour
             curse += card.cardTemplate.Curse;
         }
 
-<<<<<<< Updated upstream
-=======
-        //if (card.cardTemplate.)
->>>>>>> Stashed changes
         /*
         if (SomeCardEffectApplies)
         {
