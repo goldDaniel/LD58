@@ -4,8 +4,6 @@ using TMPro;
 [Serializable]
 public class Player
 {
-	private int _maxEssence;
-    public int MaxEssence;
 
 	private int _currentEssence;
     public int CurrentEssence;
@@ -48,4 +46,70 @@ public class Player
 	[NonSerialized] public int PowerCounter = 0;
 	[NonSerialized] public int CurseEachPlay = 0;
 	[NonSerialized] public int Lucky = 0;
+
+    public IEnumerator ApplyEffectSequence(Card card)
+    {
+        if (card.cardTemplate.Draw > 0)
+        {
+            // TODO draw cards
+        }
+        if (card.cardTemplate.Heal > 0)
+        {
+            Heal(card.cardTemplate.Heal);
+        }
+        if (card.cardTemplate.Block > 0)
+        {
+            Block += card.cardTemplate.Block;
+        }
+        if (card.cardTemplate.GetLucky)
+        {
+            Lucky += 1;
+        }
+        if (card.cardTemplate.Strength > 0)
+        {
+            Strength += card.cardTemplate.Strength;
+        }
+        if (card.cardTemplate.EssenceGain > 0)
+        {
+            CurrentEssence += card.cardTemplate.EssenceGain;
+        }
+        if (card.cardTemplate.Power)
+        {
+            PactOfPower += 1;
+        }
+        if (card.cardTemplate.Sacrifice)
+        {
+            PactOfSacrifice += 1;
+        }
+        if (card.cardTemplate.RepeatAllNext)
+        {
+            RepeatAllNext += 1;
+        }
+        if (card.cardTemplate.Foretell)
+        {
+            //TODO Draw card and reduce cost to 0
+        }
+        if (card.cardTemplate.CurseEachPlay)
+        {
+            CurseEachPlay += 1;
+        }
+
+        yield return null;
+    }
+    public void TakeDamage(int damage)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+        {
+            //TODO die-
+        }
+    }
+    public void Heal(int healing)
+    {
+        CurrentHealth += healing;
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+    }
 }
