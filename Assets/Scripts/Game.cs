@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Game : MonoSingleton<Game>
 {
 	public Player player = new();
+
 	public List<Enemy> activeEnemies = new();
 
 	private Enemy selectedEnemy = null;
