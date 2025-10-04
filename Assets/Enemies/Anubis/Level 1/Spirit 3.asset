@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Spooky Spirit
   EnemyModel: 1
+  sprite: {fileID: -4463601529666964615, guid: 3fe749ad3a3ec534da48a1ee791ca105, type: 3}
   MaxHealth: 10
   Block: 0
   AttackList:
