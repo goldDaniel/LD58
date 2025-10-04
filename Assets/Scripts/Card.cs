@@ -13,6 +13,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private Vector2 initialPosition;
     public RectTransform rectTransform;
 
+    public CardTemplate cardTemplate;
+
     public void Start()
     {
         rectTransform = GetComponent<RectTransform>();
