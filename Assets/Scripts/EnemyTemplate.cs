@@ -27,6 +27,8 @@ public class EnemyAttack
 [CreateAssetMenu(fileName = "EnemyAttack", menuName = "Enemy Attack", order = 1)]
 public class EnemyAttackTemplate : ScriptableObject
 {
+    public string Description = string.Empty;
+
     public int Damage = -1;
     public int Heal = -1;
     public int Block = -1;
@@ -45,4 +47,5 @@ public class EnemyAttackTemplate : ScriptableObject
     public bool TargetAllEnemies = false;
     public bool TargetAllOtherEnemies = false;
     public bool TargetRandomEnemy = false;
+    public bool TargetSelf = false;
 }

@@ -11,7 +11,7 @@ namespace Assets.Scripts
     public class LevelTemplate : ScriptableObject
     {
         //Level Properties
-        public string LevelDescription;
+        public string LevelDescription = string.Empty;
         public int LevelNumber = -1;
         public CardType Type = CardType.None;
 

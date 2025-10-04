@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Attack 2
+  m_Name: Attack 1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackTemplate
-  Damage: -1
+  Description: Attack! Block!
+  Damage: 5
   Heal: -1
-  Block: -1
+  Block: 5
   Curse: -1
   NumberOfAttacks: -1
   Strength: -1
@@ -28,3 +29,4 @@ MonoBehaviour:
   TargetAllEnemies: 0
   TargetAllOtherEnemies: 0
   TargetRandomEnemy: 0
+  TargetSelf: 1
