@@ -22,7 +22,7 @@ public class Player
         get => _currentEssence;
         set
         {
-            _currentEssence = Math.Max(value, 1);
+            _currentEssence = Math.Max(value, 0);
             essenceText.text = $"Essence {_currentEssence} / {MaxEssence}";
         }
     }
@@ -33,7 +33,7 @@ public class Player
         get => _block;
         set
         {
-            _block = Math.Max(value, 1);
+            _block = Math.Max(value, 0);
             blockText.text = $"Block {_block}";
         }
     }

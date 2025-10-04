@@ -1356,7 +1356,7 @@ MonoBehaviour:
   player:
     healthText: {fileID: 417234328}
     essenceText: {fileID: 424921459}
-    blockText: {fileID: 0}
+    blockText: {fileID: 564553691}
   activeEnemies: []
   defaultDeck:
   - {fileID: 11400000, guid: bd8f1c2e24f464c48b7a05c3c60b7159, type: 2}
