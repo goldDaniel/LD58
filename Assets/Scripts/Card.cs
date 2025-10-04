@@ -23,7 +23,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
         intitialSiblingIndex = transform.GetSiblingIndex();
     }
 

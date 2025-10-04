@@ -50,6 +50,7 @@ public class Game : MonoSingleton<Game>
 
 			card.rectTransform.SetParent(cardContainer);
 			card.SetInitialParent(cardContainer);
+			hand.Add(card);
 		}
 	}
 

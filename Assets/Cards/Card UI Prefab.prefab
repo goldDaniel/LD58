@@ -355,7 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Card
   borderHighlight: {fileID: 2764415968249589218}
   cardImage: {fileID: 4940323452783298550}
-  rectTransform: {fileID: 0}
+  rectTransform: {fileID: 534891283473844812}
+  cardTemplate: {fileID: 0}
 --- !u!1 &8869851802573531895
 GameObject:
   m_ObjectHideFlags: 0
