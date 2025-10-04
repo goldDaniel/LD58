@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,22 @@ public class Enemy : MonoBehaviour
 
     private RectTransform rectTransform;
 
-    private int health;
+	[SerializeField]
+	private TextMeshProUGUI text;
+
+	private int maxHealth;
+
+	private int _currentHealth;
+    private int CurrentHealth
+	{
+		get => _currentHealth;
+		set 
+		{
+			_currentHealth = value;
+			text.text = $"HP: {_currentHealth}/{maxHealth}";
+		}
+	}
+
     private int doom = 0;
     private bool jinxed = false;
     private int block = 0;
@@ -22,6 +38,13 @@ public class Enemy : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
     }
+
+	public void OnIntitialize(EnemyTemplate template)
+	{
+		maxHealth = template.MaxHealth;
+		CurrentHealth = maxHealth;
+		// TODO (rest of the things)
+	}
 
     public bool IsIntersectingMouse()
     {
@@ -120,8 +143,8 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        health -= damage;
-        if (health < 0)
+		CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
         {
             // Death Effect
         }

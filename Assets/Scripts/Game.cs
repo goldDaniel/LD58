@@ -1,8 +1,10 @@
+using Assets.Scripts;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Game : MonoSingleton<Game>
 {
@@ -31,9 +33,17 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	private RectTransform discardLocation;
 	private CardGroup discard = new();
-	
-	
+
+	[SerializeField]
+	private LevelTemplate testLevel;
+
 	private bool attackInProgress = false;
+
+	[SerializeField]
+	private RectTransform enemyContainer;
+
+	[SerializeField]
+	private Enemy enemyPrefab;
 
 	public override void Awake()
 	{
@@ -43,6 +53,15 @@ public class Game : MonoSingleton<Game>
 
 	public IEnumerator Start()
 	{
+		foreach (var enemyTemplate in testLevel.Enemies)
+		{
+			var enemy = Instantiate(enemyPrefab);
+			enemy.OnIntitialize(enemyTemplate);
+
+			enemy.GetComponent<RectTransform>().SetParent(enemyContainer);
+
+		}
+
 		foreach(var c in defaultDeck)
 		{
 			var card = Instantiate(cardPrefab);
@@ -131,7 +150,6 @@ public class Game : MonoSingleton<Game>
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 		
 		hand.Remove(card);
-
 
 		yield return enemy.ApplyEffectSequence(card);
 
