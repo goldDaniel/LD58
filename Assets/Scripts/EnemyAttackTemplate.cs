@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyAttack", menuName = "Enemy Attack", order = 1)]
@@ -14,7 +15,8 @@ public class EnemyAttackTemplate : ScriptableObject
 	public int Strength = -1;
 
 	public bool ClearNegative = false; //clears all negative effects on enemy
-	public bool SpawnEnemy = false;
+	[SerializeField]
+	public EnemyTemplate SpawnEnemy = new EnemyTemplate();
 	public bool MassBonus = false; //gives extra damage based on the number of Enemies
 	public bool BlockBonus = false; //gives extra damage based on Enemy block
 	public bool MissingHealthBonus = false; //gives extra damage based on Enemy missing health
