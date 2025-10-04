@@ -231,10 +231,24 @@ public class Game : MonoSingleton<Game>
 			enemyTurnIndex++;
 		}
 
+		checkDeadEnemies();
+
 		enemyTurnIndex = -1;
 		OnTurnStart();
 	}
 
+	//Ben
+	public void checkDeadEnemies()
+	{
+		foreach (var enemy in activeEnemies)
+		{
+			if (enemy.CurrentHealth <= 0)
+			{
+				Destroy(enemy.gameObject);
+				activeEnemies.Remove(enemy);
+			}
+		}
+	}
 
 	//Ben
 	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
@@ -471,5 +485,7 @@ public class Game : MonoSingleton<Game>
 		discard.Add(card);
 		card.SetInPile(discardLocation);
 		attackInProgress = false;
-	}
+
+        checkDeadEnemies();
+    }
 }
