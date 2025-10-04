@@ -18,7 +18,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private Vector2 initialPosition;
     public RectTransform rectTransform;
 
+<<<<<<< HEAD
     public bool EnableRaycast { get => cardImage.raycastTarget; set => cardImage.raycastTarget = value; }
+=======
+    public CardTemplate cardTemplate;
+>>>>>>> 68f1ed2d80ed647bf6ff1aab035343dffba05f8b
 
     public void Start()
     {
