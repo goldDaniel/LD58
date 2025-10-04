@@ -173,8 +173,8 @@ public class Enemy : MonoBehaviour
         Weak = 0;
         Jinxed = false;
         Confused = false;
-        
-		image.sprite = template.sprite;
+
+		image.sprite = EnemyArtContainer.Instance.FindSprite(template.EnemyModel);
 
         // TODO (rest of the things)
     }

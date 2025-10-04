@@ -1608,6 +1608,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506984798}
   m_CullTransparentMesh: 1
+--- !u!1 &1719403584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719403585}
+  - component: {fileID: 1719403586}
+  m_Layer: 0
+  m_Name: Art Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719403585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719403584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1039.9211, y: 657.97314, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719403586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719403584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5479be125ebe44ead0bf26fdce0ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyArtContainer
+  Spirit: {fileID: -4463601529666964615, guid: 3fe749ad3a3ec534da48a1ee791ca105, type: 3}
+  Mummy: {fileID: -5840307614221572364, guid: 0099af765994cea449652544d378044a, type: 3}
+  Warrior: {fileID: 0}
+  Chiefton: {fileID: 0}
+  Skeleton: {fileID: -2739807658926110822, guid: 0554d5e6393fef6448a9842a0d1b5bce, type: 3}
+  MegaSkelebro: {fileID: 0}
+  Soldier: {fileID: -3868812660829053132, guid: e633d52e222397a4cbf6fc7f87a75468, type: 3}
+  Knight: {fileID: -5711848221618334454, guid: f795b7718a6311745b556dd1a323a023, type: 3}
+  Priest: {fileID: -6146700129834819302, guid: 66d848c0380a69347badcd32e5c7e624, type: 3}
+  Demigod: {fileID: 0}
 --- !u!1 &1755593976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +2010,7 @@ SceneRoots:
   - {fileID: 1927273855}
   - {fileID: 519420032}
   - {fileID: 1267163963}
+  - {fileID: 1719403585}
   - {fileID: 302669720}
   - {fileID: 1271276919}
   - {fileID: 279265567}

@@ -25,8 +25,6 @@ public class EnemyTemplate : ScriptableObject
     public string EnemyDescription = string.Empty;
     public EnemyModel EnemyModel = EnemyModel.None;
 
-	public Sprite sprite;
-
     //Stats
     public int MaxHealth = -1;
     public int Block = -1;
