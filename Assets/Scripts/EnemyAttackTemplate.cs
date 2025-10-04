@@ -16,7 +16,7 @@ public class EnemyAttackTemplate : ScriptableObject
 
 	public bool ClearNegative = false; //clears all negative effects on enemy
 	[SerializeField]
-	public EnemyTemplate SpawnEnemy = new EnemyTemplate();
+	public EnemyTemplate SpawnEnemy;
 	public bool MassBonus = false; //gives extra damage based on the number of Enemies
 	public bool BlockBonus = false; //gives extra damage based on Enemy block
 	public bool MissingHealthBonus = false; //gives extra damage based on Enemy missing health

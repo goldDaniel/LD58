@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eede47d100e224a964b5941cfa2550, type: 3}
   m_Name: Knight Attack 3
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackTemplate
-  Description: 
+  Description: Block All!
   Damage: -1
   Heal: -1
-  Block: -1
+  Block: 5
   Curse: -1
   NumberOfAttacks: -1
   Strength: -1
   ClearNegative: 0
-  SpawnEnemy: 0
+  SpawnEnemy: {fileID: 0}
   MassBonus: 0
   BlockBonus: 0
   MissingHealthBonus: 0
   ApplyLethergy: 0
-  TargetAllEnemies: 0
+  TargetAllEnemies: 1
   TargetAllOtherEnemies: 0
   TargetRandomEnemy: 0
   TargetSelf: 0
