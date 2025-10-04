@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: 
   Type: 5
+  cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -28,6 +29,7 @@ MonoBehaviour:
   Souls: -1
   Curse: -1
   DeathChance: 0
+  Weak: -1
   Draw: -1
   Heal: -1
   Block: -1
