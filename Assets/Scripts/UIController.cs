@@ -17,7 +17,8 @@ public class UIController : MonoSingleton<UIController>
     public void SetSelectedCard(Card card)
     {
         selectedCard = card;
-        card.rectTransform.SetParent(rectTransform);
+        if(card != null)
+            card.rectTransform.SetParent(rectTransform);
     }
 
     public bool IsSelectedCard(Card card) => selectedCard == card;
