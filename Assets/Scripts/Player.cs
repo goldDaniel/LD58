@@ -4,8 +4,16 @@ using TMPro;
 [Serializable]
 public class Player
 {
-	public TextMeshProUGUI healthText;
-	public TextMeshProUGUI essenceText;
+	private int _maxEssence;
+    public int MaxEssence;
+
+	private int _currentEssence;
+    public int CurrentEssence;
+
+	private int _block;
+    public int Block;
+    
+
 
 	private int _maxHealth;
 	public int MaxHealth
@@ -31,10 +39,11 @@ public class Player
 
 	[NonSerialized] public int Strength = 0;
 	[NonSerialized] public int RepeatAllNext = 0;
-	[NonSerialized] public int doubleDamageHit = 0;
+    [NonSerialized] public int RepeatAllCurrentTurn = 0;
+    [NonSerialized] public int doubleDamageHit = 0;
 	[NonSerialized] public int PactOfPower = 0;
 	[NonSerialized] public int PactOfSacrifice = 0;
-	[NonSerialized] public int SacrificeCounter = 0;
+	[NonSerialized] public int PowerCounter = 0;
 	[NonSerialized] public int CurseEachPlay = 0;
 	[NonSerialized] public int Lucky = 0;
 }

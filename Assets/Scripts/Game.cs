@@ -92,16 +92,20 @@ public class Game : MonoSingleton<Game>
 	{
 		while (hand.Size < handSize)
 		{
-			yield return DrawCardFromDeck();
+			yield return DrawCardFromDeck(false);
 		}
 	}
 
-	public IEnumerator DrawCardFromDeck()
+	public IEnumerator DrawCardFromDeck(bool isFree)
 	{
         if (deck.Size == 0)
             yield return RefillDeck();
 
         Card card = deck.Draw();
+		if (isFree)
+		{
+			card.currentCost = 0;
+		}
         card.gameObject.SetActive(true);
         card.SetInHand();
 
@@ -162,22 +166,36 @@ public class Game : MonoSingleton<Game>
 
 	public bool AttackEnemyWith(Card card)
 	{
+		int currentRepeat = 0;
+
 		if (attackInProgress)
 			return false;
 
-        if (player.CurrentEssence >= card.car
+        if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
         {
-            
-        }
-        if (selectedEnemy != null)
-		{
-			var enemy = selectedEnemy;
-			DeselectEnemy(selectedEnemy);
+            player.CurrentEssence -= card.currentCost;
+			do
+			{
+				if (player.PactOfPower > 0)
+				{
+					player.PowerCounter++;
+					if (player.PowerCounter >= 3)
+					{
+						player.TakeDamage(3 * player.PactOfPower);
+						player.CurrentEssence += player.PactOfPower;
+					}
+				}
+				var enemy = selectedEnemy;
+				DeselectEnemy(selectedEnemy);
 
-			attackInProgress = true;
-			StartCoroutine(AttackEnemySeqeunce(enemy, card));
-			return true;
-		}
+				attackInProgress = true;
+				StartCoroutine(AttackEnemySeqeunce(enemy, card));
+
+			} while (currentRepeat <= player.RepeatAllCurrentTurn);
+
+            return true;
+        }
+        
 
 		return false;
 	}
@@ -196,6 +214,10 @@ public class Game : MonoSingleton<Game>
 		endTurnButton.interactable = true;
 		IsPlayerTurn = true;
 		enemyTurnIndex = -1;
+		player.CurrentEssence = player.MaxEssence;
+		player.Block = 0;
+		player.RepeatAllCurrentTurn = player.RepeatAllNext;
+		player.RepeatAllNext = 0;
 
 		StartCoroutine(DrawHand());
 	}
@@ -222,8 +244,6 @@ public class Game : MonoSingleton<Game>
 	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
-		Player player = Game.Instance.player;
-
 
         hand.Remove(card);
 

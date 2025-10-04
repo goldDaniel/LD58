@@ -26,7 +26,7 @@ public class CardTemplate : ScriptableObject
     public bool Confuse = false; //enemy has a chance to hit itself
     public int Souls = -1;
     public int Curse = -1; //DoT
-    public int DeathChance = -1; //when triggered, this per cent has a chance to instantly kill all non-boss enemies
+    public int DeathChance = -1; //when triggered, this per cent has a chance to instantly kill hit enemies
     public int Weak = -1; //reduces enemy damage by 1
 
     //Self Effect
