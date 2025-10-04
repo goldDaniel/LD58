@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI healthText;
 
+    [SerializeField]
+    private RectTransform damageLocation;
+
     public int maxHealth;
 
     private int _currentHealth;
@@ -267,8 +270,11 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator takeDamage(int damage)
     {
-		CurrentHealth -= damage;
-        return null;
+        var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
+        yield return effect.DoEffectVisual(EffectType.Damage, damage, true);
+        GameObject.Destroy(effect.gameObject);
+        CurrentHealth -= damage;
+        yield return null;
     }
 
     public void SetHighlight(bool active) => highlight.SetActive(active);
