@@ -81,7 +81,7 @@ public class Player
     {
         if (card.cardTemplate.Draw > 0)
         {
-            // TODO draw cards
+            yield return Game.Instance.DrawCardFromDeck(false);
         }
         if (card.cardTemplate.Heal > 0)
         {
@@ -117,7 +117,7 @@ public class Player
         }
         if (card.cardTemplate.Foretell)
         {
-            //TODO Draw card and reduce cost to 0
+            yield return Game.Instance.DrawCardFromDeck(true);
         }
         if (card.cardTemplate.CurseEachPlay)
         {
@@ -126,13 +126,22 @@ public class Player
 
         yield return null;
     }
-    public void TakeDamage(int damage)
+    public IEnumerator TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (Block >= damage)
         {
-            //TODO die-
+            Block -= damage;
+        } else
+        {
+            CurrentHealth -= damage - Block;
+            Block = 0;
+            if (CurrentHealth <= 0)
+            {
+                //TODO die-
+            }
         }
+        return null;
+        
     }
     public void Heal(int healing)
     {
