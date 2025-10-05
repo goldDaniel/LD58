@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,11 +23,9 @@ public class Enemy : MonoBehaviour
     private RectTransform damageLocation;
 
     [SerializeField]
-    public RectTransform effect1Location;
-    public RectTransform effect2Location;
+    public RectTransform effectContainer;
 
-    public EffectIndicator effect1;
-    public EffectIndicator effect2;
+    public List<EffectIndicator> effects = new();
 
     public int maxHealth;
 
@@ -208,7 +207,7 @@ public class Enemy : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0, 100) < card.cardTemplate.DeathChance)
             {
-                yield return takeDamage(1000);
+                yield return TakeDamage(1000);
             }
         }
         int repeatCount = 0;
@@ -229,7 +228,7 @@ public class Enemy : MonoBehaviour
                     damage += Strength;
                 }
 
-                yield return takeDamage(damage);
+                yield return TakeDamage(damage);
             }
         } while (repeatCount < card.cardTemplate.MultHit);
         if (card.cardTemplate.Doomed > 0)
@@ -237,7 +236,7 @@ public class Enemy : MonoBehaviour
             Doom += card.cardTemplate.Doomed;
             if (Doom >= 3)
             {
-                yield return takeDamage(Doom * 20);
+                yield return TakeDamage(Doom * 20);
                 Doom = 0;
             }
         }
@@ -253,7 +252,7 @@ public class Enemy : MonoBehaviour
         {
             int currentHealth = Game.Instance.player.CurrentHealth;
             yield return Game.Instance.player.TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
-            yield return takeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
+            yield return TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
         }
         if (card.cardTemplate.Confuse)
         {
@@ -285,11 +284,17 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator takeDamage(int damage)
+    public IEnumerator TakeDamage(int damage)
     {
-        var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
-        yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
-        GameObject.Destroy(effect.gameObject);
+		// HACK (danielg): must have a branch returning an IEnumerator
+		if (false)
+			yield return null;
+
+		// TODO (danielg): Animate when enemy takes damage 
+
+        //var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
+        //yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
+        //GameObject.Destroy(effect.gameObject);
 
         while (Block > 0 && damage > 0)
         {
@@ -298,7 +303,6 @@ public class Enemy : MonoBehaviour
         }
 
         CurrentHealth -= damage;
-        yield return null;
     }
 
     public void SetHighlight(bool active) => highlight.SetActive(active);

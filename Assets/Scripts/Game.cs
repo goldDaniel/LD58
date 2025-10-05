@@ -1,11 +1,13 @@
 using Assets.Scripts;
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Game : MonoBehaviour
 {
@@ -301,146 +303,71 @@ public class Game : MonoBehaviour
 	{
 		yield return enemy.OnTurnStart();
 
-        var Attack = enemy.Attacks.Attacks.FirstOrDefault();
-        if (Attack.ClearNegative)
+        var attack = enemy.Attacks.Attacks.FirstOrDefault();
+        if (attack.ClearNegative)
+            yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
+
+        if (attack.SpawnEnemy != null)
+			yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Spawn");
+
+        if (attack.ApplyLethergy)
+            yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
+
+
+        if (attack.Heal != -1)
         {
-            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
+            if (attack.TargetAllEnemies)
+                yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All\n{attack.Heal}");
+            else if (attack.TargetAllOtherEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All Other\n{attack.Heal}");
+            else if (attack.TargetRandomEnemy)
+				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Random\n{attack.Heal}");
+            else if (attack.TargetSelf)
+				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Self\n{attack.Heal}");
         }
 
-        if (Attack.SpawnEnemy != null)
+        if (attack.Block != -1)
         {
-            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Spawn");
+            if (attack.TargetAllEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give All\n{attack.Block}");
+            else if (attack.TargetAllOtherEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give All Other\n{attack.Block}");
+            else if (attack.TargetRandomEnemy)
+				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give Random\n{attack.Block}");
+            else if (attack.TargetSelf)
+				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give Self\n{attack.Block}");
         }
 
-        if (Attack.ApplyLethergy)
+        if (attack.Curse != -1)
+			yield return CreateEnemyEffect(enemy, EffectType.Curse, 0, $"Curse\n{attack.Curse}");
+
+        if (attack.Strength != -1)
         {
-            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
+            if (attack.TargetAllEnemies)
+                yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} All");
+            else if (attack.TargetAllOtherEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Other");
+            else if (attack.TargetRandomEnemy)
+				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Random");
+            else if (attack.TargetSelf)
+				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Self");
         }
 
-
-        if (Attack.Heal != -1)
+        if (attack.Damage != -1)
         {
-            if (Attack.TargetAllEnemies)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All\n{Attack.Heal}");
-            }
-            else if (Attack.TargetAllOtherEnemies)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All Other\n{Attack.Heal}");
-            }
-            else if (Attack.TargetRandomEnemy)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Random\n{Attack.Heal}");
-            }
-            else if (Attack.TargetSelf)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Self\n{Attack.Heal}");
-            }
-        }
-
-        if (Attack.Block != -1)
-        {
-            if (Attack.TargetAllEnemies)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give All\n{Attack.Block}");
-            }
-            else if (Attack.TargetAllOtherEnemies)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give All Other\n{Attack.Block}");
-            }
-            else if (Attack.TargetRandomEnemy)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give Random\n{Attack.Block}");
-            }
-            else if (Attack.TargetSelf)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give Self\n{Attack.Block}");
-            }
-        }
-
-        if (Attack.Curse != -1)
-        {
-            yield return DisplayEnemyEffect(enemy, EffectType.Curse, 0, $"Curse\n{Attack.Curse}");
-        }
-
-        if (Attack.Strength != -1)
-        {
-            if (Attack.TargetAllEnemies)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} All");
-            }
-            else if (Attack.TargetAllOtherEnemies)
-
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Other");
-            }
-            else if (Attack.TargetRandomEnemy)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Random");
-            }
-            else if (Attack.TargetSelf)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Self");
-            }
-        }
-
-        if (Attack.Damage != -1)
-        {
-            int TotalDamage = Attack.Damage;
-
-            if (enemy.Weak != -1)
-            {
-                TotalDamage -= enemy.Weak;
-            }
-
-            if (enemy.Strength != -1)
-            {
-                TotalDamage += enemy.Strength;
-            }
-
-            if (Attack.MassBonus)
-            {
-                TotalDamage += activeEnemies.Count - 1;
-            }
-
-            if (Attack.BlockBonus)
-            {
-                TotalDamage += enemy.Block;
-            }
-
-            if (Attack.MissingHealthBonus)
-            {
-                TotalDamage += (enemy.CurrentHealth / enemy.maxHealth) * 10;
-            }
-
-
-            if (Attack.NumberOfAttacks > 1)
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage, $"{Attack.Damage}x{Attack.NumberOfAttacks}");
-            }
+            if (attack.NumberOfAttacks > 1)
+				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"{attack.Damage}x{attack.NumberOfAttacks}");
             else
-            {
-                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage, $"Damage\n{Attack.Damage}" );
-            }
+				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"Damage\n{attack.Damage}" );
         }
     }
 
-	IEnumerator DisplayEnemyEffect(Enemy enemy, EffectType type, int value, string textOverride)
+	IEnumerator CreateEnemyEffect(Enemy enemy, EffectType type, int value, string textOverride)
 	{
-		if (enemy.effect1 == null)
-		{
-			enemy.effect1 = Instantiate(effectPrefab, enemy.effect1Location);
-			yield return enemy.effect1.DoEffectVisual(type, value,false, textOverride);
+		var effect = Instantiate(effectPrefab, enemy.effectContainer);
+		effect.Initialize(type, value, false, textOverride);
 
-		} 
-		else if (enemy.effect2 == null)
-        {
-            enemy.effect2 = Instantiate(effectPrefab, enemy.effect2Location);
-            yield return enemy.effect2.DoEffectVisual(type, value, false,textOverride);
-
-        }
-
-		yield return null;
+		yield return effect.FadeIn(0.2f);
 	}
 
 	IEnumerator DoEnemyTurn()
@@ -451,17 +378,10 @@ public class Game : MonoBehaviour
 			var others = activeEnemies.Where(e => e != active).ToList();
 			yield return AttackPlayerSequence(active, others, player);
 
-			if (active.effect1 != null)
-			{
-                Destroy(active.effect1.gameObject);
-                active.effect1 = null;
-            }
-			if (active.effect2 != null)
-			{
-                Destroy(active.effect2.gameObject);
-                active.effect2 = null;
-            }
-           
+			foreach(var effect in active.effects)
+				Destroy(effect.gameObject);
+			active.effects.Clear();
+
 			enemyTurnIndex++;
 		}
 
@@ -564,9 +484,21 @@ public class Game : MonoBehaviour
 
 		if (Attack.Block != -1)
 		{
+			var effect = attacker.effects[0];
+			var initialPosition = effect.transform.position;
+
 			foreach (var enemy in targets)
-				enemy.Block += Attack.Block;
-		}
+			{
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+
+				yield return effect.MoveTo(enemy.transform.position);
+				{
+					enemy.Block += Attack.Block;
+				}
+				yield return effect.MoveTo(initialPosition);
+			}
+			yield return effect.FadeDestroy(attacker.effects);
+        }
 
 		if (Attack.Curse != -1)
 		{
@@ -610,7 +542,6 @@ public class Game : MonoBehaviour
 					yield return player.TakeDamage(TotalDamage);
 			}
 		}
-
 		yield return NextAttack(attacker, false);
 	}
 
@@ -714,4 +645,6 @@ public void Discard(Card card)
             SceneManager.LoadScene("Level Select");
         }
     }
+
+	public bool HasCardInHand(Card card) => hand.Contains(card);
 }

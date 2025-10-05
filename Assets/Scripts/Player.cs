@@ -184,9 +184,14 @@ public class Player
     }
     public IEnumerator TakeDamage(int damage)
     {
-        var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
-        yield return effect.DoEffectVisual(EffectType.Damage, damage,true, null);
-        GameObject.Destroy(effect.gameObject);
+
+		// TODO (danielg): animate the damage indicator from the enemy to the player
+
+		//var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
+  //      effect.Initialize(EffectType.Damage, damage,true, null);
+  //      GameObject.Destroy(effect.gameObject);
+
+
         if (Block >= damage)
         {
             Block -= damage;
