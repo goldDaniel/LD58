@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,6 +71,9 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private RectTransform castEffectStart;
 
+	[SerializeField]
+	private TextMeshProUGUI cardsRemainingText;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -89,6 +93,11 @@ public class Game : MonoBehaviour
 	public void OnDestroy()
 	{
 		Instance = null;
+	}
+
+	public void Update()
+	{
+		cardsRemainingText.text = $"{deck.Size}";
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
@@ -496,162 +505,170 @@ public class Game : MonoBehaviour
 	{
 		var Attack = attacker.Attacks.Attacks.FirstOrDefault();
 
-		if (attacker.Curse > 0)
+		if (attacker.FateSealed)
 		{
-			AudioManager.Instance.Play("Hit");
-			yield return attacker.TakeDamage(attacker.Curse);
-			attacker.Curse--;
-		}
-
-		//Start Attack Block
-		if (Attack.ClearNegative)
+            attacker.FateSealed = false;
+        }
+		else
 		{
-			attacker.Doom = 0;
-			attacker.Jinxed = false;
-			attacker.Confused = false;
-			attacker.Weak = 0;
-			attacker.Curse = 0;
-		}
+            if (attacker.Curse > 0)
+            {
+                AudioManager.Instance.Play("Hit");
+                yield return attacker.TakeDamage(attacker.Curse);
+                attacker.Curse--;
+            }
 
-		if (Attack.SpawnEnemy != null)
-		{
-			SpawnEnemy(Attack.SpawnEnemy);
-		}
+            //Start Attack Block
+            if (Attack.ClearNegative)
+            {
+                attacker.Doom = 0;
+                attacker.Jinxed = false;
+                attacker.Confused = false;
+                attacker.Weak = 0;
+                attacker.Curse = 0;
+            }
 
-		if (Attack.ApplyLethergy)
-		{
-			player.Lethargic = true;
-		}
+            if (Attack.SpawnEnemy != null)
+            {
+                SpawnEnemy(Attack.SpawnEnemy);
+            }
 
-		if (attacker.Jinxed)
-		{
-			if (Attack.TargetAllEnemies || Attack.TargetAllOtherEnemies)
-			{
-				Attack.TargetAllEnemies = false;
-				Attack.TargetAllOtherEnemies = false;
-				Attack.TargetRandomEnemy = true;
-			}
-		}
+            if (Attack.ApplyLethergy)
+            {
+                player.Lethargic = true;
+            }
 
-		List<Enemy> targets = new();
-		if (Attack.TargetAllEnemies)
-			targets.AddRange(activeEnemies);
-		else if (Attack.TargetAllOtherEnemies)
-			targets.AddRange(otherEnemies);
-		else if (Attack.TargetRandomEnemy)
-			targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
-		else if (Attack.TargetSelf)
-			targets.Add(attacker);
+            if (attacker.Jinxed)
+            {
+                if (Attack.TargetAllEnemies || Attack.TargetAllOtherEnemies)
+                {
+                    Attack.TargetAllEnemies = false;
+                    Attack.TargetAllOtherEnemies = false;
+                    Attack.TargetRandomEnemy = true;
+                }
+            }
 
-		if (Attack.Heal != -1)
-		{
-			var effect = attacker.effects[0];
-			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-			var initialPosition = effect.transform.position;
+            List<Enemy> targets = new();
+            if (Attack.TargetAllEnemies)
+                targets.AddRange(activeEnemies);
+            else if (Attack.TargetAllOtherEnemies)
+                targets.AddRange(otherEnemies);
+            else if (Attack.TargetRandomEnemy)
+                targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
+            else if (Attack.TargetSelf)
+                targets.Add(attacker);
 
-			foreach (var enemy in targets)
-			{
-				AudioManager.Instance.Play("Heal");
-				yield return effect.MoveTo(enemy.transform.position);
-				enemy.CurrentHealth += Attack.Heal;
-				yield return effect.MoveTo(initialPosition);
-			}
-			yield return effect.FadeDestroy(attacker.effects);
-		}
+            if (Attack.Heal != -1)
+            {
+                var effect = attacker.effects[0];
+                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+                var initialPosition = effect.transform.position;
 
-		if (Attack.Block != -1)
-		{
-			var effect = attacker.effects[0];
-			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-			var initialPosition = effect.transform.position;
+                foreach (var enemy in targets)
+                {
+                    AudioManager.Instance.Play("Heal");
+                    yield return effect.MoveTo(enemy.transform.position);
+                    enemy.CurrentHealth += Attack.Heal;
+                    yield return effect.MoveTo(initialPosition);
+                }
+                yield return effect.FadeDestroy(attacker.effects);
+            }
 
-			foreach (var enemy in targets)
-			{
-				AudioManager.Instance.Play("Shield");
-				yield return effect.MoveTo(enemy.transform.position);
-				enemy.Block += Attack.Block;
-				yield return effect.MoveTo(initialPosition);
-			}
-			yield return effect.FadeDestroy(attacker.effects);
-		}
+            if (Attack.Block != -1)
+            {
+                var effect = attacker.effects[0];
+                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+                var initialPosition = effect.transform.position;
 
-		if (Attack.Curse != -1)
-		{
-			var effect = attacker.effects[0];
-			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-			var initialPosition = effect.transform.position;
+                foreach (var enemy in targets)
+                {
+                    AudioManager.Instance.Play("Shield");
+                    yield return effect.MoveTo(enemy.transform.position);
+                    enemy.Block += Attack.Block;
+                    yield return effect.MoveTo(initialPosition);
+                }
+                yield return effect.FadeDestroy(attacker.effects);
+            }
 
-			AudioManager.Instance.Play("Curse");
-			yield return effect.MoveTo(endTurnButton.transform.position);
-			player.Curse += Attack.Curse;
-			yield return effect.MoveTo(initialPosition);
-			yield return effect.FadeDestroy(attacker.effects);
-		}
+            if (Attack.Curse != -1)
+            {
+                var effect = attacker.effects[0];
+                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+                var initialPosition = effect.transform.position;
 
-		if (Attack.Strength != -1)
-		{
-			var effect = attacker.effects[0];
-			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-			var initialPosition = effect.transform.position;
+                AudioManager.Instance.Play("Curse");
+                yield return effect.MoveTo(endTurnButton.transform.position);
+                player.Curse += Attack.Curse;
+                yield return effect.MoveTo(initialPosition);
+                yield return effect.FadeDestroy(attacker.effects);
+            }
 
-			foreach (var enemy in targets)
-			{
-				AudioManager.Instance.Play("Strength", null, 0.6f);
-				yield return effect.MoveTo(endTurnButton.transform.position);
-				enemy.Strength += Attack.Strength;
-				yield return effect.MoveTo(initialPosition);
-			}
-			yield return effect.FadeDestroy(attacker.effects);
+            if (Attack.Strength != -1)
+            {
+                var effect = attacker.effects[0];
+                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+                var initialPosition = effect.transform.position;
+
+                foreach (var enemy in targets)
+                {
+                    AudioManager.Instance.Play("Strength", null, 0.6f);
+                    yield return effect.MoveTo(endTurnButton.transform.position);
+                    enemy.Strength += Attack.Strength;
+                    yield return effect.MoveTo(initialPosition);
+                }
+                yield return effect.FadeDestroy(attacker.effects);
 
 
-		}
+            }
 
-		if (Attack.Damage != -1)
-		{
-			var effect = attacker.effects[0];
-			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-			var initialPosition = effect.transform.position;
+            if (Attack.Damage != -1)
+            {
+                var effect = attacker.effects[0];
+                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+                var initialPosition = effect.transform.position;
 
-			int TotalDamage = Attack.Damage;
+                int TotalDamage = Attack.Damage;
 
-			if (attacker.Weak != -1)
-				TotalDamage -= attacker.Weak;
-			if (attacker.Strength != -1)
-				TotalDamage += attacker.Strength;
-			if (Attack.MassBonus)
-				TotalDamage += otherEnemies.Count;
-			if (Attack.BlockBonus)
-				TotalDamage += attacker.Block;
-			if (Attack.MissingHealthBonus)
-				TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
+                if (attacker.Weak != -1)
+                    TotalDamage -= attacker.Weak;
+                if (attacker.Strength != -1)
+                    TotalDamage += attacker.Strength;
+                if (Attack.MassBonus)
+                    TotalDamage += otherEnemies.Count;
+                if (Attack.BlockBonus)
+                    TotalDamage += attacker.Block;
+                if (Attack.MissingHealthBonus)
+                    TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
 
-			var IsConfused = false;
-			if (attacker.Confused)
-			{
-				var ConfusedChance = 50;
-				IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
-			}
+                var IsConfused = false;
+                if (attacker.Confused)
+                {
+                    var ConfusedChance = 50;
+                    IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
+                }
 
-			int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
-			for (int i = 0; i < attackcount; i++)
-			{
-				if (IsConfused)
-				{
-					AudioManager.Instance.Play("Hit");
-					yield return effect.MoveTo(attacker.transform.position);
-					yield return attacker.TakeDamage(TotalDamage);
-					yield return effect.MoveTo(initialPosition);
-				}
-				else
-				{
-					AudioManager.Instance.Play("Hit");
-					yield return effect.MoveTo(endTurnButton.transform.position);
-					yield return player.TakeDamage(TotalDamage);
-					yield return effect.MoveTo(initialPosition);
-				}
-					
-			}
-		}
+                int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
+                for (int i = 0; i < attackcount; i++)
+                {
+                    if (IsConfused)
+                    {
+                        AudioManager.Instance.Play("Hit");
+                        yield return effect.MoveTo(attacker.transform.position);
+                        yield return attacker.TakeDamage(TotalDamage);
+                        yield return effect.MoveTo(initialPosition);
+                    }
+                    else
+                    {
+                        AudioManager.Instance.Play("Hit");
+                        yield return effect.MoveTo(endTurnButton.transform.position);
+                        yield return player.TakeDamage(TotalDamage);
+                        yield return effect.MoveTo(initialPosition);
+                    }
+
+                }
+            }
+        }
+		
 		yield return NextAttack(attacker, false);
 	}
 
