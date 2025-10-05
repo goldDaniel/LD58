@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8476671017828307379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4809928348320820913}
+  - component: {fileID: 2885287149904812315}
+  m_Layer: 0
+  m_Name: Game Progress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4809928348320820913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476671017828307379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2885287149904812315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476671017828307379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f954a335c45318439f7717f38812c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameProgress
+  selectedLevel: {fileID: 0}
+  anubisLevels:
+  - {fileID: 11400000, guid: 5cd9c5f6db30541478dfb34b7f5cb478, type: 2}
+  - {fileID: 11400000, guid: 24d4a18daf2c7f64a933357931b7641c, type: 2}
+  - {fileID: 11400000, guid: bcb4aab28a4642f4a93f0ab1d9e14a21, type: 2}
+  - {fileID: 11400000, guid: c148d0e056fdeee4cb1f77318ae63e94, type: 2}
+  - {fileID: 11400000, guid: ca068cbfb2b06584fa5c310eb546c718, type: 2}
+  fateLevels:
+  - {fileID: 11400000, guid: ff0c42bc23795fa4fafae517baabf883, type: 2}
+  - {fileID: 11400000, guid: 58a38a8e131ac234e8df2734ba0e33b4, type: 2}
+  - {fileID: 11400000, guid: aa775b6b123cae34da423452352352c5, type: 2}
+  - {fileID: 11400000, guid: 9b58e3b7462f3dc4eaeb9d0434966915, type: 2}
+  - {fileID: 11400000, guid: 7c4e9a78cf52023429c72794d93886d7, type: 2}
+  mickiLevels:
+  - {fileID: 11400000, guid: 70baa3c137277c04c87174e71a7bc646, type: 2}
+  - {fileID: 11400000, guid: 2c046cca8e145d448b67d7af79605f3f, type: 2}
+  - {fileID: 11400000, guid: c4207c7412fbcb146b24d30bdd2ee6ff, type: 2}
+  - {fileID: 11400000, guid: c231897393420d847b7ce67244f7c881, type: 2}
+  - {fileID: 11400000, guid: 3ba148a8117b98f45806ea1489435aa9, type: 2}
+  odinLevels:
+  - {fileID: 11400000, guid: 69a784857a1e0a541b7792dfbc96e53f, type: 2}
+  - {fileID: 11400000, guid: f03f6488483daa1408a22341e35a4dfe, type: 2}
+  - {fileID: 11400000, guid: a68c44398b4f58e48b7f88c973a49721, type: 2}
+  - {fileID: 11400000, guid: 0794e1ec35973db48a75c6895fae2030, type: 2}
+  - {fileID: 11400000, guid: 06b87cf7f05eca242bca9b3965b78500, type: 2}
+  reaperLevels:
+  - {fileID: 11400000, guid: 8fd190ffdba97d944940c9f3e841909b, type: 2}
+  - {fileID: 11400000, guid: 6cb41f47ff1327c44b38d2b2c3332431, type: 2}
+  - {fileID: 11400000, guid: 9488fc1f004a51643b7113e7e3963a79, type: 2}
+  - {fileID: 11400000, guid: d3ecad5b8ecc6384485a061166efca8f, type: 2}
+  - {fileID: 11400000, guid: c83e8f2a4911cc747ae615027f92c338, type: 2}

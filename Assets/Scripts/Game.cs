@@ -7,8 +7,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Game : MonoSingleton<Game>
+public class Game : MonoBehaviour
 {
+	public static Game Instance;
+	public static bool HasInstance => Instance != null;
+
 	public Player player = new();
 
 	public List<Enemy> activeEnemies = new();
@@ -65,12 +68,16 @@ public class Game : MonoSingleton<Game>
     private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
-	public override void Awake()
+	public void Awake()
 	{
-		base.Awake();
-		DontDestroyOnLoad(this);
+		Instance = this;
 		enemyTurnIndex = -1;
 		IsPlayerTurn = true;
+	}
+
+	public void OnDestroy()
+	{
+		Instance = null;
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());

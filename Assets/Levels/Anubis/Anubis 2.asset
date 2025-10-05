@@ -15,4 +15,7 @@ MonoBehaviour:
   LevelDescription: Anubis Level 2
   LevelNumber: 2
   Type: 1
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: b857a066ede4f3041a68fb798a243048, type: 2}
+  - {fileID: 11400000, guid: 3cb49047808f34747b9d8b6d392146e4, type: 2}
+  - {fileID: 11400000, guid: 6b81d0735318d8949b6c8fe66a1e37ce, type: 2}
