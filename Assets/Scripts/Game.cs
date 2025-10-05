@@ -1,12 +1,8 @@
 using Assets.Scripts;
 using DG.Tweening;
-using DG.Tweening.Core;
-using NUnit.Framework;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,7 +15,7 @@ public class Game : MonoSingleton<Game>
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 5;
+	private int handSize = 7;
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -685,69 +681,91 @@ public class Game : MonoSingleton<Game>
         
 	}
 
-	IEnumerator AttackEnemySeqeunce(Enemy enemy, Card card)
+	public void Discard(Card card)
+	{
+		hand.Remove(card);
+		discard.Add(card);
+		card.SetInPile(discardLocation);
+		card.rectTransform.position = discardLocation.position;
+	}
+
+	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 
         hand.Remove(card);
 
-		// animate to attack
+		bool targetAll = card.cardTemplate.TargetAllEnemies;
 
-		int iterations = (card.cardTemplate.MultHit <= 1) ? 1 : card.cardTemplate.MultHit;
-		for (int i = 0; i < iterations; ++i)
+		List<Enemy> enemies = new();
+		if (targetAll)
+			enemies.AddRange(activeEnemies);
+		else
+			enemies.Add(target);
+
+		foreach(var enemy in enemies)
 		{
-			var enemyRect = enemy.GetComponent<RectTransform>();
-			var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
-			var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
-			while (initialTween.IsActive() && !initialTween.IsComplete())
-				yield return null;
+			if (enemy.CurrentHealth <= 0)
+				continue;
 
-			yield return new WaitForSeconds(0.1f);
-
-			var finalPosition = enemyRect.position;
-			var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
-			while (tween.IsActive() && !tween.IsComplete())
-				yield return null;
-
-			initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
-			while (initialTween.IsActive() && !initialTween.IsComplete())
-				yield return null;
-
-			yield return new WaitForSeconds(0.1f);
-		}
-
-		// animate to discard pile
-		{
-			var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
-			while (tween.IsActive() && !tween.IsComplete())
-				yield return null;
-		}
-
-        discard.Add(card);
-        card.SetInPile(discardLocation);
-        int currentRepeat = 0;
-		do
-		{
-			currentRepeat++;
-			if (player.PactOfPower > 0)
+			// animate to attack
+			int iterations = (card.cardTemplate.MultHit <= 1) ? 1 : card.cardTemplate.MultHit;
+			for (int i = 0; i < iterations; ++i)
 			{
-				player.PowerCounter++;
-				if (player.PowerCounter >= 3)
-				{
-					yield return player.TakeDamage(3 * player.PactOfPower);
-					player.CurrentEssence += player.PactOfPower;
-				}
+				var enemyRect = enemy.GetComponent<RectTransform>();
+				var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
+				var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
+				while (initialTween.IsActive() && !initialTween.IsComplete())
+					yield return null;
+
+				yield return new WaitForSeconds(0.1f);
+
+				var finalPosition = enemyRect.position;
+				var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+
+				initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
+				while (initialTween.IsActive() && !initialTween.IsComplete())
+					yield return null;
+
+				yield return new WaitForSeconds(0.1f);
 			}
 
-			yield return player.ApplyEffectSequence(card);
+			// animate to discard pile
+			{
+				var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+			discard.Add(card);
+			card.SetInPile(discardLocation);
 
-			yield return enemy.ApplyEffectSequence(card);
-		} while (currentRepeat <= player.RepeatAllCurrentTurn);
+			int currentRepeat = 0;
+			do
+			{
+				currentRepeat++;
+				if (player.PactOfPower > 0)
+				{
+					player.PowerCounter++;
+					if (player.PowerCounter >= 3)
+					{
+						yield return player.TakeDamage(3 * player.PactOfPower);
+						player.CurrentEssence += player.PactOfPower;
+					}
+				}
 
-        
-		attackInProgress = false;
+				yield return player.ApplyEffectSequence(card);
 
-        CheckDeadEnemies();
+				yield return enemy.ApplyEffectSequence(card);
+			} while (currentRepeat <= player.RepeatAllCurrentTurn);
+
+
+			attackInProgress = false;
+
+			CheckDeadEnemies();
+		}
+		
         CheckWinLoss();
     }
 
