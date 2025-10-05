@@ -97,6 +97,27 @@ public class Enemy : MonoBehaviour
     }
 
     [SerializeField]
+    private TextMeshProUGUI fateSealedText;
+
+    private bool _fateSealed = false;
+    public bool FateSealed
+    {
+        get => _fateSealed;
+        set
+        {
+            _fateSealed = value;
+            if (_fateSealed)
+            {
+                fateSealedText.text = $"Fate Sealed!";
+            }
+            else
+            {
+                fateSealedText.text = string.Empty;
+            }
+        }
+    }
+
+    [SerializeField]
     private TextMeshProUGUI weakText;
 
     private int _weak = 0;
@@ -243,10 +264,6 @@ public class Enemy : MonoBehaviour
         {
             Jinxed = true;
         }
-        if (card.cardTemplate.FateSealed)
-        {
-            Game.Instance.NextAttack(this, true);
-        }
         if (card.cardTemplate.BloodyStrike > 0)
         {
             int currentHealth = Game.Instance.player.CurrentHealth;
@@ -264,6 +281,10 @@ public class Enemy : MonoBehaviour
         if (card.cardTemplate.Curse > 0)
         {
             Curse += card.cardTemplate.Curse;
+        }
+        if (card.cardTemplate.FateSealed)
+        {
+            FateSealed = true;
         }
 
         /*
