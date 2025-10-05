@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: 1 - Target Damage Twice
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Double Strike
   CardDescription: Deal 4 Twice
   Type: 3
   cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}

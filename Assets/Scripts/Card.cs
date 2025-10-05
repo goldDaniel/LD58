@@ -36,7 +36,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	{
 		cardTemplate = card;
 		cardFront.sprite = card.cardFront;
-		title.text = card.name;
+		title.text = card.CardName;
 		description.text = card.CardDescription;
 		currentCost = card.EssenceCost;
 
@@ -125,6 +125,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
 		rectTransform.anchoredPosition = new Vector2(0, 0);
+	}
+
+	public void Discard()
+	{
+		Game.Instance.Discard(this);
 	}
 }
 

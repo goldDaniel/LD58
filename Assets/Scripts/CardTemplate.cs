@@ -6,6 +6,7 @@ public enum CardType { None, Anubis, Micki, Odin, Reaper, Fates };
 public class CardTemplate : ScriptableObject
 {
     //Card Properties
+    public string CardName;
     public string CardDescription;
     public CardType Type = CardType.None;
 	public Sprite cardFront;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class Player
@@ -130,6 +131,10 @@ public class Player
 
     public IEnumerator ApplyEffectSequence(Card card)
     {
+        if (card.cardTemplate.SelfDamage > 0)
+        {
+            yield return TakeDamage(card.cardTemplate.SelfDamage);
+        }
         if (card.cardTemplate.Draw > 0)
         {
             yield return Game.Instance.DrawCardFromDeck(false);

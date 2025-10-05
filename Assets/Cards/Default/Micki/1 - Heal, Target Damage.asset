@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: 1 - Heal, Target Damage
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Vampiric Touch
   CardDescription: Heal 5 Deal 5
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}

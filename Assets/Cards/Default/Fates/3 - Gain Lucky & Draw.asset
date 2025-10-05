@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: 3 - Gain Lucky & Draw
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Luck of the Gods
   CardDescription: Gain Lucky & Draw
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
@@ -33,7 +34,7 @@ MonoBehaviour:
   Draw: 1
   Heal: -1
   Block: -1
-  GetLucky: 0
+  GetLucky: 1
   Strength: -1
   EssenceGain: -1
   MultHit: -1
