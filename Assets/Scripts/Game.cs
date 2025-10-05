@@ -503,38 +503,38 @@ public class Game : MonoBehaviour
 			Destroy(Enemy.gameObject);
 			activeEnemies.Remove(Enemy);
 		}
-    }
+	}
 
 	//Ben
 	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
 	{
-        var Attack = attacker.Attacks.Attacks.FirstOrDefault();
+		var Attack = attacker.Attacks.Attacks.FirstOrDefault();
 
-        if (attacker.Curse > 0)
-        {
-            yield return attacker.takeDamage(attacker.Curse);
-            attacker.Curse--;
-        }
+		if (attacker.Curse > 0)
+		{
+			yield return attacker.takeDamage(attacker.Curse);
+			attacker.Curse--;
+		}
 
-        //Start Attack Block
-        if (Attack.ClearNegative)
-        {
+		//Start Attack Block
+		if (Attack.ClearNegative)
+		{
 			attacker.Doom = 0;
 			attacker.Jinxed = false;
 			attacker.Confused = false;
 			attacker.Weak = 0;
 			attacker.Curse = 0;
-        }
+		}
 
 		if (Attack.SpawnEnemy != null)
 		{
-            SpawnEnemy(Attack.SpawnEnemy);
-        }
+			SpawnEnemy(Attack.SpawnEnemy);
+		}
 
 		if (Attack.ApplyLethergy)
 		{
 			player.Lethargic = true;
-        }
+		}
 
 		if (attacker.Jinxed)
 		{
@@ -546,168 +546,75 @@ public class Game : MonoBehaviour
 			}
 		}
 
+		List<Enemy> targets = new();
+		if (Attack.TargetAllEnemies)
+			targets.AddRange(activeEnemies);
+		else if (Attack.TargetAllOtherEnemies)
+			targets.AddRange(otherEnemies);
+		else if (Attack.TargetRandomEnemy)
+			targets.Add(activeEnemies[UnityEngine.Random.Range(0, otherEnemies.Count - 1)]);
+		else if (Attack.TargetSelf)
+			targets.Add(attacker);
+
 		if (Attack.Heal != -1)
 		{
-			if (Attack.TargetAllEnemies)
-			{
-                attacker.CurrentHealth += Attack.Heal;
-                foreach (var enemy in otherEnemies)
-                {
-                    enemy.CurrentHealth += Attack.Heal;
-                }
-            }
-			else if (Attack.TargetAllOtherEnemies)
-			{
-				foreach (var enemy in otherEnemies)
-				{
-					enemy.CurrentHealth += Attack.Heal;
-				}
-			}
-			else if (Attack.TargetRandomEnemy)
-			{
-				int index = UnityEngine.Random.Range(0, activeEnemies.Count-1);
-				activeEnemies[index].CurrentHealth += Attack.Heal;
-            }
-			else if (Attack.TargetSelf)
-			{
-                attacker.CurrentHealth += Attack.Heal;
-            }
+			foreach (var enemy in targets)
+				enemy.CurrentHealth += Attack.Heal;
 		}
 
 		if (Attack.Block != -1)
 		{
-            if (Attack.TargetAllEnemies)
-            {
-                attacker.Block += Attack.Block;
-                foreach (var enemy in otherEnemies)
-                {
-                    enemy.Block += Attack.Block;
-                }
-            }
-            else if (Attack.TargetAllOtherEnemies)
-            {
-                foreach (var enemy in otherEnemies)
-                {
-                    enemy.Block += Attack.Block;
-                }
-            }
-            else if (Attack.TargetRandomEnemy)
-            {
-                int index = UnityEngine.Random.Range(0, otherEnemies.Count - 1);
-                otherEnemies[index].Block += Attack.Block;
-            }
-            else if (Attack.TargetSelf)
-            {
-                attacker.Block += Attack.Block;
-            }
-        }
+			foreach (var enemy in targets)
+				enemy.Block += Attack.Block;
+		}
 
-        if (Attack.Curse != -1)
-        {
-            player.Curse += Attack.Curse;
-        }
+		if (Attack.Curse != -1)
+		{
+			player.Curse += Attack.Curse;
+		}
 
 		if (Attack.Strength != -1)
 		{
-            if (Attack.TargetAllEnemies)
-            {
-                attacker.Strength += Attack.Strength;
-                foreach (var enemy in otherEnemies)
-                {
-                    enemy.Strength += Attack.Strength;
-                }
-            }
-            else if (Attack.TargetAllOtherEnemies)
-            {
-                foreach (var enemy in otherEnemies)
-                {
-                    enemy.Strength += Attack.Strength;
-                }
-            }
-            else if (Attack.TargetRandomEnemy)
-            {
-                int index = UnityEngine.Random.Range(0, otherEnemies.Count - 1);
-                otherEnemies[index].Strength += Attack.Strength;
-            }
-            else if (Attack.TargetSelf)
-            {
-                attacker.Strength += Attack.Strength;
-            }
-        }
+			foreach (var enemy in targets)
+				enemy.Strength += Attack.Strength;
+		}
 
 		if (Attack.Damage != -1)
 		{
 			int TotalDamage = Attack.Damage;
 
 			if (attacker.Weak != -1)
-			{
 				TotalDamage -= attacker.Weak;
-			}
-
 			if (attacker.Strength != -1)
-			{
 				TotalDamage += attacker.Strength;
-			}
-
 			if (Attack.MassBonus)
-			{
 				TotalDamage += otherEnemies.Count;
-			}
-
-            if (Attack.BlockBonus)
-            {
+			if (Attack.BlockBonus)
 				TotalDamage += attacker.Block;
-            }
-
-            if (Attack.MissingHealthBonus)
-            {
+			if (Attack.MissingHealthBonus)
 				TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
-            }
 
 			var IsConfused = false;
 			if (attacker.Confused)
 			{
 				var ConfusedChance = 50;
-				if (UnityEngine.Random.Range(0, 100) < ConfusedChance)
-				{
-					IsConfused = true;
-				}
+				IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
 			}
 
-			if (Attack.NumberOfAttacks > 1)
+			int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
+			for (int i = 0; i < attackcount; i++)
 			{
-				for (int i = 0; i < Attack.NumberOfAttacks; i++)
-				{
-					if (IsConfused)
-					{
-						yield return attacker.takeDamage(TotalDamage);
-					}
-
-					else
-					{
-                        yield return player.TakeDamage(TotalDamage);
-                    }
-				}
+				if (IsConfused)
+					yield return attacker.takeDamage(TotalDamage);
+				else
+					yield return player.TakeDamage(TotalDamage);
 			}
-			else
-			{
-                if (IsConfused)
-                {
-                    yield return attacker.takeDamage(TotalDamage);
-                }
-
-                else
-                {
-                    yield return player.TakeDamage(TotalDamage);
-                }
-            }
-        }
+		}
 
 		yield return NextAttack(attacker, false);
-        
 	}
 
-	public void Discard(Card card)
+public void Discard(Card card)
 	{
 		hand.Remove(card);
 		discard.Add(card);
