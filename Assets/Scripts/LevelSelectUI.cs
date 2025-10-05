@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelectUI : MonoBehaviour
@@ -136,4 +137,8 @@ public class LevelSelectUI : MonoBehaviour
 			buttons[i + 1].interactable = unlocked;
 		}
 	}
+    public void GoToEditDeck()
+    {
+        SceneManager.LoadScene("Collection");
+    }
 }

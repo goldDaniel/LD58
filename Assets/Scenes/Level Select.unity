@@ -1865,8 +1865,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 344273027558534684}
-        m_TargetAssemblyTypeName: GameProgress, Assembly-CSharp
+      - m_Target: {fileID: 94843736}
+        m_TargetAssemblyTypeName: LevelSelectUI, Assembly-CSharp
         m_MethodName: GoToEditDeck
         m_Mode: 1
         m_Arguments:
@@ -9919,17 +9919,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
---- !u!114 &344273027558534684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1390295060236820144, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
-  m_PrefabInstance: {fileID: 344273027558534683}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f954a335c45318439f7717f38812c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameProgress
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

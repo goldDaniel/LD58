@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,6 +71,9 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private RectTransform castEffectStart;
 
+	[SerializeField]
+	private TextMeshProUGUI cardsRemainingText;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -91,6 +95,11 @@ public class Game : MonoBehaviour
 		Instance = null;
 	}
 
+	public void Update()
+	{
+		cardsRemainingText.text = $"{deck.Size}";
+	}
+
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
 
 	private IEnumerator LoadLevel_Internal()
@@ -98,7 +107,7 @@ public class Game : MonoBehaviour
 		player.CurrentHealth = player.MaxHealth;
 		player.CurrentEssence = player.MaxEssence;
 
-		AudioManager.Instance.Play("CombatMusic", 2f);
+		AudioManager.Instance.PlayMusicCrossfade("CombatMusic", 2f);
 
 		var level = GameProgress.Instance.selectedLevel ?? testLevel;
 		foreach (var enemyTemplate in level.Enemies)
@@ -578,7 +587,7 @@ public class Game : MonoBehaviour
                 var initialPosition = effect.transform.position;
 
                 AudioManager.Instance.Play("Curse");
-                yield return effect.MoveTo(endTurnButton.transform.position);
+                yield return effect.MoveTo(playerDamageLocation.transform.position);
                 player.Curse += Attack.Curse;
                 yield return effect.MoveTo(initialPosition);
                 yield return effect.FadeDestroy(attacker.effects);
@@ -593,7 +602,7 @@ public class Game : MonoBehaviour
                 foreach (var enemy in targets)
                 {
                     AudioManager.Instance.Play("Strength", null, 0.6f);
-                    yield return effect.MoveTo(endTurnButton.transform.position);
+                    yield return effect.MoveTo(playerDamageLocation.transform.position);
                     enemy.Strength += Attack.Strength;
                     yield return effect.MoveTo(initialPosition);
                 }
@@ -693,9 +702,15 @@ public void Discard(Card card)
 		else
 			enemies.Add(target);
 
-		bool hasAnimatedEssence = false;
+		if (card.cardTemplate.SelfDamage > 0)
+		{
+			var tween = card.rectTransform.DOMove(playerDamageLocation.transform.position, 0.4f).SetEase(Ease.InBack);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
 
-		foreach(var enemy in enemies)
+		bool hasAnimatedEssence = false;
+		foreach (var enemy in enemies)
 		{
 			if (enemy.CurrentHealth <= 0)
 				continue;
@@ -706,7 +721,7 @@ public void Discard(Card card)
 			{
 				var enemyRect = enemy.GetComponent<RectTransform>();
 				var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
-				var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
+				var initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
 				while (initialTween.IsActive() && !initialTween.IsComplete())
 					yield return null;
 
