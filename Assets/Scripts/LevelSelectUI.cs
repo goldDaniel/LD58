@@ -1,6 +1,7 @@
 using Assets.Scripts;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,11 @@ public class LevelSelectUI : MonoBehaviour
 		SetupButtons(odinButtons, GameProgress.Instance.odinLevels);
 		SetupButtons(reaperButtons, GameProgress.Instance.reaperLevels);
 
-		SetUnlockedLevels(GameProgress.Instance);
+		SetUnlockedLevels(anubisButtons, GameProgress.Instance.anubisLevels);
+		SetUnlockedLevels(fateButtons, GameProgress.Instance.fateLevels);
+		SetUnlockedLevels(mickiButtons, GameProgress.Instance.mickiLevels);
+		SetUnlockedLevels(odinButtons, GameProgress.Instance.odinLevels);
+		SetUnlockedLevels(reaperButtons, GameProgress.Instance.reaperLevels);
 	}
 
 	void SetupButtons(List<Button> buttons, List<LevelTemplate> levels)
@@ -33,32 +38,12 @@ public class LevelSelectUI : MonoBehaviour
 		}
 	}
 
-	public void SetUnlockedLevels(GameProgress progress)
+	public void SetUnlockedLevels(List<Button> buttons, List<LevelTemplate> levels)
 	{
-		for (int i = 0; i < progress.anubisLevels.Count - 1; ++i)
+		for (int i = 0; i < levels.Count - 1; ++i)
 		{
-			var unlocked = progress.completedLevels[progress.anubisLevels[i]];
-			anubisButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.fateLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.fateLevels[i]];
-			fateButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.mickiLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.mickiLevels[i]];
-			mickiButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.odinLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.odinLevels[i]];
-			odinButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.reaperLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.reaperLevels[i]];
-			reaperButtons[i + 1].interactable = unlocked;
+			var unlocked = GameProgress.Instance.completedLevels[levels[i]];
+			buttons[i + 1].interactable = unlocked;
 		}
 	}
 }
