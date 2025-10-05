@@ -137,7 +137,7 @@ public class Player
         }
         if (card.cardTemplate.Draw > 0)
         {
-            yield return Game.Instance.DrawCardFromDeck(false);
+            yield return Game.Instance.DrawHand(card.cardTemplate.Draw);
         }
         if (card.cardTemplate.Heal > 0)
         {

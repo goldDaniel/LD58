@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Cursed Winds
+  m_Name: Gain Afflict, apply 1 Weak to All
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Curse 5 all enemies
+  CardName: Pestilence
+  CardDescription: Gain Afflcit, Apply 1 Weak to All
   Type: 1
   cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
-  EssenceCost: 1
+  EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 1
   RandomEnemy: 0
@@ -27,9 +28,9 @@ MonoBehaviour:
   FateSealed: 0
   Confuse: 0
   Souls: -1
-  Curse: 5
+  Curse: -1
   DeathChance: 0
-  Weak: -1
+  Weak: 1
   Draw: -1
   Heal: -1
   Block: -1
@@ -42,4 +43,4 @@ MonoBehaviour:
   Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
-  CurseEachPlay: 0
+  CurseEachPlay: 1

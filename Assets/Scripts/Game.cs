@@ -120,7 +120,7 @@ public class Game : MonoBehaviour
         activeEnemies.Add(enemy);
     }
 
-	IEnumerator DrawHand(int CardsToDraw)
+	public IEnumerator DrawHand(int CardsToDraw)
 	{
 		CardsToDraw -= (player.Lethargic ? 1 : 0);
 
