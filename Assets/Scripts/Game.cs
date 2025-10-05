@@ -434,6 +434,7 @@ public class Game : MonoBehaviour
 
 		if (attacker.Curse > 0)
 		{
+			AudioManager.Instance.Play("Hit");
 			yield return attacker.TakeDamage(attacker.Curse);
 			attacker.Curse--;
 		}
@@ -486,8 +487,9 @@ public class Game : MonoBehaviour
 
 			foreach (var enemy in targets)
 			{
+				AudioManager.Instance.Play("Heal");
 				yield return effect.MoveTo(enemy.transform.position);
-					enemy.CurrentHealth += Attack.Heal;
+				enemy.CurrentHealth += Attack.Heal;
 				yield return effect.MoveTo(initialPosition);
 			}
 			yield return effect.FadeDestroy(attacker.effects);
@@ -501,6 +503,7 @@ public class Game : MonoBehaviour
 
 			foreach (var enemy in targets)
 			{
+				AudioManager.Instance.Play("Shield");
 				yield return effect.MoveTo(enemy.transform.position);
 				enemy.Block += Attack.Block;
 				yield return effect.MoveTo(initialPosition);
@@ -514,6 +517,7 @@ public class Game : MonoBehaviour
 			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
 			var initialPosition = effect.transform.position;
 
+			AudioManager.Instance.Play("Curse");
 			yield return effect.MoveTo(endTurnButton.transform.position);
 			player.Curse += Attack.Curse;
 			yield return effect.MoveTo(initialPosition);
@@ -528,6 +532,7 @@ public class Game : MonoBehaviour
 
 			foreach (var enemy in targets)
 			{
+				AudioManager.Instance.Play("Strength", null, 0.6f);
 				yield return effect.MoveTo(endTurnButton.transform.position);
 				enemy.Strength += Attack.Strength;
 				yield return effect.MoveTo(initialPosition);
@@ -568,12 +573,14 @@ public class Game : MonoBehaviour
 			{
 				if (IsConfused)
 				{
+					AudioManager.Instance.Play("Hit");
 					yield return effect.MoveTo(attacker.transform.position);
 					yield return attacker.TakeDamage(TotalDamage);
 					yield return effect.MoveTo(initialPosition);
 				}
 				else
 				{
+					AudioManager.Instance.Play("Hit");
 					yield return effect.MoveTo(endTurnButton.transform.position);
 					yield return player.TakeDamage(TotalDamage);
 					yield return effect.MoveTo(initialPosition);
