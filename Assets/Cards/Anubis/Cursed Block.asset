@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cursed Block
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardDescription: Block 5 Curse 1
-  Type: 3
-  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
+  Type: 1
+  cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0

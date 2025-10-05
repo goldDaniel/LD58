@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.SearchService;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameProgress : MonoSingleton<GameProgress>
@@ -18,8 +19,14 @@ public class GameProgress : MonoSingleton<GameProgress>
 	public List<LevelTemplate> odinLevels = new();
 	public List<LevelTemplate> reaperLevels = new();
 
-	public Dictionary<CardTemplate, int> currentDecklist = new();
-	public Dictionary<CardTemplate, int> collection = new();
+    [SerializeField] public List<CardTemplate> odinStartingCards;
+    [SerializeField] public List<CardTemplate> mickiStartingCards;
+    [SerializeField] public List<CardTemplate> anubisStartingCards;
+    [SerializeField] public List<CardTemplate> reaperStartingCards;
+    [SerializeField] public List<CardTemplate> fatesStartingCards;
+
+    public Dictionary<CardTemplate, int> currentDecklist = new();
+    public Dictionary<CardTemplate, int> collection = new();
 
 	public override void Awake()
 	{
@@ -40,9 +47,14 @@ public class GameProgress : MonoSingleton<GameProgress>
 
 		foreach (var a in reaperLevels)
 			completedLevels.Add(a, false);
+		
 	}
+    public void Start()
+    {
+        InitialCollection();
+    }
 
-	public void SelectLevel(LevelTemplate level)
+    public void SelectLevel(LevelTemplate level)
 	{
 		selectedLevel = level;
 		SceneManager.LoadScene("GameScene");
@@ -94,23 +106,23 @@ public class GameProgress : MonoSingleton<GameProgress>
     }
 	public void InitialCollection()
 	{
-		foreach (CardTemplate card in Game.Instance.odinStartingCards)
+		foreach (CardTemplate card in odinStartingCards)
 		{
 			AddCardToCollection(card);
 		}
-        foreach (CardTemplate card in Game.Instance.mickiStartingCards)
+        foreach (CardTemplate card in mickiStartingCards)
         {
             AddCardToCollection(card);
         }
-        foreach (CardTemplate card in Game.Instance.reaperStartingCards)
+        foreach (CardTemplate card in reaperStartingCards)
         {
             AddCardToCollection(card);
         }
-        foreach (CardTemplate card in Game.Instance.anubisStartingCards)
+        foreach (CardTemplate card in anubisStartingCards)
         {
             AddCardToCollection(card);
         }
-        foreach (CardTemplate card in Game.Instance.fatesStartingCards)
+        foreach (CardTemplate card in fatesStartingCards)
         {
             AddCardToCollection(card);
         }
@@ -119,35 +131,35 @@ public class GameProgress : MonoSingleton<GameProgress>
 	{
 		if(type1 == CardType.Odin || type2 == CardType.Odin)
 		{
-			foreach (CardTemplate card in Game.Instance.odinStartingCards)
+			foreach (CardTemplate card in odinStartingCards)
 			{
 				AddCardToDecklist(card);
 			}
 		}
         if (type1 == CardType.Micki || type2 == CardType.Micki)
         {
-            foreach (CardTemplate card in Game.Instance.mickiStartingCards)
+            foreach (CardTemplate card in mickiStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
         if (type1 == CardType.Reaper || type2 == CardType.Reaper)
         {
-            foreach (CardTemplate card in Game.Instance.reaperStartingCards)
+            foreach (CardTemplate card in reaperStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
         if (type1 == CardType.Anubis || type2 == CardType.Anubis)
         {
-            foreach (CardTemplate card in Game.Instance.anubisStartingCards)
+            foreach (CardTemplate card in anubisStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
         if (type1 == CardType.Fates || type2 == CardType.Fates)
         {
-            foreach (CardTemplate card in Game.Instance.fatesStartingCards)
+            foreach (CardTemplate card in fatesStartingCards)
             {
                 AddCardToDecklist(card);
             }
