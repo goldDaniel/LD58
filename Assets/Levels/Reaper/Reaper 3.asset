@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Reaper Level 3
   LevelNumber: 3
   Type: 4
+  randomReward: 4
+  odinReward: 0
+  mickiReward: 0
+  anubisReward: 0
+  reaperReward: 3
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: c33aadbd686021243817066e70828ac8, type: 2}
   - {fileID: 11400000, guid: ba6bca6efa776e04d8702ea692c3fd13, type: 2}

@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Odin Level 5
   LevelNumber: 5
   Type: 3
+  randomReward: 4
+  odinReward: 5
+  mickiReward: 0
+  anubisReward: 0
+  reaperReward: 0
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: bd2caa22437c7354d8da2f6dddb80dcf, type: 2}
   - {fileID: 11400000, guid: 343e2a0823984df4b81620097fca71b3, type: 2}
