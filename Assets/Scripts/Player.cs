@@ -78,16 +78,55 @@ public class Player
         }
     }
 
-	[NonSerialized] public int RepeatAllNext = 0;
+    public TextMeshProUGUI CurseText;
+    private int _curse;
+    public int Curse
+    {
+        get => _curse;
+        set
+        {
+            _curse = Math.Max(value, 0);
+            CurseText.text = $"Curse: {_curse}";
+        }
+    }
+
+    public TextMeshProUGUI LuckyText;
+    private int _lucky;
+    public int Lucky
+    {
+        get => _lucky;
+        set
+        {
+            _lucky = Math.Max(value, 0);
+            LuckyText.text = $"Lucky: {_lucky}";
+        }
+    }
+
+    public TextMeshProUGUI LethargicText;
+    private bool _lethargic;
+    public bool Lethargic
+    {
+        get => _lethargic;
+        set
+        {
+            if (_lethargic)
+            {
+                LethargicText.text = "Lethargic!";
+            }
+            else
+            {
+                LethargicText.text = string.Empty;
+            }
+        }
+    }
+
+    [NonSerialized] public int RepeatAllNext = 0;
     [NonSerialized] public int RepeatAllCurrentTurn = 0;
     [NonSerialized] public int doubleDamageHit = 0;
 	[NonSerialized] public int PactOfPower = 0;
 	[NonSerialized] public int PactOfSacrifice = 0;
 	[NonSerialized] public int PowerCounter = 0;
 	[NonSerialized] public int CurseEachPlay = 0;
-	[NonSerialized] public int Lucky = 0;
-    [NonSerialized] public int Curse = 0;
-    [NonSerialized] public bool Lethargic = false;
 
     public IEnumerator ApplyEffectSequence(Card card)
     {
