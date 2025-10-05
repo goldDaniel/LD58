@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using DG.Tweening;
+using DG.Tweening.Core;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,12 +91,12 @@ public class Game : MonoSingleton<Game>
 
 			deck.Add(card);
 		}
-		deck.Shuffle();
+
+        yield return ShuffleDeckAnimation();
+        deck.Shuffle();
 
 		yield return DrawHand();
 		yield return OnTurnStart();
-
-
 	}
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
@@ -141,13 +142,43 @@ public class Game : MonoSingleton<Game>
 			var card = discard.Draw();
 			deck.Add(card);
 
-			var tween = card.rectTransform.DOMove(deckLocation.position, 0.2f).SetEase(Ease.InCirc);
+			var tween = card.rectTransform.DOMove(deckLocation.position, 0.1f).SetEase(Ease.InCirc);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
 
+		yield return ShuffleDeckAnimation();
 		deck.Shuffle();
 	}
+
+	IEnumerator ShuffleDeckAnimation()
+	{
+		const float delayIncrement = 0.025f;
+		float delay = 0;
+
+		List<Tweener> tweens = new();
+		deck.ForEachReverse(c =>
+		{
+			c.rectTransform.rotation = Quaternion.identity;
+			var tween = c.rectTransform.DORotate(new Vector3(0, 0, 360), 0.2f, RotateMode.FastBeyond360)
+										.SetEase(Ease.InOutBounce)
+										.SetDelay(delay)
+										.OnComplete(() => c.rectTransform.rotation = Quaternion.identity);
+			tweens.Add(tween);
+			delay += delayIncrement;
+		});
+
+		while(tweens.Count > 0)
+		{
+			foreach (var t in tweens)
+			{
+				if (t.IsActive() && !t.IsComplete())
+					yield return null;
+			}
+
+			tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
+		}
+    }
 
 	public void SelectEnemy(Enemy enemy)
 	{

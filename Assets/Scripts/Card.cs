@@ -137,7 +137,15 @@ public class CardGroup
 
 	public void Add(Card card) => cards.Add(card);
 
-	public void Shuffle()
+	public void ForEach(Action<Card> action) => cards.ForEach(action);
+
+    public void ForEachReverse(Action<Card> action)
+	{
+		for(int i = cards.Count - 1; i >= 0; --i)
+			action(cards[i]);
+	}
+
+    public void Shuffle()
 	{
         System.Random rng = new();
 
