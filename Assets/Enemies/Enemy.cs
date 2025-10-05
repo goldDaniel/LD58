@@ -228,7 +228,8 @@ public class Enemy : MonoBehaviour
         }
         if (card.cardTemplate.DeathChance > 0)
         {
-            if (UnityEngine.Random.Range(0, 100) < card.cardTemplate.DeathChance)
+            var DeathRoll = UnityEngine.Random.Range(0, 100);
+            if (DeathRoll < card.cardTemplate.DeathChance)
             {
                 yield return TakeDamage(1000);
             }
