@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba080d00f1aaec743bf10084dd717879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectionUI
-  cardList: {fileID: 0}
-  cardListPrefab: {fileID: 0}
+  cardList: {fileID: 124149013}
+  cardListPrefab: {fileID: 4233551502576139, guid: c58922252114495499de29995362e780, type: 3}
+  cardListObjects: []
 --- !u!1 &124149012
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +459,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389934760}
   m_CullTransparentMesh: 1
+--- !u!1001 &658085618
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 467.28113
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 452.78195
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529779615532789254, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928848465660923450, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
+      propertyPath: m_Name
+      value: Game Progress
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4eb445fb43f344348b7d37662de40ddd, type: 3}
 --- !u!1 &1241418616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,3 +1155,4 @@ SceneRoots:
   - {fileID: 116286636}
   - {fileID: 1288671352}
   - {fileID: 1475095061}
+  - {fileID: 658085618}

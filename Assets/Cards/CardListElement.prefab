@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5169004382890939537}
   - component: {fileID: 8902666963539962860}
   m_Layer: 0
-  m_Name: RemoveButton
+  m_Name: AddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,12 +485,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 15
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 8908049840589557243}
   - component: {fileID: 3859325736545622558}
   m_Layer: 0
-  m_Name: AddButton
+  m_Name: RemoveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,19 +785,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8908049840589557243}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 9f954a335c45318439f7717f38812c6e, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8560316325485711628
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,10 +840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366d79658ddafc14b99581a21b11323d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectionListItem
-  cardNameText: {fileID: 0}
-  addCardButton: {fileID: 0}
-  removeCardButton: {fileID: 0}
-  cardQuantityText: {fileID: 0}
+  cardNameText: {fileID: 6507983326238216735}
+  addCardButton: {fileID: 8902666963539962860}
+  removeCardButton: {fileID: 3859325736545622558}
+  cardQuantityText: {fileID: 1399192416471837742}
   cardTemplate: {fileID: 0}
 --- !u!222 &4622465357918742135
 CanvasRenderer:
