@@ -699,12 +699,21 @@ public void Discard(Card card)
 
 
 		bool targetAll = card.cardTemplate.TargetAllEnemies;
+		bool targetRandom = card.cardTemplate.RandomEnemy;
 
 		List<Enemy> enemies = new();
 		if (targetAll)
-			enemies.AddRange(activeEnemies);
+		{
+            enemies.AddRange(activeEnemies);
+        }
+		else if (targetRandom)
+		{
+			enemies.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
+        }
 		else
-			enemies.Add(target);
+		{
+            enemies.Add(target);
+        }
 
 		if (card.cardTemplate.SelfDamage > 0)
 		{
