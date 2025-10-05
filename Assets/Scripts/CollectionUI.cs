@@ -1,7 +1,10 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class CollectionUI : MonoBehaviour
@@ -10,11 +13,17 @@ public class CollectionUI : MonoBehaviour
     [SerializeField] CollectionListItem cardListPrefab;
 
     public List<CollectionListItem> cardListObjects;
+    private Dictionary<CardTemplate, int> oldDecklist;
+    [SerializeField] public TextMeshProUGUI deckSizeText;
+    [SerializeField] Button backButton;
+    [SerializeField] Button resetButton;
+    [SerializeField] Button saveButton;
 
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        oldDecklist = GameProgress.Instance.currentDecklist.ToDictionary(entry => entry.Key, entry => entry.Value);
         loadCards(CardType.Odin, CardType.Fates);
     }
 
@@ -23,6 +32,36 @@ public class CollectionUI : MonoBehaviour
     {
         
     }
+    public void resetDecklist()
+    {
+        GameProgress.Instance.currentDecklist = oldDecklist.ToDictionary(entry => entry.Key, entry => entry.Value);
+        foreach (CollectionListItem c in  cardListObjects)
+        {
+            c.SetQuantityText();
+        }
+    }
+    public void BackWithoutSaving()
+    {
+        resetDecklist();
+        SceneManager.LoadScene("Level Select");
+        //Scene change
+    }
+    public void Save()
+    {
+        int deckSize = 0;
+        foreach (var c in GameProgress.Instance.currentDecklist.Keys)
+        {
+            deckSize += GameProgress.Instance.currentDecklist[c];
+        }
+        if (deckSize == 20)
+        {
+            SceneManager.LoadScene("Level Select");
+        }
+        else
+        {
+            //Display message that deck size must be 20
+        }
+    }
     public void loadCards(CardType type1, CardType type2)
     {
         foreach (CardTemplate card in GameProgress.Instance.collection.Keys)
@@ -30,6 +69,7 @@ public class CollectionUI : MonoBehaviour
             if (card.Type == type1 || card.Type == type2)
             {
                 var listItem = Instantiate(cardListPrefab, cardList);
+                listItem.collection = this;
                 listItem.OnItemInitialize(card);
                 cardListObjects.Add(listItem);
             }

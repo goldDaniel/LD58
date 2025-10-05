@@ -77,19 +77,16 @@ public class GameProgress : MonoSingleton<GameProgress>
 		if (currentDecklist.ContainsKey(card))
 		{
 			currentCount = currentDecklist[card];
-		}
-		if (collection[card] > currentDecklist[card])
-		{
-            if (currentDecklist.ContainsKey(card))
+            if (collection[card] > currentDecklist[card])
             {
                 currentDecklist[card] += 1;
             }
-            else
-            {
-				currentDecklist.Add(card,1);
-            }
         }
-	}
+        else
+        {
+            currentDecklist.Add(card, 1);
+        }
+    }
 	public void RemoveCardFromDecklist(CardTemplate card)
 	{
         if (currentDecklist.ContainsKey(card))
