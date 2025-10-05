@@ -691,12 +691,38 @@ public class Game : MonoSingleton<Game>
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 
         hand.Remove(card);
-        // animate to discard pile
-        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
-        while (tween.IsActive() && !tween.IsComplete())
-        {
-            yield return null;
-        }
+
+		// animate to attack
+
+		int iterations = (card.cardTemplate.MultHit <= 1) ? 1 : card.cardTemplate.MultHit;
+		for (int i = 0; i < iterations; ++i)
+		{
+			var enemyRect = enemy.GetComponent<RectTransform>();
+			var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
+			var initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
+			while (initialTween.IsActive() && !initialTween.IsComplete())
+				yield return null;
+
+			yield return new WaitForSeconds(0.1f);
+
+			var finalPosition = enemyRect.position;
+			var tween = card.rectTransform.DOMove(finalPosition, 0.4f).SetEase(Ease.InBack);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+
+			initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
+			while (initialTween.IsActive() && !initialTween.IsComplete())
+				yield return null;
+
+			yield return new WaitForSeconds(0.1f);
+		}
+
+		// animate to discard pile
+		{
+			var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
 
         discard.Add(card);
         card.SetInPile(discardLocation);
