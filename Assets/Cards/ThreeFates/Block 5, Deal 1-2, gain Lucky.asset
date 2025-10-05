@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Harsh Fate
+  m_Name: Block 5, Deal 1-2, gain Lucky
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Block 5 Deal 1-2
+  CardName: Harsh Fate
+  CardDescription: Block 5, Deal 1-2, gain Lucky
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 1
@@ -33,7 +34,7 @@ MonoBehaviour:
   Draw: 1
   Heal: -1
   Block: 5
-  GetLucky: 0
+  GetLucky: 1
   Strength: -1
   EssenceGain: -1
   MultHit: -1

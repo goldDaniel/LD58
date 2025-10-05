@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: ImpendingDisaster
+  m_Name: Gain Lucky
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Deal 50-70 to All Enemies Next Turn
+  CardName: Favored
+  CardDescription: Gain Lucky
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
-  EssenceCost: 2
+  EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: 50
-  MaxDamage: 70
+  MinDamage: -1
+  MaxDamage: -1
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   Draw: -1
   Heal: -1
   Block: -1
-  GetLucky: 0
+  GetLucky: 1
   Strength: -1
   EssenceGain: -1
   MultHit: -1
