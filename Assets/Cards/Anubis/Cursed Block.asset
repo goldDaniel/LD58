@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Turn of Fate
+  m_Name: Cursed Block
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: 
-  Type: 5
-  cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
+  CardDescription: Block 5 Curse 1
+  Type: 3
+  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -24,15 +24,15 @@ MonoBehaviour:
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
-  FateSealed: 1
+  FateSealed: 0
   Confuse: 0
   Souls: -1
-  Curse: -1
+  Curse: 1
   DeathChance: -1
   Weak: -1
-  Draw: -1
+  Draw: 1
   Heal: -1
-  Block: -1
+  Block: 5
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
