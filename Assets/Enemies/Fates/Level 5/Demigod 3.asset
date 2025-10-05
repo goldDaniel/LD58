@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
+  m_Name: Demigod 3
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
+  EnemyDescription: A Descendent of the Gods!
+  EnemyModel: 10
+  MaxHealth: 15
+  Block: -1
+  AttackList:
+    Attacks:
+    - {fileID: 11400000, guid: 2678d9e1444bf46439bbe87f196e0667, type: 2}
+    - {fileID: 11400000, guid: 0e478de4aff1a954ab20133bfaeed4fe, type: 2}
+    - {fileID: 11400000, guid: 4783fcf5c2ea5fc4c88cc7cdff3bc016, type: 2}
