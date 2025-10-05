@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Defensive Blow
+  m_Name: Deal 2 Damage 4 Times
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Block 10 & Deal 10 Damage
+  CardName: Flurry
+  CardDescription: Deal 2 Damage 4 Times
   Type: 3
   cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
   EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: 10
-  MaxDamage: 10
+  MinDamage: 2
+  MaxDamage: 2
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
@@ -32,11 +33,11 @@ MonoBehaviour:
   Weak: -1
   Draw: -1
   Heal: -1
-  Block: 10
+  Block: -1
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
-  MultHit: -1
+  MultHit: 4
   doubleDamageHits: -1
   Power: 0
   Sacrifice: 0
