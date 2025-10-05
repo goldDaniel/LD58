@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -74,6 +75,9 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI cardsRemainingText;
 
+	[SerializeField]
+	private RectTransform howToPlayPanel;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -98,6 +102,24 @@ public class Game : MonoBehaviour
 	public void Update()
 	{
 		cardsRemainingText.text = $"{deck.Size}";
+
+		if(Keyboard.current.escapeKey.wasPressedThisFrame)
+			PauseUnPause();
+	}
+
+	public void PauseUnPause()
+	{
+		bool paused = Time.timeScale == 0;
+		if (paused)
+		{
+			Time.timeScale = 1;
+			howToPlayPanel.gameObject.SetActive(false);
+		}
+		else
+		{
+			Time.timeScale = 0;
+			howToPlayPanel.gameObject.SetActive(true);
+		}
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
