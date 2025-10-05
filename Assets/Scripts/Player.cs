@@ -14,7 +14,7 @@ public class Player
         set
         {
             _maxEssence = Math.Max(value, 1);
-            essenceText.text = $"Essence {CurrentEssence} / {_maxEssence}";
+            essenceText.text = $"{CurrentEssence} / {_maxEssence}";
         }
     }
 
@@ -25,7 +25,7 @@ public class Player
         set
         {
             _currentEssence = Math.Max(value, 0);
-            essenceText.text = $"Essence {_currentEssence} / {MaxEssence}";
+            essenceText.text = $"{_currentEssence} / {MaxEssence}";
         }
     }
 
@@ -52,7 +52,7 @@ public class Player
 		set
 		{
 			_maxHealth = Math.Max(value, 1);
-			healthText.text = $"Health {CurrentHealth} / {_maxHealth}";
+			healthText.text = $"{CurrentHealth} / {_maxHealth}";
 		}
 	}
 
@@ -63,7 +63,7 @@ public class Player
 		set
 		{
 			_currentHealth = Math.Max(value, 0);
-			healthText.text = $"Health {_currentHealth} / {MaxHealth}";
+			healthText.text = $"{_currentHealth} / {MaxHealth}";
 		}
 	}
 

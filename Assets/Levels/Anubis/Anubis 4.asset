@@ -15,4 +15,11 @@ MonoBehaviour:
   LevelDescription: Anubis Level 4
   LevelNumber: 4
   Type: 1
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: 89315b078dbd8f947bb6b204cd01d47c, type: 2}
+  - {fileID: 11400000, guid: 3fcbfa473f3e3cf4aac50248e3cde483, type: 2}
+  - {fileID: 11400000, guid: 22be5631ada0dd54abde0b2743be4147, type: 2}
+  - {fileID: 11400000, guid: 81f7c54bf2b8d434087e9e7400feca31, type: 2}
+  - {fileID: 11400000, guid: de83b29c1a1b1684f8948263c4b489a1, type: 2}
+  - {fileID: 11400000, guid: a64039b9b5cf0b84999c8d7166772223, type: 2}
+  - {fileID: 11400000, guid: 33cd522509020854d89b7ad49f0c5fa0, type: 2}

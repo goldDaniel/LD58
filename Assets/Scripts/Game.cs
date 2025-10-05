@@ -7,8 +7,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Game : MonoSingleton<Game>
+public class Game : MonoBehaviour
 {
+	public static Game Instance;
+	public static bool HasInstance => Instance != null;
+
 	public Player player = new();
 
 	public List<Enemy> activeEnemies = new();
@@ -65,12 +68,16 @@ public class Game : MonoSingleton<Game>
     private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
-	public override void Awake()
+	public void Awake()
 	{
-		base.Awake();
-		DontDestroyOnLoad(this);
+		Instance = this;
 		enemyTurnIndex = -1;
 		IsPlayerTurn = true;
+	}
+
+	public void OnDestroy()
+	{
+		Instance = null;
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
@@ -81,7 +88,6 @@ public class Game : MonoSingleton<Game>
 		player.CurrentEssence = player.MaxEssence;
 
 		AudioManager.Instance.Play("CombatMusic", 2f);
-		yield return new WaitForSecondsRealtime(1f);
 
 		var level = GameProgress.Instance.selectedLevel ?? testLevel;
 		foreach (var enemyTemplate in level.Enemies)
@@ -359,6 +365,7 @@ public class Game : MonoSingleton<Game>
                 yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} All");
             }
             else if (Attack.TargetAllOtherEnemies)
+
             {
                 yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Other");
             }
@@ -420,7 +427,8 @@ public class Game : MonoSingleton<Game>
 			enemy.effect1 = Instantiate(effectPrefab, enemy.effect1Location);
 			yield return enemy.effect1.DoEffectVisual(type, value,false, textOverride);
 
-		} else
+		} 
+		else
 		{
             if (enemy.effect2 == null)
             {
@@ -439,6 +447,18 @@ public class Game : MonoSingleton<Game>
 			var active = activeEnemies[enemyTurnIndex];
 			var others = activeEnemies.Where(e => e != active).ToList();
 			yield return AttackPlayerSequence(active, others, player);
+
+			if (active.effect1 != null)
+			{
+                Destroy(active.effect1.gameObject);
+                active.effect1 = null;
+            }
+			if (active.effect2 != null)
+			{
+                Destroy(active.effect2.gameObject);
+                active.effect2 = null;
+            }
+           
 			enemyTurnIndex++;
 		}
 
@@ -748,7 +768,7 @@ public class Game : MonoSingleton<Game>
 
 				yield return player.ApplyEffectSequence(card);
 
-				yield return enemy.ApplyEffectSequence(card);
+				yield return enemy.ApplyEffectSequence(card, player.Strength);
 			} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
 
