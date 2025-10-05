@@ -471,6 +471,7 @@ public class Game : MonoBehaviour
         enemyTurnIndex = -1;
 		yield return OnTurnStart(false);
 	}
+
 	public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
         //End Attack Block
@@ -508,6 +509,12 @@ public class Game : MonoBehaviour
 	IEnumerator AttackPlayerSequence(Enemy attacker, List<Enemy> otherEnemies, Player player)
 	{
         var Attack = attacker.Attacks.Attacks.FirstOrDefault();
+
+        if (attacker.Curse > 0)
+        {
+            yield return attacker.takeDamage(attacker.Curse);
+            attacker.Curse--;
+        }
 
         //Start Attack Block
         if (Attack.ClearNegative)

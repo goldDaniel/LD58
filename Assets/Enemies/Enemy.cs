@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
         set
         {
             _strength = Math.Max(value, 0);
-            curseText.text = $"Strength: {_strength}";
+            strengthText.text = $"Strength: {_strength}";
         }
     }
 
@@ -180,12 +180,6 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator OnTurnStart()
     {
-        if (Curse > 0)
-        {
-            takeDamage(Curse);
-            Curse--;
-        }
-
         return null;
     }
 
