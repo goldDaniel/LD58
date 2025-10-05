@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game : MonoSingleton<Game>
@@ -431,7 +432,8 @@ public class Game : MonoSingleton<Game>
 		}
 
 		CheckDeadEnemies();
-        CheckWinLoss();
+        CheckWin();
+		CheckLoss();
 
         enemyTurnIndex = -1;
 		yield return OnTurnStart();
@@ -706,20 +708,25 @@ public class Game : MonoSingleton<Game>
 		attackInProgress = false;
 
         CheckDeadEnemies();
-		CheckWinLoss();
+		CheckLoss();
+		CheckWin();
     }
 
-	public void CheckWinLoss ()
+	public void CheckLoss()
 	{
-		if (player.CurrentHealth <= 0)
-		{
-			Console.WriteLine("Loss!");
-			return;
-		}
+        if (player.CurrentHealth <= 0)
+        {
+			SceneManager.LoadScene("Level Select");
+            return;
+        }
+    }
 
+	public void CheckWin ()
+	{
 		if (activeEnemies.Count == 0)
 		{
-            Console.WriteLine("Win!");
+			GameProgress.Instance.completedLevels[GameProgress.Instance.selectedLevel] = true;
+            SceneManager.LoadScene("Level Select");
             return;
         }
 	}
