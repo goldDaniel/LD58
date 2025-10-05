@@ -18,10 +18,10 @@ MonoBehaviour:
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 2
   SelfDamage: -1
-  TargetAllEnemies: 1
+  TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: 50
-  MaxDamage: 70
+  MinDamage: -1
+  MaxDamage: -1
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
@@ -31,12 +31,12 @@ MonoBehaviour:
   Curse: -1
   DeathChance: 0
   Weak: -1
-  Draw: -1
+  Draw: 3
   Heal: -1
   Block: -1
   GetLucky: 0
   Strength: -1
-  EssenceGain: -1
+  EssenceGain: 3
   MultHit: -1
   doubleDamageHits: -1
   Power: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: 50
