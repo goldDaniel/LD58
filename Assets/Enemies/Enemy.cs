@@ -292,9 +292,9 @@ public class Enemy : MonoBehaviour
 
 		// TODO (danielg): Animate when enemy takes damage 
 
-        //var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
-        //yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
-        //GameObject.Destroy(effect.gameObject);
+		//var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
+		//yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
+		//GameObject.Destroy(effect.gameObject);
 
         while (Block > 0 && damage > 0)
         {

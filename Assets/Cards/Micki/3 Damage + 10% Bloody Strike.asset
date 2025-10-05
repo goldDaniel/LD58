@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
+  m_Name: 3 Damage + 10% Bloody Strike
+  m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Strip to the Bone
+  CardDescription: 3 Damage + 10% Bloody Strike
+  Type: 2
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
+  EssenceCost: 0
+  SelfDamage: -1
+  TargetAllEnemies: 0
+  RandomEnemy: 0
+  MinDamage: 3
+  MaxDamage: 3
+  BloodyStrike: 10
+  Doomed: -1
+  Jinxed: 0
+  FateSealed: 0
+  Confuse: 0
+  Souls: -1
+  Curse: -1
+  DeathChance: 0
+  Weak: -1
+  Draw: -1
+  Heal: -1
+  Block: -1
+  GetLucky: 0
+  Strength: -1
+  EssenceGain: -1
+  MultHit: -1
+  doubleDamageHits: -1
+  Power: 0
+  Sacrifice: 0
+  RepeatAllNext: 0
+  Foretell: 0
+  CurseEachPlay: 0

@@ -69,3 +69,28 @@ MonoBehaviour:
     channel: 0
     loop: 0
     defaultVolume: 1
+  - name: Shield
+    clip: {fileID: 8300000, guid: 2dd3e99ff5c432b4d808eba72e1db1ac, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 0.7
+  - name: Heal
+    clip: {fileID: 8300000, guid: ef2bce3ea79c14b4695a364d07637c8d, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
+  - name: Hit
+    clip: {fileID: 8300000, guid: a9c0feb92d775644cb25ec1d45ed3012, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
+  - name: Curse
+    clip: {fileID: 8300000, guid: d5e267d91fbecd4418971ae24b5f8eaf, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
+  - name: Strength
+    clip: {fileID: 8300000, guid: 2f0b1ac2df86298458b7899f6ddd735b, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
