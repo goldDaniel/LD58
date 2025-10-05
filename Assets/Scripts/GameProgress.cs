@@ -1,7 +1,6 @@
 
 using Assets.Scripts;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class GameProgress : MonoSingleton<GameProgress>
