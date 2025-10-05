@@ -101,21 +101,11 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		//Swap below 2 blocks for testing default cards
+		bool testing = false;
 
-		/*foreach(var c in defaultDeck)
+		if (testing)
 		{
-			var card = Instantiate(cardPrefab, deckLocation);
-			card.OnCardInitialize(c);
-			card.SetInitialParent(handContainer);
-			card.SetInPile(deckLocation);
-
-			deck.Add(card);
-		}*/
-
-        foreach (var c in GameProgress.Instance.currentDecklist.Keys)
-        {
-			for (int i = 0; i < GameProgress.Instance.currentDecklist[c]; i++)
+			foreach (var c in testDeck)
 			{
 				var card = Instantiate(cardPrefab, deckLocation);
 				card.OnCardInitialize(c);
@@ -124,7 +114,23 @@ public class Game : MonoBehaviour
 
 				deck.Add(card);
 			}
-        }
+		}
+		else
+		{
+
+			foreach (var c in GameProgress.Instance.currentDecklist.Keys)
+			{
+				for (int i = 0; i < GameProgress.Instance.currentDecklist[c]; i++)
+				{
+					var card = Instantiate(cardPrefab, deckLocation);
+					card.OnCardInitialize(c);
+					card.SetInitialParent(handContainer);
+					card.SetInPile(deckLocation);
+
+					deck.Add(card);
+				}
+			}
+		}
 
         yield return ShuffleDeckAnimation();
         deck.Shuffle();
