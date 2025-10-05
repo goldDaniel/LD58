@@ -275,7 +275,12 @@ public class Game : MonoBehaviour
 		endTurnButton.interactable = true;
 		IsPlayerTurn = true;
 		enemyTurnIndex = -1;
-		player.CurrentEssence = player.MaxEssence;
+
+		if (player.CurrentEssence < player.MaxEssence)
+		{
+            player.CurrentEssence = player.MaxEssence;
+        }
+		
 		player.Block = 0;
 		player.RepeatAllCurrentTurn = player.RepeatAllNext;
 		player.RepeatAllNext = 0;
@@ -297,6 +302,17 @@ public class Game : MonoBehaviour
 		{
             yield return player.TakeDamage(player.Curse);
 			player.Curse--;
+		}
+
+		if (player.Lucky > 0)
+		{
+			player.Lucky--;
+		}
+
+		if (player.IncomingDamage > 0)
+		{
+			yield return player.TakeDamage(player.IncomingDamage);
+			player.IncomingDamage = 0;
 		}
 	}
 
@@ -687,6 +703,7 @@ public void Discard(Card card)
 
         else if (activeEnemies.Count == 0)
         {
+			GameProgress.Instance.AddRewardsFromCurrentLevel();
             GameProgress.Instance.CompleteCurrentLevel();
             SceneManager.LoadScene("Level Select");
         }
