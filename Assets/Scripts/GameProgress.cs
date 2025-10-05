@@ -2,6 +2,7 @@
 using Assets.Scripts;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -28,8 +29,14 @@ public class GameProgress : MonoSingleton<GameProgress>
 
     public Dictionary<CardTemplate, int> currentDecklist = new();
     public Dictionary<CardTemplate, int> collection = new();
+    public int pendingRandomCards = 0;
+    public int pendingOdinCards = 0;
+    public int pendingMickiCards = 0;
+    public int pendingAnubisCards = 0;
+    public int pendingReaperCards = 0;
+    public int pendingFatesCards = 0;
 
-	public override void Awake()
+    public override void Awake()
 	{
 		base.Awake();
 		DontDestroyOnLoad(this);
@@ -182,4 +189,21 @@ public class GameProgress : MonoSingleton<GameProgress>
 		if(selectedLevel != null)
 			completedLevels[selectedLevel] = true;
 	}
+    public void AddRewardsFromCurrentLevel()
+    {
+        if (selectedLevel != null)
+        {
+            pendingRandomCards += selectedLevel.randomReward;
+            pendingOdinCards += selectedLevel.odinReward;
+            pendingMickiCards += selectedLevel.mickiReward;
+            pendingAnubisCards += selectedLevel.anubisReward;
+            pendingReaperCards += selectedLevel.reaperReward;
+            pendingFatesCards += selectedLevel.fatesReward;
+        }
+
+    }
+    public void GoToEditDeck()
+    {
+        SceneManager.LoadScene("Collection");
+    }
 }

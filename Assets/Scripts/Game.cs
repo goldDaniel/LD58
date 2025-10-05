@@ -723,6 +723,7 @@ public void Discard(Card card)
 
         else if (activeEnemies.Count == 0)
         {
+			GameProgress.Instance.AddRewardsFromCurrentLevel();
             GameProgress.Instance.CompleteCurrentLevel();
             SceneManager.LoadScene("Level Select");
         }
