@@ -732,15 +732,6 @@ public class Game : MonoSingleton<Game>
 				yield return new WaitForSeconds(0.1f);
 			}
 
-			// animate to discard pile
-			{
-				var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
-				while (tween.IsActive() && !tween.IsComplete())
-					yield return null;
-			}
-			discard.Add(card);
-			card.SetInPile(discardLocation);
-
 			int currentRepeat = 0;
 			do
 			{
@@ -765,8 +756,17 @@ public class Game : MonoSingleton<Game>
 
 			CheckDeadEnemies();
 		}
-		
-        CheckWinLoss();
+
+		// animate to discard pile
+		{
+			var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
+		discard.Add(card);
+		card.SetInPile(discardLocation);
+
+		CheckWinLoss();
     }
 
 	public void CheckWinLoss()
