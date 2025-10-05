@@ -811,6 +811,7 @@ public void Discard(Card card)
         if (player.CurrentHealth <= 0)
         {
 			SceneManager.LoadScene("Level Select");
+			GameProgress.Instance.hasCompletedTutorial = true;
         }
 
         else if (activeEnemies.Count == 0)
@@ -818,7 +819,8 @@ public void Discard(Card card)
 			GameProgress.Instance.AddRewardsFromCurrentLevel();
             GameProgress.Instance.CompleteCurrentLevel();
             SceneManager.LoadScene("Level Select");
-        }
+			GameProgress.Instance.hasCompletedTutorial = true;
+		}
     }
 
 	public bool HasCardInHand(Card card) => hand.Contains(card);
