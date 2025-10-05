@@ -136,7 +136,7 @@ public class CollectionUI : MonoBehaviour
         }
         cardListObjects = new List<CollectionListItem>();
         setDecklistText();
-        foreach (CardTemplate card in GameProgress.Instance.collection.Keys)
+        foreach (CardTemplate card in GameProgress.Instance.collection.Keys.OrderBy( k => k.Type))
         {
             if (types.Contains(card.Type))
             {

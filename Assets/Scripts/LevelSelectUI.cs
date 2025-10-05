@@ -31,7 +31,7 @@ public class LevelSelectUI : MonoBehaviour
 		SetUnlockedLevels(mickiButtons, GameProgress.Instance.mickiLevels);
 		SetUnlockedLevels(odinButtons, GameProgress.Instance.odinLevels);
 		SetUnlockedLevels(reaperButtons, GameProgress.Instance.reaperLevels);
-		GameProgress.Instance.pendingRandomCards = 3;
+		//GameProgress.Instance.pendingRandomCards = 3;
 		GetRewards();
 	}
 
