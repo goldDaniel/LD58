@@ -158,9 +158,11 @@ public class Game : MonoBehaviour
 			var card = discard.Draw();
 			deck.Add(card);
 
-			var tween = card.rectTransform.DOMove(deckLocation.position, 0.15f).SetEase(Ease.InBounce);
+			var tween = card.rectTransform.DOMove(deckLocation.anchoredPosition, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
+
+			card.SetInPile(deckLocation);
 		}
 
 		yield return ShuffleDeckAnimation();
@@ -317,19 +319,19 @@ public class Game : MonoBehaviour
         {
             if (Attack.TargetAllEnemies)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} All");
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All\n{Attack.Heal}");
             }
             else if (Attack.TargetAllOtherEnemies)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Other");
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All Other\n{Attack.Heal}");
             }
             else if (Attack.TargetRandomEnemy)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Random");
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Random\n{Attack.Heal}");
             }
             else if (Attack.TargetSelf)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"{Attack.Heal} Self");
+                yield return DisplayEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Self\n{Attack.Heal}");
             }
         }
 
@@ -337,25 +339,25 @@ public class Game : MonoBehaviour
         {
             if (Attack.TargetAllEnemies)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} All");
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give All\n{Attack.Block}");
             }
             else if (Attack.TargetAllOtherEnemies)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Other");
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give All Other\n{Attack.Block}");
             }
             else if (Attack.TargetRandomEnemy)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Random");
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give Random\n{Attack.Block}");
             }
             else if (Attack.TargetSelf)
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"{Attack.Block} Self");
+                yield return DisplayEnemyEffect(enemy, EffectType.Shield, 0, $"Give Self\n{Attack.Block}");
             }
         }
 
         if (Attack.Curse != -1)
         {
-            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Curse {Attack.Curse}");
+            yield return DisplayEnemyEffect(enemy, EffectType.Curse, 0, $"Curse\n{Attack.Curse}");
         }
 
         if (Attack.Strength != -1)
@@ -415,7 +417,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage,null );
+                yield return DisplayEnemyEffect(enemy, EffectType.Damage, Attack.Damage, $"Damage\n{Attack.Damage}" );
             }
         }
     }
@@ -598,7 +600,7 @@ public class Game : MonoBehaviour
 
         if (Attack.Curse != -1)
         {
-            player.Curse = Attack.Curse;
+            player.Curse += Attack.Curse;
         }
 
 		if (Attack.Strength != -1)
@@ -706,7 +708,6 @@ public class Game : MonoBehaviour
 		hand.Remove(card);
 		discard.Add(card);
 		card.SetInPile(discardLocation);
-		card.rectTransform.position = discardLocation.position;
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)

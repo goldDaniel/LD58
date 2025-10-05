@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EffectType { Damage, Shield, Heal, Other };
+public enum EffectType { Damage, Shield, Heal, Other, Curse };
 
 public class EffectIndicator : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public class EffectIndicator : MonoBehaviour
     [SerializeField] private Sprite shieldIcon;
     [SerializeField] private Sprite healIcon;
     [SerializeField] private Sprite OtherIcon;
+    [SerializeField] private Sprite CurseIcon;
     [SerializeField]
 
     private float fadeTime = 0.4f;
@@ -35,6 +36,7 @@ public class EffectIndicator : MonoBehaviour
     {
         
     }
+
     public IEnumerator DoEffectVisual(EffectType effectType, int value, bool isFade, string textOverride)
     {
         canvasGroup.alpha = 1;
@@ -69,6 +71,10 @@ public class EffectIndicator : MonoBehaviour
         if (effectType == EffectType.Other)
         {
             icon.sprite = OtherIcon;
+        }
+        if (effectType == EffectType.Curse)
+        {
+            icon.sprite = CurseIcon;
         }
         if (isFade)
         {

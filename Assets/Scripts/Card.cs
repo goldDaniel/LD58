@@ -44,7 +44,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		dummyCard.EnableRaycast = false;
 		dummy = dummyCard.gameObject;
 		Destroy(dummyCard);
-		dummy.transform.localScale = new Vector2(1.2f, 1.2f);
+		dummy.transform.localScale = new Vector2(1.75f, 1.75f);
 		dummy.gameObject.SetActive(false);
 
 	}
