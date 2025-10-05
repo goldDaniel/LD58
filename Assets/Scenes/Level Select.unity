@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 77998520}
   - component: {fileID: 77998522}
   - component: {fileID: 77998521}
+  - component: {fileID: 77998523}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -311,10 +312,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 77998516}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 94843736}
+        m_TargetAssemblyTypeName: LevelSelectUI, Assembly-CSharp
+        m_MethodName: closePanelClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -363,6 +364,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &77998523
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77998516}
+  m_Enabled: 1
+  m_Alpha: 0.95
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &91594038
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +603,7 @@ MonoBehaviour:
   rewardPanel: {fileID: 77998518}
   rewardHolder: {fileID: 253830629}
   cardDisplayPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
+  cardsList: []
 --- !u!1 &107091767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4553,7 +4567,6 @@ RectTransform:
   m_Children:
   - {fileID: 1208543251}
   - {fileID: 1078619317}
-  - {fileID: 1895062641}
   m_Father: {fileID: 2005832311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

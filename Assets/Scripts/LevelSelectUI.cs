@@ -16,6 +16,8 @@ public class LevelSelectUI : MonoBehaviour
 	public RectTransform rewardHolder;
 	public Card cardDisplayPrefab;
 
+	public List<Card> cardsList;
+
 	public void Start()
 	{
 		SetupButtons(anubisButtons, GameProgress.Instance.anubisLevels);
@@ -85,6 +87,7 @@ public class LevelSelectUI : MonoBehaviour
 				cardObject.OnCardInitialize(card);
 				cardObject.displayOnly = true;
 				cardObject.cardFront.gameObject.SetActive(true);
+				cardsList.Add(cardObject);
 			}
             GameProgress.Instance.pendingRandomCards = 0;
 			GameProgress.Instance.pendingOdinCards = 0;
@@ -93,6 +96,35 @@ public class LevelSelectUI : MonoBehaviour
 			GameProgress.Instance.pendingAnubisCards = 0;
 			GameProgress.Instance.pendingFatesCards = 0;
 		}
+    }
+	public void closePanelClick()
+	{
+		
+		StartCoroutine(closePanel());
+		
+    }
+	public IEnumerator closePanel()
+	{
+		yield return FadeOutPanel(0.5f);
+        rewardPanel.gameObject.SetActive(false);
+        foreach (Card c in cardsList)
+        {
+            Destroy(c.gameObject);
+        }
+        cardsList.Clear();
+    }
+    public IEnumerator FadeOutPanel(float time)
+    {
+		CanvasGroup canvas = rewardPanel.gameObject.GetComponent<CanvasGroup>();
+		float t = time;
+		float currentAlpha = canvas.alpha;
+        while (t > 0)
+        {
+            canvas.alpha = Mathf.Clamp01(t * currentAlpha / time);
+            t -= Time.deltaTime;
+            yield return null;
+        }
+        canvas.alpha = 0;
     }
 
 
