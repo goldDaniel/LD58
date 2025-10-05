@@ -21,6 +21,7 @@ public class Game : MonoBehaviour
 	private Enemy selectedEnemy = null;
 
 	private int handSize = 5;
+	private int roundDraw = 2;
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -283,7 +284,7 @@ public class Game : MonoBehaviour
 			yield return PrepareAttack(e);
 		}
 
-		int Draw = firstTurn ? 5 : 2;
+		int Draw = firstTurn ? handSize : roundDraw;
 
 		yield return StartCoroutine(DrawHand(Draw));
 

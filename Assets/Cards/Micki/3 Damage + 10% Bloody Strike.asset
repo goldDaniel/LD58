@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Fields of Haze
+  m_Name: 3 Damage + 10% Bloody Strike
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Confuse All Enemies
-  Type: 3
-  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
-  EssenceCost: 2
+  CardName: Strip to the Bone
+  CardDescription: 3 Damage + 10% Bloody Strike
+  Type: 2
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
+  EssenceCost: 0
   SelfDamage: -1
-  TargetAllEnemies: 1
+  TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: -1
-  MaxDamage: -1
-  BloodyStrike: -1
+  MinDamage: 3
+  MaxDamage: 3
+  BloodyStrike: 10
   Doomed: -1
   Jinxed: 0
   FateSealed: 0
-  Confuse: 1
+  Confuse: 0
   Souls: -1
   Curse: -1
-  DeathChance: -1
+  DeathChance: 0
   Weak: -1
   Draw: -1
   Heal: -1

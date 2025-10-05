@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Strip to the Bone
+  m_Name: Deal 15 Damage, Take 5 Damage
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: 10% Bloody Strike
+  CardName: Hiltless Blade
+  CardDescription: Deal 15 Damage, Take 5 Damage
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
-  EssenceCost: 0
-  SelfDamage: -1
+  EssenceCost: 1
+  SelfDamage: 5
   TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: -1
-  MaxDamage: -1
-  BloodyStrike: 10
+  MinDamage: 15
+  MaxDamage: 15
+  BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
   FateSealed: 0

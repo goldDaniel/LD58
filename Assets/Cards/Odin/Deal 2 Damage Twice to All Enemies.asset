@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Gamble
+  m_Name: Deal 2 Damage Twice to All Enemies
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: 
-  CardDescription: Deal 6 - 10
-  Type: 5
-  cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
-  EssenceCost: 1
+  CardName: Whirling Slash
+  CardDescription: Deal 2 Damage Twice to All Enemies
+  Type: 3
+  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
+  EssenceCost: 2
   SelfDamage: -1
-  TargetAllEnemies: 0
+  TargetAllEnemies: 1
   RandomEnemy: 0
-  MinDamage: 6
-  MaxDamage: 10
+  MinDamage: 2
+  MaxDamage: 2
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
-  MultHit: -1
+  MultHit: 2
   doubleDamageHits: -1
   Power: 0
   Sacrifice: 0

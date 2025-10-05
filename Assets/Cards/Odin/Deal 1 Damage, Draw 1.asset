@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Quick Strike
+  m_Name: Deal 1 Damage, Draw 1
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Quick Strike
   CardDescription: Deal 1 Damage, Draw 1
   Type: 3
   cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
