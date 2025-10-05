@@ -131,8 +131,9 @@ MonoBehaviour:
   canvasGroup: {fileID: -6718600625796810217}
   damageIcon: {fileID: 7145864476781540566, guid: 62bf66a45c248c64582c80ee223811ec, type: 3}
   shieldIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
-  healIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
-  OtherIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
+  healIcon: {fileID: -5185649437945853404, guid: 62578a856a8dbfa4f9b838c816ba7821, type: 3}
+  OtherIcon: {fileID: -4856872790349125329, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
+  CurseIcon: {fileID: 6894929934875589815, guid: c7777f6e000d3d04599a9d952054c880, type: 3}
   fadeTime: 0.4
 --- !u!225 &-6718600625796810217
 CanvasGroup:

@@ -16,11 +16,11 @@ MonoBehaviour:
   Damage: -1
   Heal: -1
   Block: -1
-  Curse: 3
+  Curse: 4
   NumberOfAttacks: -1
   Strength: -1
   ClearNegative: 0
-  SpawnEnemy: 0
+  SpawnEnemy: {fileID: 0}
   MassBonus: 0
   BlockBonus: 0
   MissingHealthBonus: 0
