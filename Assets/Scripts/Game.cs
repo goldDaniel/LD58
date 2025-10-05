@@ -684,18 +684,18 @@ public class Game : MonoSingleton<Game>
 		{
 			var enemyRect = enemy.GetComponent<RectTransform>();
 			var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
-			var initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
+			var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
 			while (initialTween.IsActive() && !initialTween.IsComplete())
 				yield return null;
 
 			yield return new WaitForSeconds(0.1f);
 
 			var finalPosition = enemyRect.position;
-			var tween = card.rectTransform.DOMove(finalPosition, 0.4f).SetEase(Ease.InBack);
+			var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 
-			initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
+			initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
 			while (initialTween.IsActive() && !initialTween.IsComplete())
 				yield return null;
 
@@ -751,7 +751,7 @@ public class Game : MonoSingleton<Game>
 	{
 		if (activeEnemies.Count == 0)
 		{
-			GameProgress.Instance.completedLevels[GameProgress.Instance.selectedLevel] = true;
+			GameProgress.Instance.WomCurrentLevel();
             SceneManager.LoadScene("Level Select");
             return;
         }
