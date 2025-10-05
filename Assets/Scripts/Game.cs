@@ -2,6 +2,7 @@ using Assets.Scripts;
 using DG.Tweening;
 using DG.Tweening.Core;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -424,8 +425,9 @@ public class Game : MonoSingleton<Game>
 		}
 
 		CheckDeadEnemies();
+        CheckWinLoss();
 
-		enemyTurnIndex = -1;
+        enemyTurnIndex = -1;
 		yield return OnTurnStart();
 	}
 	IEnumerator NextAttack(Enemy enemy, bool prepare)
@@ -698,5 +700,21 @@ public class Game : MonoSingleton<Game>
 		attackInProgress = false;
 
         CheckDeadEnemies();
+		CheckWinLoss();
     }
+
+	public void CheckWinLoss ()
+	{
+		if (player.CurrentHealth <= 0)
+		{
+			Console.WriteLine("Loss!");
+			return;
+		}
+
+		if (activeEnemies.Count == 0)
+		{
+            Console.WriteLine("Win!");
+            return;
+        }
+	}
 }
