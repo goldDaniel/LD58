@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: Curse 7 Random Enemy
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: Cused Winds
+  CardName: Cursed Winds
   CardDescription: Curse 7 Random Enemy
   Type: 1
   cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
