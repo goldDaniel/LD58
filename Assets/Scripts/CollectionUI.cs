@@ -18,6 +18,14 @@ public class CollectionUI : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] Button resetButton;
     [SerializeField] Button saveButton;
+    [SerializeField] TextMeshProUGUI warningMessage;
+    [SerializeField] Button odinButton;
+    [SerializeField] Button mickiButton;
+    [SerializeField] Button reaperButton;
+    [SerializeField] Button anubisButton;
+    [SerializeField] Button fatesButton;
+
+    public List<CardType> selectedCardTypes;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +33,11 @@ public class CollectionUI : MonoBehaviour
     {
         oldDecklist = GameProgress.Instance.currentDecklist.ToDictionary(entry => entry.Key, entry => entry.Value);
         loadCards(CardType.Odin, CardType.Fates);
+        odinButton.onClick.AddListener(() => selectGod(CardType.Odin));
+        mickiButton.onClick.AddListener(() => selectGod(CardType.Micki));
+        reaperButton.onClick.AddListener(() => selectGod(CardType.Reaper));
+        anubisButton.onClick.AddListener(() => selectGod(CardType.Anubis));
+        fatesButton.onClick.AddListener(() => selectGod(CardType.Fates));
     }
 
     // Update is called once per frame
@@ -73,6 +86,20 @@ public class CollectionUI : MonoBehaviour
                 listItem.OnItemInitialize(card);
                 cardListObjects.Add(listItem);
             }
+        }
+    }
+
+    public void selectGod(CardType type)
+    {
+        if (selectedCardTypes.Contains(type))
+        {
+            selectedCardTypes.Remove(type);
+        } else if (selectedCardTypes.Count >= 2)
+        {
+            warningMessage.text = "You cannot select more than 2 gods in your deck";
+        } else
+        {
+            selectedCardTypes.Add(type);
         }
     }
 }
