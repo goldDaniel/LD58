@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: 4 - Target Damage
+  m_Name: 4 - Jinx All
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Deal 0-10 Damage
+  CardDescription: Jinx All
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 1
   SelfDamage: -1
-  TargetAllEnemies: 0
+  TargetAllEnemies: 1
   RandomEnemy: 0
-  MinDamage: 0
-  MaxDamage: 10
+  MinDamage: -1
+  MaxDamage: -1
   BloodyStrike: -1
   Doomed: -1
-  Jinxed: 0
+  Jinxed: 1
   FateSealed: 0
   Confuse: 0
   Souls: -1
