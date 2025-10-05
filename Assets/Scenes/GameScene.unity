@@ -1911,6 +1911,8 @@ MonoBehaviour:
   endTurnButton: {fileID: 386296896}
   effectPrefab: {fileID: -4558534857157238076, guid: 5e8049257adff22499a7ccf13f4da873, type: 3}
   playerDamageLocation: {fileID: 1113699706}
+  castEffectPrefab: {fileID: 6789226420574968746, guid: 6447f9baad9f84c4888147a4991851c2, type: 3}
+  castEffectStart: {fileID: 1102268108}
   odinStartingCards:
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}

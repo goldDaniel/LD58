@@ -62,6 +62,11 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	public RectTransform playerDamageLocation;
 
+	[SerializeField]
+	private Image castEffectPrefab;
+	[SerializeField]
+	private RectTransform castEffectStart;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -617,8 +622,8 @@ public void Discard(Card card)
 	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
+		hand.Remove(card);
 
-        hand.Remove(card);
 
 		bool targetAll = card.cardTemplate.TargetAllEnemies;
 
@@ -627,6 +632,8 @@ public void Discard(Card card)
 			enemies.AddRange(activeEnemies);
 		else
 			enemies.Add(target);
+
+		bool hasAnimatedEssence = false;
 
 		foreach(var enemy in enemies)
 		{
@@ -642,6 +649,36 @@ public void Discard(Card card)
 				var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
 				while (initialTween.IsActive() && !initialTween.IsComplete())
 					yield return null;
+
+				if(!hasAnimatedEssence)
+				{
+					hasAnimatedEssence = true;
+					// animate essence
+					{
+						List<Tweener> tweens = new();
+						for (int j = 0; j < card.currentCost; ++j)
+						{
+							var cast = Instantiate(castEffectPrefab, UIController.Instance.transform);
+							cast.transform.position = castEffectStart.position;
+							tweens.Add(cast.transform.DOMove(card.essenceCostText.transform.position, 0.4f)
+													.SetEase(Ease.InOutSine)
+													.SetDelay(j * 0.08f)
+													.OnComplete(() => Destroy(cast)));
+						}
+
+						while (tweens.Count > 0)
+						{
+							foreach (var t in tweens)
+							{
+								if (t.IsActive() && !t.IsComplete())
+									yield return null;
+							}
+
+							tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
+						}
+					}
+					yield return new WaitForSeconds(0.1f);
+				}
 
 				yield return new WaitForSeconds(0.1f);
 
