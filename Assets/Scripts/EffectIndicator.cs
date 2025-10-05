@@ -86,7 +86,7 @@ public class EffectIndicator : MonoBehaviour
 
 	public IEnumerator MoveTo(Vector2 position)
 	{
-		var tween = rectTransform.DOMove(position, 0.2f);
+		var tween = transform.DOMove(position, 0.2f).SetEase(Ease.InQuint);
 		while(tween.IsActive() && !tween.IsComplete())
 			yield return null;
 	}

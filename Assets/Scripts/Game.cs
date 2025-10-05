@@ -366,6 +366,7 @@ public class Game : MonoBehaviour
 	{
 		var effect = Instantiate(effectPrefab, enemy.effectContainer);
 		effect.Initialize(type, value, false, textOverride);
+		enemy.effects.Add(effect);
 
 		yield return effect.FadeIn(0.2f);
 	}
@@ -478,41 +479,69 @@ public class Game : MonoBehaviour
 
 		if (Attack.Heal != -1)
 		{
+			var effect = attacker.effects[0];
+			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+			var initialPosition = effect.transform.position;
+
 			foreach (var enemy in targets)
-				enemy.CurrentHealth += Attack.Heal;
+			{
+				yield return effect.MoveTo(enemy.transform.position);
+					enemy.CurrentHealth += Attack.Heal;
+				yield return effect.MoveTo(initialPosition);
+			}
+			yield return effect.FadeDestroy(attacker.effects);
 		}
 
 		if (Attack.Block != -1)
 		{
 			var effect = attacker.effects[0];
+			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
 			var initialPosition = effect.transform.position;
 
 			foreach (var enemy in targets)
 			{
-				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-
 				yield return effect.MoveTo(enemy.transform.position);
-				{
-					enemy.Block += Attack.Block;
-				}
+				enemy.Block += Attack.Block;
 				yield return effect.MoveTo(initialPosition);
 			}
 			yield return effect.FadeDestroy(attacker.effects);
-        }
+		}
 
 		if (Attack.Curse != -1)
 		{
+			var effect = attacker.effects[0];
+			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+			var initialPosition = effect.transform.position;
+
+			yield return effect.MoveTo(endTurnButton.transform.position);
 			player.Curse += Attack.Curse;
+			yield return effect.MoveTo(initialPosition);
+			yield return effect.FadeDestroy(attacker.effects);
 		}
 
 		if (Attack.Strength != -1)
 		{
+			var effect = attacker.effects[0];
+			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+			var initialPosition = effect.transform.position;
+
 			foreach (var enemy in targets)
+			{
+				yield return effect.MoveTo(endTurnButton.transform.position);
 				enemy.Strength += Attack.Strength;
+				yield return effect.MoveTo(initialPosition);
+			}
+			yield return effect.FadeDestroy(attacker.effects);
+
+
 		}
 
 		if (Attack.Damage != -1)
 		{
+			var effect = attacker.effects[0];
+			effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+			var initialPosition = effect.transform.position;
+
 			int TotalDamage = Attack.Damage;
 
 			if (attacker.Weak != -1)
@@ -537,9 +566,18 @@ public class Game : MonoBehaviour
 			for (int i = 0; i < attackcount; i++)
 			{
 				if (IsConfused)
+				{
+					yield return effect.MoveTo(attacker.transform.position);
 					yield return attacker.TakeDamage(TotalDamage);
+					yield return effect.MoveTo(initialPosition);
+				}
 				else
+				{
+					yield return effect.MoveTo(endTurnButton.transform.position);
 					yield return player.TakeDamage(TotalDamage);
+					yield return effect.MoveTo(initialPosition);
+				}
+					
 			}
 		}
 		yield return NextAttack(attacker, false);
