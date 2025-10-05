@@ -15,4 +15,8 @@ MonoBehaviour:
   LevelDescription: Fates Level 5
   LevelNumber: 5
   Type: 5
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: e51e4f519ee488540911721f2b85e306, type: 2}
+  - {fileID: 11400000, guid: 5710fb5970f678e40ba5549dbed92b97, type: 2}
+  - {fileID: 11400000, guid: a8c5bec18b1bc684990c4b95ae0ca5d5, type: 2}
+  - {fileID: 11400000, guid: 4224e30581a7e1e4c9fed96ed7cb4a48, type: 2}

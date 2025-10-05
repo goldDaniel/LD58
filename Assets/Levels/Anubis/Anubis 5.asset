@@ -15,4 +15,9 @@ MonoBehaviour:
   LevelDescription: Anubis Level 5
   LevelNumber: 5
   Type: 1
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: 06b84ce7d27a00040b0773f3e1bb0bee, type: 2}
+  - {fileID: 11400000, guid: 8541ea7a3c2cd8c479a2874591b8e1d7, type: 2}
+  - {fileID: 11400000, guid: 3dbc9c39cbd0d8445ad8b81be2619fb4, type: 2}
+  - {fileID: 11400000, guid: b747fa4a520cc774296199a843fb11b9, type: 2}
+  - {fileID: 11400000, guid: b35276190c08c504f8fe0b6b6cf7ca42, type: 2}

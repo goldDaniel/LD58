@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
+  m_Name: Mummy 4
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
+  EnemyDescription: A Mummy!
+  EnemyModel: 2
+  MaxHealth: 25
+  Block: -1
+  AttackList:
+    Attacks:
+    - {fileID: 11400000, guid: d5e7bc1b1aff8b841aed1a9564381a6e, type: 2}
+    - {fileID: 11400000, guid: b48c57df722bfd647b370b958f86e148, type: 2}
+    - {fileID: 11400000, guid: 157083bf4ce1ec4479c92e24b0c04983, type: 2}

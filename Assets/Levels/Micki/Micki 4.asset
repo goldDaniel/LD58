@@ -15,4 +15,11 @@ MonoBehaviour:
   LevelDescription: Micki Level 4
   LevelNumber: 4
   Type: 2
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: f31e36d61e630ac458b6921359e53a26, type: 2}
+  - {fileID: 11400000, guid: a7b9a720914bb3b41ab7ca8dc3fa4583, type: 2}
+  - {fileID: 11400000, guid: 0f31dff167a11e948bdac3ecd74dfe03, type: 2}
+  - {fileID: 11400000, guid: 424e0796008139048b53f8bb08978de3, type: 2}
+  - {fileID: 11400000, guid: 294924aa97d860f4e97b759c0cfd75c9, type: 2}
+  - {fileID: 11400000, guid: f3dc48e53caa4ba44b744cce092b1d09, type: 2}
+  - {fileID: 11400000, guid: cf04a45c37413ff42bce2e4bd96f5bfd, type: 2}

@@ -15,4 +15,16 @@ MonoBehaviour:
   LevelDescription: Odin Level 5
   LevelNumber: 5
   Type: 3
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: bd2caa22437c7354d8da2f6dddb80dcf, type: 2}
+  - {fileID: 11400000, guid: 343e2a0823984df4b81620097fca71b3, type: 2}
+  - {fileID: 11400000, guid: cd1884258490fa2448068816b22d89a9, type: 2}
+  - {fileID: 11400000, guid: edca92d11ccd2024a89cb326e87446cb, type: 2}
+  - {fileID: 11400000, guid: 1a4b125603f75384eb1fd9f367a57055, type: 2}
+  - {fileID: 11400000, guid: 307a2574cc1610b458c9246b7c129787, type: 2}
+  - {fileID: 11400000, guid: f5a02ec4771faca42a10ee16e6b4b8c6, type: 2}
+  - {fileID: 11400000, guid: 0f2de490bff53914db57f2bdbf8ceac8, type: 2}
+  - {fileID: 11400000, guid: 4f0cf206558e05e42b29ddd4a30454ec, type: 2}
+  - {fileID: 11400000, guid: 381803e442441374ea3f658d5e420680, type: 2}
+  - {fileID: 11400000, guid: a99ddb8350295e44a959226919000f42, type: 2}
+  - {fileID: 11400000, guid: a6393a16e07966e4ea7322f1f85b982a, type: 2}

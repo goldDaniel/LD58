@@ -68,7 +68,7 @@ public class Player
 	}
 
     public TextMeshProUGUI StrengthText;
-    private int _strength;
+    private int _strength = 0;
     public int Strength
     {
         get => _strength;
@@ -80,7 +80,7 @@ public class Player
     }
 
     public TextMeshProUGUI CurseText;
-    private int _curse;
+    private int _curse = 0;
     public int Curse
     {
         get => _curse;
@@ -92,7 +92,7 @@ public class Player
     }
 
     public TextMeshProUGUI LuckyText;
-    private int _lucky;
+    private int _lucky = 0;
     public int Lucky
     {
         get => _lucky;
@@ -104,7 +104,7 @@ public class Player
     }
 
     public TextMeshProUGUI LethargicText;
-    private bool _lethargic;
+    private bool _lethargic = false;
     public bool Lethargic
     {
         get => _lethargic;
@@ -137,7 +137,7 @@ public class Player
         }
         if (card.cardTemplate.Draw > 0)
         {
-            yield return Game.Instance.DrawCardFromDeck(false);
+            yield return Game.Instance.DrawHand(card.cardTemplate.Draw);
         }
         if (card.cardTemplate.Heal > 0)
         {
@@ -184,9 +184,14 @@ public class Player
     }
     public IEnumerator TakeDamage(int damage)
     {
-        var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
-        yield return effect.DoEffectVisual(EffectType.Damage, damage,true, null);
-        GameObject.Destroy(effect.gameObject);
+
+		// TODO (danielg): animate the damage indicator from the enemy to the player
+
+		//var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
+  //      effect.Initialize(EffectType.Damage, damage,true, null);
+  //      GameObject.Destroy(effect.gameObject);
+
+
         if (Block >= damage)
         {
             Block -= damage;
