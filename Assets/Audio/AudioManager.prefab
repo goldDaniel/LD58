@@ -63,4 +63,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c538a522568224f42baab0ca9a0b98c4, type: 3}
     channel: 1
     loop: 1
+    defaultVolume: 1.04
+  - name: Hover
+    clip: {fileID: 8300000, guid: 8a64023d654305842a64fe2f53f82e29, type: 3}
+    channel: 0
+    loop: 0
     defaultVolume: 1
