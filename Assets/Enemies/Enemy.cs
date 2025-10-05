@@ -203,7 +203,7 @@ public class Enemy : MonoBehaviour
             Game.Instance.DeselectEnemy(this);
     }
 
-    public IEnumerator ApplyEffectSequence(Card card)
+    public IEnumerator ApplyEffectSequence(Card card, int Strength)
     {
         
         if (card.cardTemplate.Souls > 0)
@@ -229,6 +229,12 @@ public class Enemy : MonoBehaviour
                 }
                 damage *= 1<<Game.Instance.player.doubleDamageHit;
                 repeatCount++;
+
+                if (Strength > 0)
+                {
+                    damage += Strength;
+                }
+
                 yield return takeDamage(damage);
             }
         } while (repeatCount < card.cardTemplate.MultHit);
@@ -290,6 +296,13 @@ public class Enemy : MonoBehaviour
         var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
         yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
         GameObject.Destroy(effect.gameObject);
+
+        while (Block > 0 && damage > 0)
+        {
+            Block--;
+            damage--;
+        }
+
         CurrentHealth -= damage;
         yield return null;
     }

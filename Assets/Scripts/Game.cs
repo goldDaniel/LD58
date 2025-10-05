@@ -768,7 +768,7 @@ public class Game : MonoBehaviour
 
 				yield return player.ApplyEffectSequence(card);
 
-				yield return enemy.ApplyEffectSequence(card);
+				yield return enemy.ApplyEffectSequence(card, player.Strength);
 			} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
 
