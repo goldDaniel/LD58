@@ -24,6 +24,11 @@ public class CollectionUI : MonoBehaviour
     [SerializeField] Button reaperButton;
     [SerializeField] Button anubisButton;
     [SerializeField] Button fatesButton;
+    [SerializeField] RectTransform cardHolder;
+    [SerializeField] Card cardDisplayPrefab;
+
+    public Card visibleCard;
+    private GameObject cardDisplay;
 
     public List<CardType> selectedCardTypes;
 
@@ -44,6 +49,20 @@ public class CollectionUI : MonoBehaviour
     void Update()
     {
         
+    }
+    public void DisplayCard(CardTemplate card)
+    {
+        HideCard();
+        visibleCard = Instantiate(cardDisplayPrefab, cardHolder);
+        visibleCard.OnCardInitialize(card);
+        visibleCard.cardFront.gameObject.SetActive(true);
+    }
+    public void HideCard()
+    {
+        if (visibleCard != null)
+        {
+            Destroy(visibleCard.gameObject);
+        }
     }
     public void resetDecklist()
     {

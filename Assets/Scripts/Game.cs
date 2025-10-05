@@ -470,7 +470,7 @@ public class Game : MonoBehaviour
         enemyTurnIndex = -1;
 		yield return OnTurnStart();
 	}
-	IEnumerator NextAttack(Enemy enemy, bool prepare)
+	public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
         //End Attack Block
 

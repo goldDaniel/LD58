@@ -253,7 +253,7 @@ public class Enemy : MonoBehaviour
         }
         if (card.cardTemplate.FateSealed)
         {
-            // Change to next action in list
+            Game.Instance.NextAttack(this, true);
         }
         if (card.cardTemplate.BloodyStrike > 0)
         {
