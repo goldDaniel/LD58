@@ -1,5 +1,6 @@
 
 using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -40,5 +41,11 @@ public class GameProgress : MonoSingleton<GameProgress>
 	{
 		selectedLevel = level;
 		SceneManager.LoadScene("GameScene");
+	}
+
+	internal void CompleteCurrentLevel()
+	{
+		if(selectedLevel != null)
+			completedLevels[selectedLevel] = true;
 	}
 }
