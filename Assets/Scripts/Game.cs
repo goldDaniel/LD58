@@ -1,13 +1,8 @@
 using Assets.Scripts;
 using DG.Tweening;
-using DG.Tweening.Core;
-using NUnit.Framework;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -696,12 +691,15 @@ public class Game : MonoSingleton<Game>
 
 		List<Enemy> enemies = new();
 		if (targetAll)
-			enemies = activeEnemies;
+			enemies.AddRange(activeEnemies);
 		else
 			enemies.Add(target);
 
 		foreach(var enemy in enemies)
 		{
+			if (enemy.CurrentHealth <= 0)
+				continue;
+
 			// animate to attack
 			int iterations = (card.cardTemplate.MultHit <= 1) ? 1 : card.cardTemplate.MultHit;
 			for (int i = 0; i < iterations; ++i)
