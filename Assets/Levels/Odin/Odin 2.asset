@@ -15,4 +15,8 @@ MonoBehaviour:
   LevelDescription: Odin Level 2
   LevelNumber: 2
   Type: 3
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: 32ad0ebf83a1ee04c89477e19e44bf9e, type: 2}
+  - {fileID: 11400000, guid: a2219ef0af7abad4f8788d432baf70a6, type: 2}
+  - {fileID: 11400000, guid: b97a3ffbf219d994bbcf77b1332bbd22, type: 2}
+  - {fileID: 11400000, guid: ae5591d12953e3c4180ed366556797ba, type: 2}
