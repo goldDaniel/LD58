@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,10 @@ public class LevelSelectUI : MonoBehaviour
 	public List<Button> mickiButtons;
 	public List<Button> odinButtons;
 	public List<Button> reaperButtons;
+
+	public Image rewardPanel;
+	public RectTransform rewardHolder;
+	public Card cardDisplayPrefab;
 
 	public void Start()
 	{
@@ -24,6 +29,8 @@ public class LevelSelectUI : MonoBehaviour
 		SetUnlockedLevels(mickiButtons, GameProgress.Instance.mickiLevels);
 		SetUnlockedLevels(odinButtons, GameProgress.Instance.odinLevels);
 		SetUnlockedLevels(reaperButtons, GameProgress.Instance.reaperLevels);
+		GameProgress.Instance.pendingRandomCards = 3;
+		GetRewards();
 	}
 
 	void SetupButtons(List<Button> buttons, List<LevelTemplate> levels)
@@ -36,7 +43,60 @@ public class LevelSelectUI : MonoBehaviour
 		}
 	}
 
-	public void SetUnlockedLevels(List<Button> buttons, List<LevelTemplate> levels)
+	void GetRewards()
+	{
+		if (GameProgress.Instance.pendingRandomCards > 0 ||
+			GameProgress.Instance.pendingOdinCards > 0 ||
+			GameProgress.Instance.pendingMickiCards > 0 ||
+			GameProgress.Instance.pendingReaperCards > 0 ||
+			GameProgress.Instance.pendingAnubisCards > 0 ||
+			GameProgress.Instance.pendingFatesCards > 0)
+		{
+			List<CardTemplate> obtainedCards = new List<CardTemplate>();
+			for (int i = 0; i < GameProgress.Instance.pendingRandomCards; i++)
+			{
+				obtainedCards.Add(GameProgress.Instance.GetRandomCard());
+			}
+            for (int i = 0; i < GameProgress.Instance.pendingOdinCards; i++)
+            {
+                obtainedCards.Add(GameProgress.Instance.GetRandomGodCard(CardType.Odin));
+            }
+            for (int i = 0; i < GameProgress.Instance.pendingMickiCards; i++)
+            {
+                obtainedCards.Add(GameProgress.Instance.GetRandomGodCard(CardType.Micki));
+            }
+            for (int i = 0; i < GameProgress.Instance.pendingAnubisCards; i++)
+            {
+                obtainedCards.Add(GameProgress.Instance.GetRandomGodCard(CardType.Anubis));
+            }
+            for (int i = 0; i < GameProgress.Instance.pendingReaperCards; i++)
+            {
+                obtainedCards.Add(GameProgress.Instance.GetRandomGodCard(CardType.Reaper));
+            }
+            for (int i = 0; i < GameProgress.Instance.pendingFatesCards; i++)
+            {
+                obtainedCards.Add(GameProgress.Instance.GetRandomGodCard(CardType.Fates));
+            }
+			rewardPanel.gameObject.SetActive(true);
+			foreach (CardTemplate card in obtainedCards)
+			{
+				GameProgress.Instance.AddCardToCollection(card);
+				var cardObject = Instantiate(cardDisplayPrefab, rewardHolder);
+				cardObject.OnCardInitialize(card);
+				cardObject.displayOnly = true;
+				cardObject.cardFront.gameObject.SetActive(true);
+			}
+            GameProgress.Instance.pendingRandomCards = 0;
+			GameProgress.Instance.pendingOdinCards = 0;
+			GameProgress.Instance.pendingMickiCards = 0;
+			GameProgress.Instance.pendingReaperCards = 0;
+			GameProgress.Instance.pendingAnubisCards = 0;
+			GameProgress.Instance.pendingFatesCards = 0;
+		}
+    }
+
+
+    public void SetUnlockedLevels(List<Button> buttons, List<LevelTemplate> levels)
 	{
 		for (int i = 0; i < levels.Count - 1; ++i)
 		{

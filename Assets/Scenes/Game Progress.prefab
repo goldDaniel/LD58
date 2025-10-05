@@ -130,3 +130,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
   - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
   - {fileID: 11400000, guid: 6aef65e73bc7f6d4eb6f2ea17bbf1544, type: 2}
+  allCards:
+  - {fileID: 11400000, guid: 4dbd6c1138f88394e9aa77ddc3103b47, type: 2}
+  - {fileID: 11400000, guid: 3e93684afdb580b498d133122aa9ab35, type: 2}
+  - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
+  - {fileID: 11400000, guid: 1c855cf5dfba49042862365c3ccb3b6c, type: 2}
+  - {fileID: 11400000, guid: fc7db91188d3a8e469689b20341c62f1, type: 2}
+  - {fileID: 11400000, guid: 6aef65e73bc7f6d4eb6f2ea17bbf1544, type: 2}
+  pendingRandomCards: 0
+  pendingOdinCards: 0
+  pendingMickiCards: 0
+  pendingAnubisCards: 0
+  pendingReaperCards: 0
+  pendingFatesCards: 0
