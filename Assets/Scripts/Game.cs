@@ -795,6 +795,7 @@ public void Discard(Card card)
 	{
         if (player.CurrentHealth <= 0)
         {
+			GameProgress.Instance.pendingRandomCards += 1;
 			SceneManager.LoadScene("Level Select");
         }
 
