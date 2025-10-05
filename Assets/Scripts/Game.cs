@@ -301,7 +301,7 @@ public class Game : MonoBehaviour
         var Attack = enemy.Attacks.Attacks.FirstOrDefault();
         if (Attack.ClearNegative)
         {
-            yield return DisplayEnemyEffect(enemy,EffectType.Other, 0, "Cleanse");
+            yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
         }
 
         if (Attack.SpawnEnemy != null)
@@ -430,15 +430,13 @@ public class Game : MonoBehaviour
 			yield return enemy.effect1.DoEffectVisual(type, value,false, textOverride);
 
 		} 
-		else
-		{
-            if (enemy.effect2 == null)
-            {
-                enemy.effect2 = Instantiate(effectPrefab, enemy.effect2Location);
-                yield return enemy.effect2.DoEffectVisual(type, value, false,textOverride);
+		else if (enemy.effect2 == null)
+        {
+            enemy.effect2 = Instantiate(effectPrefab, enemy.effect2Location);
+            yield return enemy.effect2.DoEffectVisual(type, value, false,textOverride);
 
-            }
         }
+
 		yield return null;
 	}
 
@@ -470,6 +468,7 @@ public class Game : MonoBehaviour
         enemyTurnIndex = -1;
 		yield return OnTurnStart();
 	}
+
 	IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
         //End Attack Block
@@ -477,14 +476,10 @@ public class Game : MonoBehaviour
         EnemyAttackTemplate OldAttack = enemy.Attacks.Attacks[0];
         enemy.Attacks.Attacks.RemoveAt(0);
         enemy.Attacks.Attacks.Add(OldAttack);
-        if ( prepare )
+        if (prepare)
         {
             yield return PrepareAttack(enemy);
-        } else
-		{
-			yield return null;
-		}
-        
+        }
     }
 
 	//Ben

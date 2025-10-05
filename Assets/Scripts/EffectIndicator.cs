@@ -25,18 +25,7 @@ public class EffectIndicator : MonoBehaviour
 
     private float fadeTime = 0.4f;
     private RectTransform rectTransform;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
     public IEnumerator DoEffectVisual(EffectType effectType, int value, bool isFade, string textOverride)
     {
         canvasGroup.alpha = 1;
