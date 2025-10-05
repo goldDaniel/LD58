@@ -432,7 +432,7 @@ public class Game : MonoBehaviour
 
 		if (attacker.Curse > 0)
 		{
-			yield return attacker.takeDamage(attacker.Curse);
+			yield return attacker.TakeDamage(attacker.Curse);
 			attacker.Curse--;
 		}
 
@@ -537,7 +537,7 @@ public class Game : MonoBehaviour
 			for (int i = 0; i < attackcount; i++)
 			{
 				if (IsConfused)
-					yield return attacker.takeDamage(TotalDamage);
+					yield return attacker.TakeDamage(TotalDamage);
 				else
 					yield return player.TakeDamage(TotalDamage);
 			}
