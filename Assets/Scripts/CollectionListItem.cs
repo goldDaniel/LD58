@@ -71,7 +71,7 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnItemInitialize(CardTemplate card)
     {
         cardTemplate = card;
-        cardNameText.text = card.name;
+        cardNameText.text = card.CardName;
         SetQuantityText();
         addCardButton.onClick.AddListener(() => addCard(card));
         removeCardButton.onClick.AddListener(() => removeCard(card));
