@@ -60,11 +60,11 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	public RectTransform playerDamageLocation;
 
-	[SerializeField] List<CardTemplate> odinStartingCards;
-    [SerializeField] List<CardTemplate> mickiStartingCards;
-    [SerializeField] List<CardTemplate> anubisStartingCards;
-    [SerializeField] List<CardTemplate> reaperStartingCards;
-    [SerializeField] List<CardTemplate> fatesStartingCards;
+	[SerializeField] public List<CardTemplate> odinStartingCards;
+    [SerializeField] public List<CardTemplate> mickiStartingCards;
+    [SerializeField] public List<CardTemplate> anubisStartingCards;
+    [SerializeField] public List<CardTemplate> reaperStartingCards;
+    [SerializeField] public List<CardTemplate> fatesStartingCards;
 
     private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
