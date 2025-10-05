@@ -44,4 +44,5 @@ public class CardTemplate : ScriptableObject
     public bool RepeatAllNext = false; //cards trigger twice next turn
     public bool Foretell = false; //draw 1 and reduce its cost to 0
     public bool CurseEachPlay = false;
+    public int NextTurnDamage = -1;
 }

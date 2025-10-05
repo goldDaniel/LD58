@@ -40,6 +40,18 @@ public class Player
         }
     }
 
+    public TextMeshProUGUI IncomingDamageText;
+    private int _incomingDamage = 0;
+    public int IncomingDamage
+    {
+        get => _incomingDamage;
+        set
+        {
+            _incomingDamage = Math.Max(value, 0);
+            IncomingDamageText.text = $"Incoming Damage: {_incomingDamage}";
+        }
+    }
+
 
     public TextMeshProUGUI healthText;
 	public TextMeshProUGUI essenceText;
@@ -178,6 +190,10 @@ public class Player
         if (card.cardTemplate.CurseEachPlay)
         {
             CurseEachPlay += 1;
+        }
+        if (card.cardTemplate.NextTurnDamage > 0)
+        {
+            IncomingDamage += card.cardTemplate.NextTurnDamage;
         }
 
         yield return null;
