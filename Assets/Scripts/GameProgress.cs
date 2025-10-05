@@ -24,6 +24,7 @@ public class GameProgress : MonoSingleton<GameProgress>
     [SerializeField] public List<CardTemplate> anubisStartingCards;
     [SerializeField] public List<CardTemplate> reaperStartingCards;
     [SerializeField] public List<CardTemplate> fatesStartingCards;
+    [SerializeField] public List<CardTemplate> allCards;
 
     public Dictionary<CardTemplate, int> currentDecklist = new();
     public Dictionary<CardTemplate, int> collection = new();
@@ -52,6 +53,7 @@ public class GameProgress : MonoSingleton<GameProgress>
     public void Start()
     {
         InitialCollection();
+        InitialDecklist(new List<CardType> { CardType.Odin, CardType.Micki });
     }
 
     public void SelectLevel(LevelTemplate level)
@@ -71,6 +73,18 @@ public class GameProgress : MonoSingleton<GameProgress>
 			collection.Add(card,1);
 		}
 	}
+    public CardTemplate GetRandomCard()
+    {
+        List<CardTemplate> cards = allCards;
+        int index = UnityEngine.Random.Range(0, cards.Count);
+        return cards[index];
+    }
+    public CardTemplate GetRandomGodCard(CardType type)
+    {
+        List<CardTemplate> cards = allCards.Where(x => x.Type == type).ToList();
+        int index = UnityEngine.Random.Range(0, cards.Count);
+        return cards[index];
+    }
 	public void AddCardToDecklist(CardTemplate card)
 	{
 		int currentCount = 0;
@@ -87,17 +101,17 @@ public class GameProgress : MonoSingleton<GameProgress>
             currentDecklist.Add(card, 1);
         }
     }
-	public void RemoveCardFromDecklist(CardTemplate card)
+	public void RemoveCardFromDecklist(CardTemplate card, int count)
 	{
         if (currentDecklist.ContainsKey(card))
 		{
-			if (currentDecklist[card] == 1)
+			if (currentDecklist[card] <= count)
 			{
 				currentDecklist.Remove(card);
 			}
             else
             {
-                currentDecklist[card] -= 1;
+                currentDecklist[card] -= count;
             }
 		}
     }
@@ -124,37 +138,37 @@ public class GameProgress : MonoSingleton<GameProgress>
             AddCardToCollection(card);
         }
     }
-	public void InitialDecklist(CardType type1, CardType type2)
+	public void InitialDecklist(List<CardType> types)
 	{
-		if(type1 == CardType.Odin || type2 == CardType.Odin)
+		if(types.Contains( CardType.Odin))
 		{
 			foreach (CardTemplate card in odinStartingCards)
 			{
 				AddCardToDecklist(card);
 			}
 		}
-        if (type1 == CardType.Micki || type2 == CardType.Micki)
+        if (types.Contains(CardType.Micki))
         {
             foreach (CardTemplate card in mickiStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
-        if (type1 == CardType.Reaper || type2 == CardType.Reaper)
+        if (types.Contains(CardType.Reaper))
         {
             foreach (CardTemplate card in reaperStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
-        if (type1 == CardType.Anubis || type2 == CardType.Anubis)
+        if (types.Contains(CardType.Anubis))
         {
             foreach (CardTemplate card in anubisStartingCards)
             {
                 AddCardToDecklist(card);
             }
         }
-        if (type1 == CardType.Fates || type2 == CardType.Fates)
+        if (types.Contains(CardType.Fates))
         {
             foreach (CardTemplate card in fatesStartingCards)
             {
