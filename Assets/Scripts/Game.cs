@@ -766,7 +766,7 @@ public class Game : MonoSingleton<Game>
 	{
 		if (activeEnemies.Count == 0)
 		{
-			GameProgress.Instance.WomCurrentLevel();
+			GameProgress.Instance.CompleteCurrentLevel();
             SceneManager.LoadScene("Level Select");
             return;
         }
