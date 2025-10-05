@@ -482,8 +482,8 @@ public class Game : MonoSingleton<Game>
 			}
 			else if (Attack.TargetRandomEnemy)
 			{
-				int index = UnityEngine.Random.Range(0, otherEnemies.Count-1);
-				otherEnemies[index].CurrentHealth += Attack.Heal;
+				int index = UnityEngine.Random.Range(0, activeEnemies.Count-1);
+				activeEnemies[index].CurrentHealth += Attack.Heal;
             }
 			else if (Attack.TargetSelf)
 			{
