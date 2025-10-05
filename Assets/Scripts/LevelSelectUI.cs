@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,18 +14,23 @@ public class LevelSelectUI : MonoBehaviour
 
 	public void Start()
 	{
-		for (int i = 1; i < anubisButtons.Count; ++i)
-			anubisButtons[i].interactable = false;
-		for (int i = 1; i < fateButtons.Count; ++i)
-			fateButtons[i].interactable = false;
-		for (int i = 1; i < mickiButtons.Count; ++i)
-			mickiButtons[i].interactable = false;
-		for (int i = 1; i < odinButtons.Count; ++i)
-			odinButtons[i].interactable = false;
-		for (int i = 1; i < reaperButtons.Count; ++i)
-			reaperButtons[i].interactable = false;
+		SetupButtons(anubisButtons, GameProgress.Instance.anubisLevels);
+		SetupButtons(fateButtons, GameProgress.Instance.fateLevels);
+		SetupButtons(mickiButtons, GameProgress.Instance.mickiLevels);
+		SetupButtons(odinButtons, GameProgress.Instance.odinLevels);
+		SetupButtons(reaperButtons, GameProgress.Instance.reaperLevels);
 
 		SetUnlockedLevels(GameProgress.Instance);
+	}
+
+	void SetupButtons(List<Button> buttons, List<LevelTemplate> levels)
+	{
+		for (int i = 0; i < buttons.Count; ++i)
+		{
+			var index = i;
+			buttons[i].onClick.AddListener(() => GameProgress.Instance.SelectLevel(levels[index]));
+			buttons[i].interactable = i == 0;
+		}
 	}
 
 	public void SetUnlockedLevels(GameProgress progress)
