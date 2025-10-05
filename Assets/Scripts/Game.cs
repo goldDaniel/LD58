@@ -19,7 +19,7 @@ public class Game : MonoSingleton<Game>
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 3;
+	private int handSize = 5;
 	private CardGroup hand = new();
 
 	[SerializeField]

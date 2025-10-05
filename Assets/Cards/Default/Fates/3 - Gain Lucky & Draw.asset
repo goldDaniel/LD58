@@ -33,7 +33,7 @@ MonoBehaviour:
   Draw: 1
   Heal: -1
   Block: -1
-  GetLucky: 0
+  GetLucky: 1
   Strength: -1
   EssenceGain: -1
   MultHit: -1
