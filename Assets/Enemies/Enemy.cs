@@ -198,7 +198,6 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ApplyEffectSequence(Card card, int Strength)
     {
-        
         if (card.cardTemplate.Souls > 0)
         {
             BonusSouls += card.cardTemplate.Souls;

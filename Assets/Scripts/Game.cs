@@ -20,14 +20,17 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 5;
-	private int roundDraw = 2;
+	private int handSize = 16; // 5
+	private int roundDraw = 10; // 2
 	private CardGroup hand = new();
 
 	[SerializeField]
 	private List<CardTemplate> defaultDeck;
 
-	[SerializeField]
+    [SerializeField]
+    private List<CardTemplate> testDeck;
+
+    [SerializeField]
 	private RectTransform handContainer;
 
 	[SerializeField] 
@@ -98,6 +101,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
+		defaultDeck = testDeck;
 		foreach(var c in defaultDeck)
 		{
 			var card = Instantiate(cardPrefab, deckLocation);
@@ -248,7 +252,9 @@ public class Game : MonoBehaviour
 			DeselectEnemy(selectedEnemy);
 
 			attackInProgress = true;
-			StartCoroutine(AttackEnemySeqeunce(enemy, card));
+            PlayerStatus();
+
+            StartCoroutine(AttackEnemySeqeunce(enemy, card));
 
             return true;
         }
@@ -257,7 +263,21 @@ public class Game : MonoBehaviour
 		return false;
 	}
 
-	public void OnTurnEnd()
+    public IEnumerator PlayerStatus ()
+	{
+		if (player.CurseEachPlay > 0)
+		{
+			foreach (var Enemy in activeEnemies)
+			{
+				Enemy.Curse += player.CurseEachPlay;
+			}
+		}
+
+		return null;
+	}
+
+
+    public void OnTurnEnd()
 	{
 		Debug.Assert(IsPlayerTurn, "Cannot end turn!");
 		if (!IsPlayerTurn)
