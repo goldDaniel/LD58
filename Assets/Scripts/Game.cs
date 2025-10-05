@@ -163,25 +163,28 @@ public class Game : MonoBehaviour
 
 	public IEnumerator DrawCardFromDeck(bool isFree)
 	{
-        if (deck.Size == 0)
-            yield return RefillDeck();
-
-        Card card = deck.Draw();
-		if (isFree)
+		if (deck.Size > 0 || discard.Size > 0)
 		{
-			card.currentCost = 0;
+			if (deck.Size == 0)
+				yield return RefillDeck();
+
+			Card card = deck.Draw();
+			if (isFree)
+			{
+				card.currentCost = 0;
+			}
+			card.gameObject.SetActive(true);
+			card.SetInHand();
+
+			AudioManager.Instance.Play("Deal");
+
+			var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+
+			card.rectTransform.SetParent(handContainer);
+			hand.Add(card);
 		}
-        card.gameObject.SetActive(true);
-        card.SetInHand();
-
-		AudioManager.Instance.Play("Deal");
-
-        var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
-        while (tween.IsActive() && !tween.IsComplete())
-            yield return null;
-
-        card.rectTransform.SetParent(handContainer);
-        hand.Add(card);
     }
 
 	IEnumerator RefillDeck()
