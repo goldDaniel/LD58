@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jinx, Fate Seal, Get Lucky, Foretell
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Turn of Fate
-  CardDescription: Jinx, Fate Seal, Get Lucky, Foretell
+  CardDescription: Jinx, Fate Seal, Get Lucky, Draw 1 reduce cost to 0
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 2
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1

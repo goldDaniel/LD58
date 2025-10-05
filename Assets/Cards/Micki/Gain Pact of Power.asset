@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: Gain Pact of Power
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: Gain Pact of Power
-  CardDescription: Gain Pact of Power
+  CardName: Pact of Power
+  CardDescription: Whenever you play 3 cards take 3 damage and gain 1 energy
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1

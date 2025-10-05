@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Foretell
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Foretell
-  CardDescription: Foretell
+  CardDescription: Draw 1 Reduce cost to 0
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 1
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 1
   CurseEachPlay: 0
+  NextTurnDamage: -1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gain Pact of Sacrifice
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Gain Pact of Sacrifice
-  CardDescription: Gain Pact of Sacrifice
+  CardDescription: Whenever you take self damage deal that much to all enemeies
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 2
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
