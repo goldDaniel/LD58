@@ -15,4 +15,14 @@ MonoBehaviour:
   LevelDescription: Reaper Level 4
   LevelNumber: 4
   Type: 4
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: a5627fcfb17cb1347b805c564a80e914, type: 2}
+  - {fileID: 11400000, guid: 57272894a727e694fbd7f17d1a0e4099, type: 2}
+  - {fileID: 11400000, guid: 77a3a0efeeed8f5408a6c55a0b14901d, type: 2}
+  - {fileID: 11400000, guid: 2a9a18c3e1cb5ff4c98b336ac5cfeeca, type: 2}
+  - {fileID: 11400000, guid: 802c68524f8bbae4f9552c9eb0970d0c, type: 2}
+  - {fileID: 11400000, guid: 55434731cacc93a448796e78d6f26350, type: 2}
+  - {fileID: 11400000, guid: c8d27b5afc8b203498aadc3db433923b, type: 2}
+  - {fileID: 11400000, guid: 093902d3846e8f04996c69b333d88b89, type: 2}
+  - {fileID: 11400000, guid: 5bd4f733a83408342b51f1e78734aeaf, type: 2}
+  - {fileID: 11400000, guid: 5bd4f733a83408342b51f1e78734aeaf, type: 2}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a710abce78117445a92e306484dcebc, type: 3}
+  m_Name: Warrior 10
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
+  EnemyDescription: A Steadfast Warrior!
+  EnemyModel: 3
+  MaxHealth: 8
+  Block: -1
+  AttackList:
+    Attacks:
+    - {fileID: 11400000, guid: e0db780851ab8234bbf98e46e17b26e9, type: 2}
+    - {fileID: 11400000, guid: 7c2b6d4376142cc48a993f03859b91e2, type: 2}
+    - {fileID: 11400000, guid: f4c14bb9f3462164c86fb47328be5c94, type: 2}
