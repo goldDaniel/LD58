@@ -29,7 +29,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3625466457533321317}
   m_Father: {fileID: 4818507836666395114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -106,13 +107,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5659380803371816016}
-  - {fileID: 3625466457533321317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 72, y: 72}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &-4558534857157238076
 MonoBehaviour:
@@ -131,9 +131,10 @@ MonoBehaviour:
   canvasGroup: {fileID: -6718600625796810217}
   damageIcon: {fileID: 7145864476781540566, guid: 62bf66a45c248c64582c80ee223811ec, type: 3}
   shieldIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
-  healIcon: {fileID: -5185649437945853404, guid: 62578a856a8dbfa4f9b838c816ba7821, type: 3}
-  OtherIcon: {fileID: -4856872790349125329, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
-  CurseIcon: {fileID: 6894929934875589815, guid: c7777f6e000d3d04599a9d952054c880, type: 3}
+  healIcon: {fileID: 21300000, guid: 62578a856a8dbfa4f9b838c816ba7821, type: 3}
+  OtherIcon: {fileID: 21300000, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
+  CurseIcon: {fileID: 21300000, guid: 800a80fb305bc344ba363a25ce51fb5a, type: 3}
+  StrengthIcon: {fileID: 21300000, guid: e42056371c2ab8c40b56271dbf7fb72e, type: 3}
 --- !u!225 &-6718600625796810217
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -176,13 +177,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4818507836666395114}
+  m_Father: {fileID: 5659380803371816016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -32}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 40}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3955452526623389518
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -220,8 +221,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

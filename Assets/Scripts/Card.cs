@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public Image cardBack;
 	[SerializeField]
 	public Image cardFront;
+
+	[SerializeField]
+	private Image cardIconPrefab;
+
+	[SerializeField]
+	private RectTransform cardIconRegion;
 
 	[SerializeField]
 	private CanvasGroup raycastBlocker;
@@ -34,6 +41,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public bool displayOnly = false;
 
+	[SerializeField]
+	private Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite;
+
 	public void OnCardInitialize(CardTemplate card)
 	{
 		cardTemplate = card;
@@ -44,11 +54,81 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 		Card dummyCard = Instantiate(this, UIController.Instance.transform);
 		dummyCard.EnableRaycast = false;
+		dummyCard.SetupIcons(card);
+
 		dummy = dummyCard.gameObject;
 		Destroy(dummyCard);
 		dummy.transform.localScale = new Vector2(1.75f, 1.75f);
 		dummy.gameObject.SetActive(false);
 
+		SetupIcons(card);
+	}
+
+	private void SetupIcons(CardTemplate card)
+	{
+		if (card.MinDamage != -1 || card.MaxDamage != -1)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = damageSprite;
+		}
+		if(card.BloodyStrike > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = bloodyStrikeSprite;
+		}
+		if (card.Doomed > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = doomSprite;
+		}
+		if(card.Jinxed)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = jinxSprite;
+		}
+
+		// Fate sealed? stupid
+
+		if (card.Confuse)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = confuseSprite;
+		}
+		if(card.Curse > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = curseSprite;
+		}
+		if (card.DeathChance > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = deathChanceSprite;
+		}
+		if (card.Weak > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = weakSprite;
+		}
+		if(card.Block > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = blockSprite;
+		}
+		if (card.Heal > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = healSprite;
+		}
+		if (card.Draw > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = drawSprite;
+		}
+		if(card.Strength > 0)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = strengthSprite;
+		}
 	}
 
 	public void SetInitialParent(RectTransform rt) => initialParent = rt;
