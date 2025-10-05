@@ -556,8 +556,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
+  m_sharedMaterial: {fileID: -6481622213993735138, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1139,7 +1139,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -889.7914, y: 469.9999}
-  m_SizeDelta: {x: 1639.7036, y: 300}
+  m_SizeDelta: {x: 1303, y: 219}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &969291370
 MonoBehaviour:
@@ -1161,17 +1161,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'GAME TITLE '
+  m_text: Soul Harvester
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72475f3b9d327114882a76fba5884f22, type: 2}
+  m_sharedMaterial: {fileID: 1818694899821502219, guid: 72475f3b9d327114882a76fba5884f22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281545567
+  m_fontColor: {r: 0.37106913, g: 0.19953713, b: 0.19953713, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 268.5
+  m_fontSize: 163.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1299,8 +1299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: The Story
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
+  m_sharedMaterial: {fileID: -6481622213993735138, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1440,7 +1440,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3722838537374824512, guid: 50c5e09b3198c9f4ab6c1b0cb0e66444, type: 3}
+  m_Sprite: {fileID: -4649193273016713102, guid: c628daebc033f1e49b17b5f6300a9cdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1739,8 +1739,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
+  m_sharedMaterial: {fileID: -6481622213993735138, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
