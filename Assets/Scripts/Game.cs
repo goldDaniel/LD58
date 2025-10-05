@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,6 +71,9 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private RectTransform castEffectStart;
 
+	[SerializeField]
+	private TextMeshProUGUI cardsRemainingText;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -89,6 +93,11 @@ public class Game : MonoBehaviour
 	public void OnDestroy()
 	{
 		Instance = null;
+	}
+
+	public void Update()
+	{
+		cardsRemainingText.text = $"{deck.Size}";
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
