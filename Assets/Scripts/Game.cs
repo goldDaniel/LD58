@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 7;
+	private int handSize = 5;
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -108,8 +108,7 @@ public class Game : MonoBehaviour
         yield return ShuffleDeckAnimation();
         deck.Shuffle();
 
-		yield return DrawHand();
-		yield return OnTurnStart();
+		yield return OnTurnStart(true);
 	}
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
@@ -119,12 +118,14 @@ public class Game : MonoBehaviour
         activeEnemies.Add(enemy);
     }
 
-	IEnumerator DrawHand()
+	IEnumerator DrawHand(int CardsToDraw)
 	{
-		while (hand.Size < (handSize + (player.Lethargic ? 1 : 0)))
+		CardsToDraw -= (player.Lethargic ? 1 : 0);
+
+        for (int i = 0; i < CardsToDraw; i++)
 		{
-			yield return DrawCardFromDeck(false);
-		}
+            yield return DrawCardFromDeck(false);
+        }
 		player.Lethargic = false;
 	}
 
@@ -266,7 +267,7 @@ public class Game : MonoBehaviour
 		StartCoroutine(DoEnemyTurn());
 	}
 
-	public IEnumerator OnTurnStart()
+	public IEnumerator OnTurnStart(bool firstTurn)
 	{
 		endTurnButton.interactable = true;
 		IsPlayerTurn = true;
@@ -280,7 +281,9 @@ public class Game : MonoBehaviour
 			yield return PrepareAttack(e);
 		}
 
-		StartCoroutine(DrawHand());
+		int Draw = firstTurn ? 5 : 2;
+
+		yield return StartCoroutine(DrawHand(Draw));
 
         yield return ApplyStatusEffects();
 	}
@@ -466,7 +469,7 @@ public class Game : MonoBehaviour
 		CheckWinLoss();
 
         enemyTurnIndex = -1;
-		yield return OnTurnStart();
+		yield return OnTurnStart(false);
 	}
 	public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
