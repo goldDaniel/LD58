@@ -119,10 +119,11 @@ public class Game : MonoSingleton<Game>
 
 	IEnumerator DrawHand()
 	{
-		while (hand.Size < handSize)
+		while (hand.Size < (handSize + (player.Lethargic ? 1 : 0)))
 		{
 			yield return DrawCardFromDeck(false);
 		}
+		player.Lethargic = false;
 	}
 
 	public IEnumerator DrawCardFromDeck(bool isFree)
@@ -276,9 +277,23 @@ public class Game : MonoSingleton<Game>
 		}
 
 		StartCoroutine(DrawHand());
+
+        yield return ApplyStatusEffects();
 	}
+
+	public IEnumerator ApplyStatusEffects()
+	{
+		if (player.Curse > 0)
+		{
+            yield return player.TakeDamage(player.Curse);
+			player.Curse--;
+		}
+	}
+
 	IEnumerator PrepareAttack(Enemy enemy)
 	{
+		yield return enemy.OnTurnStart();
+
         var Attack = enemy.Attacks.Attacks.FirstOrDefault();
         if (Attack.ClearNegative)
         {

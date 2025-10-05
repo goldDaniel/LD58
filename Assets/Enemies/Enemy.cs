@@ -178,6 +178,17 @@ public class Enemy : MonoBehaviour
         // TODO (rest of the things)
     }
 
+    public IEnumerator OnTurnStart()
+    {
+        if (Curse > 0)
+        {
+            takeDamage(Curse);
+            Curse--;
+        }
+
+        return null;
+    }
+
     public bool IsIntersectingMouse()
     {
         Rect rect = MathUtils.RectTransformToScreenSpace(rectTransform);
