@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: 3 - Heal 20
+  m_Name: 3 - Heal 15
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Complete Renewal
-  CardDescription: Heal 20
+  CardDescription: Heal 15
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
   DeathChance: -1
   Weak: -1
   Draw: -1
-  Heal: 20
+  Heal: 15
   Block: -1
   GetLucky: 0
   Strength: -1

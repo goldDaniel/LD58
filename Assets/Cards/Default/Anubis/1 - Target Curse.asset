@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1 - Target Curse
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Curse Enemy
-  CardDescription: Curse 2 Target Enemy
+  CardDescription: Curse 4 Target Enemy
   Type: 1
   cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
   EssenceCost: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   FateSealed: 0
   Confuse: 0
   Souls: -1
-  Curse: 2
+  Curse: 4
   DeathChance: -1
   Weak: -1
   Draw: -1
