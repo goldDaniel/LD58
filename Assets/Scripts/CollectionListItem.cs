@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class CollectionListItem : MonoBehaviour
     [SerializeField] TextMeshProUGUI cardQuantityText;
     [SerializeField] CardTemplate cardTemplate;
 
-
+    public CollectionUI collection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +24,7 @@ public class CollectionListItem : MonoBehaviour
     {
         int inDeck = 0;
         int inCollection = 0;
+        int deckSize = 0;
 
         if(GameProgress.Instance.collection.ContainsKey(cardTemplate))
         {
@@ -33,6 +35,12 @@ public class CollectionListItem : MonoBehaviour
             inDeck = GameProgress.Instance.currentDecklist[cardTemplate];
         }
         cardQuantityText.text = $"{inDeck}/{inCollection}";
+        foreach (var c in GameProgress.Instance.currentDecklist.Keys)
+        {
+            deckSize += GameProgress.Instance.currentDecklist[c];
+        }
+        collection.deckSizeText.text = $"Deck Size: {deckSize}/20";
+
 
     }
     private void addCard(CardTemplate card)
