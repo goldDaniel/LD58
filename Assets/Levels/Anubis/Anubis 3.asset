@@ -15,4 +15,9 @@ MonoBehaviour:
   LevelDescription: Anubis Level 3
   LevelNumber: 3
   Type: 1
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: ef4a4bf956d1bb94f9d46b6870154a9f, type: 2}
+  - {fileID: 11400000, guid: 9b330eacf20d37f459e1059ee4990912, type: 2}
+  - {fileID: 11400000, guid: 5b1289220a76a2b4091f0288213f7950, type: 2}
+  - {fileID: 11400000, guid: 5c197cf8953222f4cb89e668308bb784, type: 2}
+  - {fileID: 11400000, guid: b0d4f781fa77b7340837f51553874770, type: 2}

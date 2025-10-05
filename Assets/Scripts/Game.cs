@@ -88,7 +88,6 @@ public class Game : MonoBehaviour
 		player.CurrentEssence = player.MaxEssence;
 
 		AudioManager.Instance.Play("CombatMusic", 2f);
-		yield return new WaitForSecondsRealtime(1f);
 
 		var level = GameProgress.Instance.selectedLevel ?? testLevel;
 		foreach (var enemyTemplate in level.Enemies)
@@ -366,6 +365,7 @@ public class Game : MonoBehaviour
                 yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} All");
             }
             else if (Attack.TargetAllOtherEnemies)
+
             {
                 yield return DisplayEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {Attack.Strength} Other");
             }
@@ -427,7 +427,8 @@ public class Game : MonoBehaviour
 			enemy.effect1 = Instantiate(effectPrefab, enemy.effect1Location);
 			yield return enemy.effect1.DoEffectVisual(type, value,false, textOverride);
 
-		} else
+		} 
+		else
 		{
             if (enemy.effect2 == null)
             {
@@ -446,6 +447,18 @@ public class Game : MonoBehaviour
 			var active = activeEnemies[enemyTurnIndex];
 			var others = activeEnemies.Where(e => e != active).ToList();
 			yield return AttackPlayerSequence(active, others, player);
+
+			if (active.effect1 != null)
+			{
+                Destroy(active.effect1.gameObject);
+                active.effect1 = null;
+            }
+			if (active.effect2 != null)
+			{
+                Destroy(active.effect2.gameObject);
+                active.effect2 = null;
+            }
+           
 			enemyTurnIndex++;
 		}
 
