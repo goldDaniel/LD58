@@ -1,5 +1,8 @@
+using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,60 +24,57 @@ public class EffectIndicator : MonoBehaviour
     [SerializeField] private Sprite healIcon;
     [SerializeField] private Sprite OtherIcon;
     [SerializeField] private Sprite CurseIcon;
-    [SerializeField]
-
-    private float fadeTime = 0.4f;
     private RectTransform rectTransform;
-   
-    public IEnumerator DoEffectVisual(EffectType effectType, int value, bool isFade, string textOverride)
-    {
-        canvasGroup.alpha = 1;
-        if (textOverride != null)
-        {
-            valueText.text = textOverride;
-        }
-        else
-        {
-            if (value >= 0)
-            {
-                valueText.text = $"{value}";
-            }
-            else
-            {
-                valueText.text = "";
-            }
-        }
 
-        if (effectType == EffectType.Damage)
-        {
-            icon.sprite = damageIcon;
-        }
-        if (effectType == EffectType.Shield)
-        {
-            icon.sprite = shieldIcon;
-        }
-        if (effectType == EffectType.Heal)
-        {
-            icon.sprite = healIcon;
-        }
-        if (effectType == EffectType.Other)
-        {
-            icon.sprite = OtherIcon;
-        }
-        if (effectType == EffectType.Curse)
-        {
-            icon.sprite = CurseIcon;
-        }
-        if (isFade)
-        {
-            yield return Fade(fadeTime);
-        }
-        yield return null;
-    }
+	private bool fadeOut;
 
-    private IEnumerator Fade(float time)
+	public void Initialize(EffectType effectType, int value, bool isFade, string textOverride)
+	{
+		canvasGroup.alpha = 1;
+		if (textOverride != null)
+			valueText.text = textOverride;
+		else
+		{
+			if (value >= 0)
+				valueText.text = $"{value}";
+			else
+				valueText.text = "";
+		}
+
+		switch (effectType)
+		{
+			case EffectType.Damage:
+				icon.sprite = damageIcon; break;
+			case EffectType.Shield:
+				icon.sprite = shieldIcon; break;
+			case EffectType.Heal:
+				icon.sprite = healIcon; break;
+			case EffectType.Curse:
+				icon.sprite = CurseIcon; break;
+			case EffectType.Other:
+				icon.sprite = OtherIcon; break;
+		}
+
+		fadeOut = isFade;
+	}
+
+	public IEnumerator FadeIn(float time)
+	{
+		float t = 0;
+		canvasGroup.alpha = 0f;
+		while (t < time)
+		{
+			canvasGroup.alpha = Mathf.Clamp01(t / time);
+			t += Time.deltaTime;
+			yield return null;
+		}
+		canvasGroup.alpha = 1;
+	}
+
+	public IEnumerator FadeOut(float time)
     {
         float t = time;
+		canvasGroup.alpha = 1f;
         while (t > 0)
         {
             canvasGroup.alpha = Mathf.Clamp01(t / time);
@@ -83,4 +83,20 @@ public class EffectIndicator : MonoBehaviour
         }
         canvasGroup.alpha = 0;
     }
+
+	public IEnumerator MoveTo(Vector2 position)
+	{
+		var tween = transform.DOMove(position, 0.2f).SetEase(Ease.InQuint);
+		while(tween.IsActive() && !tween.IsComplete())
+			yield return null;
+	}
+
+	public IEnumerator FadeDestroy(List<EffectIndicator> group)
+	{
+		if (group != null)
+			group.Remove(this);
+
+		yield return FadeOut(0.1f);
+		Destroy(this.gameObject);
+	}
 }
