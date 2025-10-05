@@ -76,6 +76,9 @@ public class Game : MonoSingleton<Game>
 		player.CurrentHealth = player.MaxHealth;
 		player.CurrentEssence = player.MaxEssence;
 
+		AudioManager.Instance.Play("CombatMusic", 2f);
+		yield return new WaitForSecondsRealtime(1f);
+
 		var level = GameProgress.Instance.selectedLevel ?? testLevel;
 		foreach (var enemyTemplate in level.Enemies)
 		{
@@ -127,6 +130,8 @@ public class Game : MonoSingleton<Game>
         card.gameObject.SetActive(true);
         card.SetInHand();
 
+		AudioManager.Instance.Play("Deal");
+
         var tween = card.rectTransform.DOMove(handContainer.position, 0.2f).SetEase(Ease.InCirc);
         while (tween.IsActive() && !tween.IsComplete())
             yield return null;
@@ -142,7 +147,7 @@ public class Game : MonoSingleton<Game>
 			var card = discard.Draw();
 			deck.Add(card);
 
-			var tween = card.rectTransform.DOMove(deckLocation.position, 0.1f).SetEase(Ease.InCirc);
+			var tween = card.rectTransform.DOMove(deckLocation.position, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
@@ -153,14 +158,15 @@ public class Game : MonoSingleton<Game>
 
 	IEnumerator ShuffleDeckAnimation()
 	{
-		const float delayIncrement = 0.025f;
+		const float delayIncrement = 0.05f;
 		float delay = 0;
 
+		AudioManager.Instance.Play("Shuffle");
 		List<Tweener> tweens = new();
 		deck.ForEachReverse(c =>
 		{
 			c.rectTransform.rotation = Quaternion.identity;
-			var tween = c.rectTransform.DORotate(new Vector3(0, 0, 360), 0.2f, RotateMode.FastBeyond360)
+			var tween = c.rectTransform.DORotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360)
 										.SetEase(Ease.InOutBounce)
 										.SetDelay(delay)
 										.OnComplete(() => c.rectTransform.rotation = Quaternion.identity);

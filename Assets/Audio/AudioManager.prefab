@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6220742968795420222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9138259164323439051}
+  - component: {fileID: 3140513670458303907}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9138259164323439051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220742968795420222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3140513670458303907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220742968795420222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f47f3e9dfb7b143b03dbfdc8071d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  audioSourcePrefab: {fileID: -4329050952899614185, guid: 74e151cdb00c88c4eac02a3d805c40ad, type: 3}
+  sfxPoolSize: 16
+  musicPoolSize: 2
+  uiPoolSize: 8
+  audioBank:
+  - name: Shuffle
+    clip: {fileID: 8300000, guid: 2592355e2d7f3c843bdfd628cb99882e, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
+  - name: Deal
+    clip: {fileID: 8300000, guid: 105957229b895c3458b207dd0ff1f170, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1
+  - name: CombatMusic
+    clip: {fileID: 8300000, guid: c538a522568224f42baab0ca9a0b98c4, type: 3}
+    channel: 1
+    loop: 1
+    defaultVolume: 1
