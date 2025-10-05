@@ -191,12 +191,15 @@ public class GameProgress : MonoSingleton<GameProgress>
 	}
     public void AddRewardsFromCurrentLevel()
     {
-        pendingRandomCards += selectedLevel.randomReward;
-        pendingOdinCards += selectedLevel.odinReward;
-        pendingMickiCards += selectedLevel.mickiReward;
-        pendingAnubisCards += selectedLevel.anubisReward;
-        pendingReaperCards += selectedLevel.reaperReward;
-        pendingFatesCards += selectedLevel.fatesReward;
+        if (selectedLevel != null)
+        {
+            pendingRandomCards += selectedLevel.randomReward;
+            pendingOdinCards += selectedLevel.odinReward;
+            pendingMickiCards += selectedLevel.mickiReward;
+            pendingAnubisCards += selectedLevel.anubisReward;
+            pendingReaperCards += selectedLevel.reaperReward;
+            pendingFatesCards += selectedLevel.fatesReward;
+        }
 
     }
     public void GoToEditDeck()

@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Micki Level 5
   LevelNumber: 5
   Type: 2
+  randomReward: 4
+  odinReward: 0
+  mickiReward: 5
+  anubisReward: 0
+  reaperReward: 0
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: 73a7c3e3bbbe6444f9b1a43499acf635, type: 2}
   - {fileID: 11400000, guid: 0b0619d477e37764fb972e2e1c150947, type: 2}
