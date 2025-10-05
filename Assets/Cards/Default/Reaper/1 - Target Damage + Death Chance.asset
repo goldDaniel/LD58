@@ -36,7 +36,7 @@ MonoBehaviour:
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
-  MultHit: 2
+  MultHit: -1
   doubleDamageHits: -1
   Power: 0
   Sacrifice: 0

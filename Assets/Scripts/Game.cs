@@ -447,8 +447,7 @@ public class Game : MonoSingleton<Game>
 		}
 
 		CheckDeadEnemies();
-        CheckWin();
-		CheckLoss();
+		CheckWinLoss();
 
         enemyTurnIndex = -1;
 		yield return OnTurnStart();
@@ -749,26 +748,20 @@ public class Game : MonoSingleton<Game>
 		attackInProgress = false;
 
         CheckDeadEnemies();
-		CheckLoss();
-		CheckWin();
+        CheckWinLoss();
     }
 
-	public void CheckLoss()
+	public void CheckWinLoss()
 	{
         if (player.CurrentHealth <= 0)
         {
 			SceneManager.LoadScene("Level Select");
-            return;
+        }
+
+        else if (activeEnemies.Count == 0)
+        {
+            GameProgress.Instance.CompleteCurrentLevel();
+            SceneManager.LoadScene("Level Select");
         }
     }
-
-	public void CheckWin ()
-	{
-		if (activeEnemies.Count == 0)
-		{
-			GameProgress.Instance.CompleteCurrentLevel();
-            SceneManager.LoadScene("Level Select");
-            return;
-        }
-	}
 }
