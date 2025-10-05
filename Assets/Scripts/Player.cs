@@ -66,7 +66,18 @@ public class Player
 		}
 	}
 
-	[NonSerialized] public int Strength = 0;
+    public TextMeshProUGUI StrengthText;
+    private int _strength;
+    public int Strength
+    {
+        get => _strength;
+        set
+        {
+            _strength = Math.Max(value, 0);
+            StrengthText.text = $"Strength: {_strength}";
+        }
+    }
+
 	[NonSerialized] public int RepeatAllNext = 0;
     [NonSerialized] public int RepeatAllCurrentTurn = 0;
     [NonSerialized] public int doubleDamageHit = 0;
