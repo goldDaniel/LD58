@@ -36,7 +36,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	{
 		cardTemplate = card;
 		cardFront.sprite = card.cardFront;
-		title.text = card.name;
+		title.text = card.CardName;
 		description.text = card.CardDescription;
 		currentCost = card.EssenceCost;
 

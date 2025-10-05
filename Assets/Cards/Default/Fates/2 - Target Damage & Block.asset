@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: 2 - Target Damage & Block
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Warding Strike
   CardDescription: Block 3 and Deal 2-7 Damage
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}

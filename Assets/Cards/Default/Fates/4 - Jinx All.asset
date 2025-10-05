@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: 4 - Jinx All
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
+  CardName: Complete Jinx
   CardDescription: Jinx All
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}

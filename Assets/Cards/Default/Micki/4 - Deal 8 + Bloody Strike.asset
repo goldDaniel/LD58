@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: 3 - Target Damage Twice
+  m_Name: 4 - Deal 8 + Bloody Strike
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: Deal 4 Twice
-  Type: 3
-  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
+  CardName: Bloody Strike
+  CardDescription: Deal 8 + Bloody Strike
+  Type: 2
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
-  RandomEnemy: 0
-  MinDamage: 4
-  MaxDamage: 4
-  BloodyStrike: -1
+  RandomEnemy: 1
+  MinDamage: 8
+  MaxDamage: 8
+  BloodyStrike: 10
   Doomed: -1
   Jinxed: 0
   FateSealed: 0
@@ -31,12 +32,12 @@ MonoBehaviour:
   DeathChance: -1
   Weak: -1
   Draw: -1
-  Heal: 5
+  Heal: -1
   Block: -1
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
-  MultHit: 2
+  MultHit: -1
   doubleDamageHits: -1
   Power: 0
   Sacrifice: 0
