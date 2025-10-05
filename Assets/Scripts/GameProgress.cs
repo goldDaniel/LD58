@@ -202,8 +202,4 @@ public class GameProgress : MonoSingleton<GameProgress>
         }
 
     }
-    public void GoToEditDeck()
-    {
-        SceneManager.LoadScene("Collection");
-    }
 }
