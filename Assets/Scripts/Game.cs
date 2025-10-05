@@ -202,7 +202,7 @@ public class Game : MonoBehaviour
 			Card card = deck.Draw();
 			if (isFree)
 			{
-				card.currentCost = 0;
+				card.UpdateCost(0);
 			}
 			card.gameObject.SetActive(true);
 			card.SetInHand();
@@ -223,7 +223,10 @@ public class Game : MonoBehaviour
 		while (discard.Size > 0)
 		{
 			var card = discard.Draw();
-			deck.Add(card);
+
+			card.UpdateCost(card.originalCost);
+
+            deck.Add(card);
 
 			var tween = card.rectTransform.DOMove(deckLocation.anchoredPosition, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())

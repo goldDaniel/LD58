@@ -23,7 +23,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField]
 	private CanvasGroup raycastBlocker;
 
-	public bool Highlighted => dummy.activeSelf;
+	public bool Highlighted => dummy.gameObject.activeSelf;
 
 	private int previousChildIndex = -1;
 	private RectTransform initialParent;
@@ -33,11 +33,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public CardTemplate cardTemplate;
 	public int currentCost;
+	public int originalCost;
 
 	public TextMeshProUGUI title;
 	public TextMeshProUGUI description;
 
-	private GameObject dummy;
+	public Card dummy;
 
 	public bool displayOnly = false;
 
@@ -55,18 +56,25 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		description.text = card.CardDescription;
 		currentCost = card.EssenceCost;
 		essenceCostText.text = $"{currentCost}";
+		originalCost = currentCost;
 
-		Card dummyCard = Instantiate(this, UIController.Instance.transform);
-		dummyCard.EnableRaycast = false;
-		dummyCard.SetupIcons(card);
+        dummy = Instantiate(this, UIController.Instance.transform);
+        dummy.EnableRaycast = false;
+        dummy.SetupIcons(card);
 
-		dummy = dummyCard.gameObject;
-		Destroy(dummyCard);
+        dummy.enabled = false;
 		dummy.transform.localScale = new Vector2(1.75f, 1.75f);
 		dummy.gameObject.SetActive(false);
 
 		SetupIcons(card);
 	}
+
+	public void UpdateCost(int cost)
+	{
+        currentCost = cost;
+        essenceCostText.text = $"{cost}";
+		dummy.essenceCostText.text = essenceCostText.text;
+    }
 
 	private void SetupIcons(CardTemplate card)
 	{
