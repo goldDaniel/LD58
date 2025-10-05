@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Sow
+  m_Name: Block 20, then deal 5-15
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardDescription: DOOM All Enemies
-  Type: 4
-  cardFront: {fileID: -8884643653436324813, guid: 9d218ae5b63b06c4c89de799c3309850, type: 3}
+  CardName: Protextion From the Future
+  CardDescription: Block 20, then deal 5-15
+  Type: 5
+  cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: -1
-  MaxDamage: -1
+  MinDamage: 5
+  MaxDamage: 15
   BloodyStrike: -1
-  Doomed: 1
+  Doomed: -1
   Jinxed: 0
   FateSealed: 0
   Confuse: 0
@@ -32,7 +33,7 @@ MonoBehaviour:
   Weak: -1
   Draw: -1
   Heal: -1
-  Block: -1
+  Block: 20
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
