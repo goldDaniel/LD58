@@ -58,7 +58,13 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	public RectTransform playerDamageLocation;
 
-	private int enemyTurnIndex;
+	[SerializeField] List<CardTemplate> odinStartingCards;
+    [SerializeField] List<CardTemplate> mickiStartingCards;
+    [SerializeField] List<CardTemplate> anubisStartingCards;
+    [SerializeField] List<CardTemplate> reaperStartingCards;
+    [SerializeField] List<CardTemplate> fatesStartingCards;
+
+    private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
 	public override void Awake()

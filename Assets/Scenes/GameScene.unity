@@ -1425,6 +1425,61 @@ MonoBehaviour:
   endTurnButton: {fileID: 386296896}
   effectPrefab: {fileID: -4558534857157238076, guid: 5e8049257adff22499a7ccf13f4da873, type: 3}
   playerDamageLocation: {fileID: 1113699706}
+  odinStartingCards:
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 0fc389b7ace57a743815d0b232dc0504, type: 2}
+  - {fileID: 11400000, guid: a8cd141a99957934286a6f46f0aa19ca, type: 2}
+  - {fileID: 11400000, guid: a8cd141a99957934286a6f46f0aa19ca, type: 2}
+  - {fileID: 11400000, guid: a8cd141a99957934286a6f46f0aa19ca, type: 2}
+  mickiStartingCards:
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
+  - {fileID: 11400000, guid: fc571fc9f5edb684c8b96603eda29941, type: 2}
+  - {fileID: 11400000, guid: fc571fc9f5edb684c8b96603eda29941, type: 2}
+  - {fileID: 11400000, guid: fc571fc9f5edb684c8b96603eda29941, type: 2}
+  - {fileID: 11400000, guid: 1c855cf5dfba49042862365c3ccb3b6c, type: 2}
+  anubisStartingCards:
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
+  - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
+  - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
+  - {fileID: 11400000, guid: ab2785469d393c54799da7a2454932eb, type: 2}
+  reaperStartingCards:
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: fc7db91188d3a8e469689b20341c62f1, type: 2}
+  - {fileID: 11400000, guid: fc7db91188d3a8e469689b20341c62f1, type: 2}
+  - {fileID: 11400000, guid: fc7db91188d3a8e469689b20341c62f1, type: 2}
+  - {fileID: 11400000, guid: 660b863138cc42f48919fb712ded7b40, type: 2}
+  fatesStartingCards:
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
+  - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
+  - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
+  - {fileID: 11400000, guid: 6aef65e73bc7f6d4eb6f2ea17bbf1544, type: 2}
 --- !u!114 &1267163965
 MonoBehaviour:
   m_ObjectHideFlags: 0
