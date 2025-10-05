@@ -634,7 +634,11 @@ public class Game : MonoBehaviour
                 if (attacker.Confused)
                 {
                     var ConfusedChance = 50;
-                    IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
+					if (UnityEngine.Random.Range(0, 100) < ConfusedChance)
+					{
+						IsConfused = true;
+						attacker.Confused = false;
+					}
                 }
 
                 var JinxedAttack = false;
@@ -810,6 +814,7 @@ public void Discard(Card card)
 	{
         if (player.CurrentHealth <= 0)
         {
+			GameProgress.Instance.pendingRandomCards += 1;
 			SceneManager.LoadScene("Level Select");
 			GameProgress.Instance.hasCompletedTutorial = true;
         }

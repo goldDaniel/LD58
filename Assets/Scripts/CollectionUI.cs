@@ -104,7 +104,7 @@ public class CollectionUI : MonoBehaviour
     }
     public void BackWithoutSaving()
     {
-        resetDecklist();
+        GameProgress.Instance.currentDecklist = GameProgress.Instance.currentDecklist = oldDecklist.ToDictionary(entry => entry.Key, entry => entry.Value);
         SceneManager.LoadScene("Level Select");
         //Scene change
     }
@@ -121,7 +121,7 @@ public class CollectionUI : MonoBehaviour
         }
         else
         {
-            //Display message that deck size must be 20
+            warningMessage.text = "Decks must have 20 cards in them";
         }
     }
     public void loadCards(List<CardType> types)

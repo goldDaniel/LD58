@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 50% Bloody Strike
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Life on the Line
-  CardDescription: 50% Bloody Strike
+  CardDescription: Deal and Take 50% current health
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1

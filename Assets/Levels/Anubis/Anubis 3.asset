@@ -15,10 +15,10 @@ MonoBehaviour:
   LevelDescription: Anubis Level 3
   LevelNumber: 3
   Type: 1
-  randomReward: 4
+  randomReward: 6
   odinReward: 0
   mickiReward: 0
-  anubisReward: 3
+  anubisReward: 7
   reaperReward: 0
   fatesReward: 0
   Enemies:

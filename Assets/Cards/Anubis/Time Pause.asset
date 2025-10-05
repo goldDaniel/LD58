@@ -16,7 +16,7 @@ MonoBehaviour:
   CardDescription: Seal Fates on all Enemies
   Type: 1
   cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
-  EssenceCost: 1
+  EssenceCost: 2
   SelfDamage: -1
   TargetAllEnemies: 1
   RandomEnemy: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1

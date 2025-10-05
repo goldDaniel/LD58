@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adrenaline
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Adrenaline
-  CardDescription: Gain 1 stength, Draw 1
+  CardDescription: Gain 1 strength, Draw 1
   Type: 3
   cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
   EssenceCost: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
