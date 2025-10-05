@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 4cb20f9f0f81d884ab5f61fff64c1d5d
-=======
-guid: eed6c99e17d3f4941b3a19bc158d9900
->>>>>>> Stashed changes
+guid: fe1cee60a3b1afd43a82afc3165fa6c4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3836850693828416316
-    second: Demi_God_0
+      213: -8180171696930044909
+    second: Warrior_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -117,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demi_God_0
+      name: Warrior_0
       rect:
         serializedVersion: 2
-        x: 593
-        y: 111
-        width: 897
-        height: 1937
+        x: 445
+        y: 70
+        width: 1596
+        height: 1834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cc652a5f94c0cac0800000000000000
-      internalID: -3836850693828416316
+      spriteID: 314c7ca9e213a7e80800000000000000
+      internalID: -8180171696930044909
       vertices: []
       indices: 
       edges: []
@@ -152,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Demi_God_0: -3836850693828416316
+      Warrior_0: -8180171696930044909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

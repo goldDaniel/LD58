@@ -2,11 +2,13 @@ using Assets.Scripts;
 using DG.Tweening;
 using DG.Tweening.Core;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game : MonoSingleton<Game>
@@ -58,7 +60,13 @@ public class Game : MonoSingleton<Game>
 	[SerializeField]
 	public RectTransform playerDamageLocation;
 
-	private int enemyTurnIndex;
+	[SerializeField] List<CardTemplate> odinStartingCards;
+    [SerializeField] List<CardTemplate> mickiStartingCards;
+    [SerializeField] List<CardTemplate> anubisStartingCards;
+    [SerializeField] List<CardTemplate> reaperStartingCards;
+    [SerializeField] List<CardTemplate> fatesStartingCards;
+
+    private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
 	public override void Awake()
@@ -424,8 +432,10 @@ public class Game : MonoSingleton<Game>
 		}
 
 		CheckDeadEnemies();
+        CheckWin();
+		CheckLoss();
 
-		enemyTurnIndex = -1;
+        enemyTurnIndex = -1;
 		yield return OnTurnStart();
 	}
 	IEnumerator NextAttack(Enemy enemy, bool prepare)
@@ -698,5 +708,26 @@ public class Game : MonoSingleton<Game>
 		attackInProgress = false;
 
         CheckDeadEnemies();
+		CheckLoss();
+		CheckWin();
     }
+
+	public void CheckLoss()
+	{
+        if (player.CurrentHealth <= 0)
+        {
+			SceneManager.LoadScene("Level Select");
+            return;
+        }
+    }
+
+	public void CheckWin ()
+	{
+		if (activeEnemies.Count == 0)
+		{
+			GameProgress.Instance.completedLevels[GameProgress.Instance.selectedLevel] = true;
+            SceneManager.LoadScene("Level Select");
+            return;
+        }
+	}
 }
