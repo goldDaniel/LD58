@@ -133,13 +133,25 @@ public class Player
         }
     }
 
+    public TextMeshProUGUI CurseEachPlayText;
+    private int _curseEachPlay = 0;
+    public int CurseEachPlay
+    {
+        get => _curseEachPlay;
+        set
+        {
+            _curseEachPlay = Math.Max(value, 0);
+            CurseEachPlayText.text = $"Afflict: {_curseEachPlay}";
+        }
+    }
+
+
     [NonSerialized] public int RepeatAllNext = 0;
     [NonSerialized] public int RepeatAllCurrentTurn = 0;
     [NonSerialized] public int doubleDamageHit = 0;
 	[NonSerialized] public int PactOfPower = 0;
 	[NonSerialized] public int PactOfSacrifice = 0;
 	[NonSerialized] public int PowerCounter = 0;
-	[NonSerialized] public int CurseEachPlay = 0;
 
     public IEnumerator ApplyEffectSequence(Card card)
     {
