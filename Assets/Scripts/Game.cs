@@ -634,7 +634,11 @@ public class Game : MonoBehaviour
                 if (attacker.Confused)
                 {
                     var ConfusedChance = 50;
-                    IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
+					if (UnityEngine.Random.Range(0, 100) < ConfusedChance)
+					{
+						IsConfused = true;
+						attacker.Confused = false;
+					}
                 }
 
                 var JinxedAttack = false;
