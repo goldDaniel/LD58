@@ -1879,6 +1879,7 @@ MonoBehaviour:
     CurseText: {fileID: 1596724320}
     LuckyText: {fileID: 2114453936}
     LethargicText: {fileID: 2033092384}
+    CurseEachPlayText: {fileID: 0}
   activeEnemies: []
   defaultDeck:
   - {fileID: 11400000, guid: 7d512bf3a0a6f8c4da5c50790dd1f94f, type: 2}
@@ -3026,7 +3027,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!1 &2114453934
 GameObject:
   m_ObjectHideFlags: 0
