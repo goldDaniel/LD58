@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 
-public class CollectionListItem : MonoBehaviour
+public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TextMeshProUGUI cardNameText;
     [SerializeField] Button addCardButton;
@@ -18,6 +20,18 @@ public class CollectionListItem : MonoBehaviour
     void Start()
     {
         
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        collection.DisplayCard(cardTemplate);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (collection.visibleCard.cardTemplate == cardTemplate)
+        {
+            collection.HideCard();
+        }
     }
 
     public void SetQuantityText()

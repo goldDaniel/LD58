@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
 	[SerializeField]
-	private Image cardBack;
+	public Image cardBack;
 	[SerializeField]
-	private Image cardFront;
+	public Image cardFront;
 
 	[SerializeField]
 	private CanvasGroup raycastBlocker;
@@ -31,6 +31,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public TextMeshProUGUI description;
 
 	private GameObject dummy;
+
+	public bool displayOnly = false;
 
 	public void OnCardInitialize(CardTemplate card)
 	{
@@ -59,27 +61,33 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		if (Highlighted && UIController.Instance.IsSelectedCard(null))
+		if (!displayOnly)
 		{
-			UIController.Instance.SetSelectedCard(this);
-			dummy.gameObject.SetActive(false);
+			if (Highlighted && UIController.Instance.IsSelectedCard(null))
+			{
+				UIController.Instance.SetSelectedCard(this);
+				dummy.gameObject.SetActive(false);
+			}
 		}
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		if (UIController.Instance.IsSelectedCard(this))
+		if (!displayOnly)
 		{
-			if (Game.Instance.AttackEnemyWith(this))
+			if (UIController.Instance.IsSelectedCard(this))
 			{
-				EnableRaycast = false;
-				UIController.Instance.SetSelectedCard(null);
-				return;
-			}
+				if (Game.Instance.AttackEnemyWith(this))
+				{
+					EnableRaycast = false;
+					UIController.Instance.SetSelectedCard(null);
+					return;
+				}
 
-			UIController.Instance.SetSelectedCard(null);
-			rectTransform.SetParent(initialParent);
-			dummy.gameObject.SetActive(false);
+				UIController.Instance.SetSelectedCard(null);
+				rectTransform.SetParent(initialParent);
+				dummy.gameObject.SetActive(false);
+			}
 		}
 	}
 
@@ -87,23 +95,29 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		if(UIController.Instance.IsSelectedCard(null))
-			AudioManager.Instance.Play("Hover");
+		if (!displayOnly)
+		{
+			if (UIController.Instance.IsSelectedCard(null))
+				AudioManager.Instance.Play("Hover");
 
-		previousChildIndex = transform.parent.GetSiblingIndex();
+			previousChildIndex = transform.parent.GetSiblingIndex();
 
-		var rect = dummy.GetComponent<RectTransform>();
-		rect.position = this.rectTransform.position;
+			var rect = dummy.GetComponent<RectTransform>();
+			rect.position = this.rectTransform.position;
 
-		dummy.gameObject.transform.SetSiblingIndex(2);
-		dummy.gameObject.SetActive(true);
+			dummy.gameObject.transform.SetSiblingIndex(2);
+			dummy.gameObject.SetActive(true);
+		}
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		rectTransform.localScale = new Vector2(1.0f, 1.0f);
+		if (!displayOnly)
+		{
+			rectTransform.localScale = new Vector2(1.0f, 1.0f);
 
-		dummy.gameObject.SetActive(false);
+			dummy.gameObject.SetActive(false);
+		}
 	}
 
 	public void SetInHand()
