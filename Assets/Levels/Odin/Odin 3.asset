@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Odin Level 3
   LevelNumber: 3
   Type: 3
+  randomReward: 4
+  odinReward: 3
+  mickiReward: 0
+  anubisReward: 0
+  reaperReward: 0
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: 8285cae3d2f224044aa9c2b4d9331ac4, type: 2}
   - {fileID: 11400000, guid: c7ca1eea999076841a0e7245c284109d, type: 2}

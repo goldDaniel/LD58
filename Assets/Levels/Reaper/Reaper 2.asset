@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Reaper Level 2
   LevelNumber: 2
   Type: 4
+  randomReward: 4
+  odinReward: 0
+  mickiReward: 0
+  anubisReward: 0
+  reaperReward: 2
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: e01b0df588c006141b9e5555d9ab5afa, type: 2}
   - {fileID: 11400000, guid: fe3a76a89c1d818409c7f4c93f7ce365, type: 2}

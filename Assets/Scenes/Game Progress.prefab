@@ -131,12 +131,57 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
   - {fileID: 11400000, guid: 6aef65e73bc7f6d4eb6f2ea17bbf1544, type: 2}
   allCards:
-  - {fileID: 11400000, guid: 4dbd6c1138f88394e9aa77ddc3103b47, type: 2}
-  - {fileID: 11400000, guid: 3e93684afdb580b498d133122aa9ab35, type: 2}
   - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
+  - {fileID: 11400000, guid: ab2785469d393c54799da7a2454932eb, type: 2}
+  - {fileID: 11400000, guid: 3e93684afdb580b498d133122aa9ab35, type: 2}
+  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: c35706a0ee3aaa9428ca20594bb8455b, type: 2}
+  - {fileID: 11400000, guid: 00002a59ea5a6854a91cd03551845062, type: 2}
+  - {fileID: 11400000, guid: d8b85281bfed4e641a4d891351ab618c, type: 2}
+  - {fileID: 11400000, guid: 3579bf3a3a1ce6d4aa276b6619f62cfb, type: 2}
+  - {fileID: 11400000, guid: e99b664ec09cffb4bba6fc024bbefc9c, type: 2}
+  - {fileID: 11400000, guid: a1e45f668bcc7264a818ce9109d53fec, type: 2}
+  - {fileID: 11400000, guid: aaf04ad44c124774794c70b35a1dbb32, type: 2}
+  - {fileID: 11400000, guid: 764db492fa164e64e86f00cbbb3e0edb, type: 2}
+  - {fileID: 11400000, guid: fc571fc9f5edb684c8b96603eda29941, type: 2}
+  - {fileID: 11400000, guid: 57bcdeb65061cd44095b4cc3212e0479, type: 2}
   - {fileID: 11400000, guid: 1c855cf5dfba49042862365c3ccb3b6c, type: 2}
+  - {fileID: 11400000, guid: cee6a6710afae6a4ca776e3318114d83, type: 2}
+  - {fileID: 11400000, guid: ea076d4c71b35a64e8a60eba89739eb1, type: 2}
+  - {fileID: 11400000, guid: 81c15aa82b0d6df4f97d929e46ade1fc, type: 2}
+  - {fileID: 11400000, guid: c4d50d57c43bd6f438a024bb0b35448c, type: 2}
+  - {fileID: 11400000, guid: f8f6d3a4535bf6d41aefe1f3382ab641, type: 2}
+  - {fileID: 11400000, guid: 38684793b8b329f4781c2e5613d3d1bf, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: ac785afd92e509840a7aab4c026dd116, type: 2}
+  - {fileID: 11400000, guid: 0fc389b7ace57a743815d0b232dc0504, type: 2}
+  - {fileID: 11400000, guid: c22f4a0aa360ef340a1f3ec7178921f1, type: 2}
+  - {fileID: 11400000, guid: bc0570290988ae945ba33ee356699e88, type: 2}
+  - {fileID: 11400000, guid: 95be5e7b6046b324bb8bf340b4646cdc, type: 2}
+  - {fileID: 11400000, guid: 8b90678502bc8eb4696612d6ba27648c, type: 2}
+  - {fileID: 11400000, guid: bd8f1c2e24f464c48b7a05c3c60b7159, type: 2}
+  - {fileID: 11400000, guid: 4dbd6c1138f88394e9aa77ddc3103b47, type: 2}
+  - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
+  - {fileID: 11400000, guid: 7a9f6dfb525fbca4eb04c93959c7b87d, type: 2}
+  - {fileID: 11400000, guid: 97ffe0a131f711d4f8076dfab48b2b96, type: 2}
+  - {fileID: 11400000, guid: 8e8b085ef3ed0e94da417a983a09fc2a, type: 2}
+  - {fileID: 11400000, guid: d6df0b95cc7dfa843a287cdebbf6beb7, type: 2}
+  - {fileID: 11400000, guid: 660b863138cc42f48919fb712ded7b40, type: 2}
+  - {fileID: 11400000, guid: 59a40f51a4a9705419b9cf2903e42ac1, type: 2}
+  - {fileID: 11400000, guid: ba0a19ef11075814c86a8223a261a452, type: 2}
+  - {fileID: 11400000, guid: 55a51b1425c040a4eab10ae7d4dd85ce, type: 2}
   - {fileID: 11400000, guid: fc7db91188d3a8e469689b20341c62f1, type: 2}
+  - {fileID: 11400000, guid: e806edc2e575087439bea8902570c1d7, type: 2}
+  - {fileID: 11400000, guid: 277605fef3eb0b04fa4c11b3db921349, type: 2}
+  - {fileID: 11400000, guid: 145b6d0115689d149a6cee00e361534e, type: 2}
+  - {fileID: 11400000, guid: 652ebaf485deb17428eb2cac89ee091b, type: 2}
   - {fileID: 11400000, guid: 6aef65e73bc7f6d4eb6f2ea17bbf1544, type: 2}
+  - {fileID: 11400000, guid: cae6628215375f64fa4080593991931a, type: 2}
+  - {fileID: 11400000, guid: 78856f37e9cfe2f45af537e592890ced, type: 2}
+  - {fileID: 11400000, guid: 41470c5d3fed9f44489d0365275cf235, type: 2}
+  - {fileID: 11400000, guid: 8701470f302a4a24dac8ab0709f9b848, type: 2}
+  - {fileID: 11400000, guid: 9a08a32a7b4292f4d8fa561e416272bd, type: 2}
+  - {fileID: 11400000, guid: 2e66a0b120318d0478703ab82157a24e, type: 2}
   pendingRandomCards: 0
   pendingOdinCards: 0
   pendingMickiCards: 0

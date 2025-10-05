@@ -15,6 +15,12 @@ MonoBehaviour:
   LevelDescription: Anubis Level 4
   LevelNumber: 4
   Type: 1
+  randomReward: 4
+  odinReward: 0
+  mickiReward: 0
+  anubisReward: 4
+  reaperReward: 0
+  fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: 89315b078dbd8f947bb6b204cd01d47c, type: 2}
   - {fileID: 11400000, guid: 3fcbfa473f3e3cf4aac50248e3cde483, type: 2}

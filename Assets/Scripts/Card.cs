@@ -42,6 +42,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public bool displayOnly = false;
 
 	[SerializeField]
+	public TextMeshProUGUI essenceCostText;
+
+	[SerializeField]
 	private Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite;
 
 	public void OnCardInitialize(CardTemplate card)
@@ -51,6 +54,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		title.text = card.CardName;
 		description.text = card.CardDescription;
 		currentCost = card.EssenceCost;
+		essenceCostText.text = $"{currentCost}";
 
 		Card dummyCard = Instantiate(this, UIController.Instance.transform);
 		dummyCard.EnableRaycast = false;
