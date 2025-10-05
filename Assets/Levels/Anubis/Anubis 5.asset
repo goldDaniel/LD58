@@ -15,10 +15,10 @@ MonoBehaviour:
   LevelDescription: Anubis Level 5
   LevelNumber: 5
   Type: 1
-  randomReward: 4
+  randomReward: 8
   odinReward: 0
   mickiReward: 0
-  anubisReward: 5
+  anubisReward: 11
   reaperReward: 0
   fatesReward: 0
   Enemies:

@@ -15,12 +15,12 @@ MonoBehaviour:
   LevelDescription: Fates Level 5
   LevelNumber: 5
   Type: 5
-  randomReward: 4
+  randomReward: 8
   odinReward: 0
   mickiReward: 0
   anubisReward: 0
   reaperReward: 0
-  fatesReward: 5
+  fatesReward: 11
   Enemies:
   - {fileID: 11400000, guid: e51e4f519ee488540911721f2b85e306, type: 2}
   - {fileID: 11400000, guid: 5710fb5970f678e40ba5549dbed92b97, type: 2}

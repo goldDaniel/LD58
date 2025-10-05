@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gain Afflict, apply 1 Weak to All
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Pestilence
-  CardDescription: Gain Afflcit, Apply 1 Weak to All
+  CardDescription: Apply 1 Weak to All, Whenever you play a card Curse 1 all enemies
   Type: 1
   cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
   EssenceCost: 2
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 1
+  NextTurnDamage: -1

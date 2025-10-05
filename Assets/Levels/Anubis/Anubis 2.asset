@@ -15,10 +15,10 @@ MonoBehaviour:
   LevelDescription: Anubis Level 2
   LevelNumber: 2
   Type: 1
-  randomReward: 4
+  randomReward: 5
   odinReward: 0
   mickiReward: 0
-  anubisReward: 2
+  anubisReward: 5
   reaperReward: 0
   fatesReward: 0
   Enemies:
