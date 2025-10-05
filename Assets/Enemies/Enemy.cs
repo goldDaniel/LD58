@@ -210,7 +210,7 @@ public class Enemy : MonoBehaviour
         int repeatCount = 0;
         do
         {
-            if (card.cardTemplate.MinDamage > 0 && card.cardTemplate.MaxDamage > 0)
+            if (card.cardTemplate.MinDamage >= 0 && card.cardTemplate.MaxDamage > 0)
             {
                 int damage = 0;
                 for (int j = 0; j < Game.Instance.player.Lucky + 1; j++)
