@@ -31,7 +31,7 @@ MonoBehaviour:
   DeathChance: 5
   Weak: -1
   Draw: -1
-  Heal: 5
+  Heal: -1
   Block: -1
   GetLucky: 0
   Strength: -1
