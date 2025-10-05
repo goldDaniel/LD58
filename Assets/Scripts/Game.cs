@@ -681,6 +681,14 @@ public class Game : MonoSingleton<Game>
         
 	}
 
+	public void Discard(Card card)
+	{
+		hand.Remove(card);
+		discard.Add(card);
+		card.SetInPile(discardLocation);
+		card.rectTransform.position = discardLocation.position;
+	}
+
 	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
@@ -730,9 +738,9 @@ public class Game : MonoSingleton<Game>
 				while (tween.IsActive() && !tween.IsComplete())
 					yield return null;
 			}
-
 			discard.Add(card);
 			card.SetInPile(discardLocation);
+
 			int currentRepeat = 0;
 			do
 			{

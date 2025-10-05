@@ -126,6 +126,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 		rectTransform.anchoredPosition = new Vector2(0, 0);
 	}
+
+	public void Discard()
+	{
+		Game.Instance.Discard(this);
+	}
 }
 
 [Serializable]
