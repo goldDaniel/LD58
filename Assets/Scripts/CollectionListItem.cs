@@ -13,7 +13,8 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] Button addCardButton;
     [SerializeField] Button removeCardButton;
     [SerializeField] TextMeshProUGUI cardQuantityText;
-    [SerializeField] CardTemplate cardTemplate;
+    [SerializeField] public CardTemplate cardTemplate;
+    [SerializeField] Image background;
 
     public CollectionUI collection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,7 +39,6 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         int inDeck = 0;
         int inCollection = 0;
-        int deckSize = 0;
 
         if(GameProgress.Instance.collection.ContainsKey(cardTemplate))
         {
@@ -49,11 +49,7 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
             inDeck = GameProgress.Instance.currentDecklist[cardTemplate];
         }
         cardQuantityText.text = $"{inDeck}/{inCollection}";
-        foreach (var c in GameProgress.Instance.currentDecklist.Keys)
-        {
-            deckSize += GameProgress.Instance.currentDecklist[c];
-        }
-        collection.deckSizeText.text = $"Deck Size: {deckSize}/20";
+        collection.setDecklistText();
 
 
     }
@@ -64,7 +60,7 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
     }
     private void removeCard(CardTemplate card)
     {
-        GameProgress.Instance.RemoveCardFromDecklist(card);
+        GameProgress.Instance.RemoveCardFromDecklist(card, 1);
         SetQuantityText();
     }
 
@@ -75,6 +71,27 @@ public class CollectionListItem : MonoBehaviour, IPointerEnterHandler, IPointerE
         SetQuantityText();
         addCardButton.onClick.AddListener(() => addCard(card));
         removeCardButton.onClick.AddListener(() => removeCard(card));
+        if(card.Type == CardType.Odin)
+        {
+            background.color = new Color32(241,231,220,255);
+        }
+        if (card.Type == CardType.Reaper)
+        {
+            background.color = new Color32(168,181,171, 255);
+        }
+        if (card.Type == CardType.Fates)
+        {
+            background.color = new Color32(237, 211, 248, 255);
+        }
+        if (card.Type == CardType.Anubis)
+        {
+            background.color = new Color32(220, 229, 241, 255);   
+        }
+        if (card.Type == CardType.Micki)
+        {
+            background.color = new Color32(226, 190, 176, 255);
+        }
+
     }
 
     // Update is called once per frame
