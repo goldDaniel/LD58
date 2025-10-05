@@ -6,7 +6,7 @@ using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EffectType { Damage, Shield, Heal, Other, Curse };
+public enum EffectType { Damage, Shield, Heal, Other, Curse, Strength };
 
 public class EffectIndicator : MonoBehaviour
 {
@@ -24,7 +24,8 @@ public class EffectIndicator : MonoBehaviour
     [SerializeField] private Sprite healIcon;
     [SerializeField] private Sprite OtherIcon;
     [SerializeField] private Sprite CurseIcon;
-    private RectTransform rectTransform;
+	[SerializeField] private Sprite StrengthIcon;
+	private RectTransform rectTransform;
 
 	private bool fadeOut;
 
@@ -32,7 +33,7 @@ public class EffectIndicator : MonoBehaviour
 	{
 		canvasGroup.alpha = 1;
 		if (textOverride != null)
-			valueText.text = textOverride;
+			valueText.text = textOverride.Replace("\n"," ");
 		else
 		{
 			if (value >= 0)
@@ -53,6 +54,8 @@ public class EffectIndicator : MonoBehaviour
 				icon.sprite = CurseIcon; break;
 			case EffectType.Other:
 				icon.sprite = OtherIcon; break;
+			case EffectType.Strength:
+				icon.sprite = StrengthIcon; break;
 		}
 
 		fadeOut = isFade;
