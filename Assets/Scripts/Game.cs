@@ -473,7 +473,7 @@ public class Game : MonoBehaviour
 		else if (Attack.TargetAllOtherEnemies)
 			targets.AddRange(otherEnemies);
 		else if (Attack.TargetRandomEnemy)
-			targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count - 1)]);
+			targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
 		else if (Attack.TargetSelf)
 			targets.Add(attacker);
 
