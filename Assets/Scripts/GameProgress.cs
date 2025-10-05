@@ -1,16 +1,15 @@
 
 using Assets.Scripts;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameProgress : MonoSingleton<GameProgress>
 {
 	public LevelTemplate selectedLevel = null;
+
+	public bool hasCompletedTutorial = false;
 
 	public Dictionary<LevelTemplate, bool> completedLevels = new();
 
