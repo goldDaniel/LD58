@@ -1,5 +1,6 @@
 
 using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.SearchService;
@@ -152,4 +153,10 @@ public class GameProgress : MonoSingleton<GameProgress>
             }
         }
     }
+
+	internal void CompleteCurrentLevel()
+	{
+		if(selectedLevel != null)
+			completedLevels[selectedLevel] = true;
+	}
 }

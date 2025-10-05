@@ -87,7 +87,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		AudioManager.Instance.Play("Hover");
+		if(UIController.Instance.IsSelectedCard(null))
+			AudioManager.Instance.Play("Hover");
+
 		previousChildIndex = transform.parent.GetSiblingIndex();
 
 		var rect = dummy.GetComponent<RectTransform>();

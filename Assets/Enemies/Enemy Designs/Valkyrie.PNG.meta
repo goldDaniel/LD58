@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 4cb20f9f0f81d884ab5f61fff64c1d5d
-=======
-guid: eed6c99e17d3f4941b3a19bc158d9900
->>>>>>> Stashed changes
+guid: 7332cba8e323f754fbc467a0d97b21ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3836850693828416316
-    second: Demi_God_0
+      213: 8428372614177468317
+    second: Valkyrie_0
+  - first:
+      213: 8777845383819071755
+    second: Valkyrie_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -117,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demi_God_0
+      name: Valkyrie_0
       rect:
         serializedVersion: 2
-        x: 593
-        y: 111
-        width: 897
-        height: 1937
+        x: 6
+        y: 44
+        width: 2031
+        height: 1808
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cc652a5f94c0cac0800000000000000
-      internalID: -3836850693828416316
+      spriteID: d9fada6bc3897f470800000000000000
+      internalID: 8428372614177468317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valkyrie_1
+      rect:
+        serializedVersion: 2
+        x: 2031
+        y: 415
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0196db9edb21d970800000000000000
+      internalID: 8777845383819071755
       vertices: []
       indices: 
       edges: []
@@ -152,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Demi_God_0: -3836850693828416316
+      Valkyrie_0: 8428372614177468317
+      Valkyrie_1: 8777845383819071755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,11 +2,13 @@ using Assets.Scripts;
 using DG.Tweening;
 using DG.Tweening.Core;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game : MonoSingleton<Game>
@@ -117,10 +119,11 @@ public class Game : MonoSingleton<Game>
 
 	IEnumerator DrawHand()
 	{
-		while (hand.Size < handSize)
+		while (hand.Size < (handSize + (player.Lethargic ? 1 : 0)))
 		{
 			yield return DrawCardFromDeck(false);
 		}
+		player.Lethargic = false;
 	}
 
 	public IEnumerator DrawCardFromDeck(bool isFree)
@@ -274,9 +277,23 @@ public class Game : MonoSingleton<Game>
 		}
 
 		StartCoroutine(DrawHand());
+
+        yield return ApplyStatusEffects();
 	}
+
+	public IEnumerator ApplyStatusEffects()
+	{
+		if (player.Curse > 0)
+		{
+            yield return player.TakeDamage(player.Curse);
+			player.Curse--;
+		}
+	}
+
 	IEnumerator PrepareAttack(Enemy enemy)
 	{
+		yield return enemy.OnTurnStart();
+
         var Attack = enemy.Attacks.Attacks.FirstOrDefault();
         if (Attack.ClearNegative)
         {
@@ -430,8 +447,10 @@ public class Game : MonoSingleton<Game>
 		}
 
 		CheckDeadEnemies();
+        CheckWin();
+		CheckLoss();
 
-		enemyTurnIndex = -1;
+        enemyTurnIndex = -1;
 		yield return OnTurnStart();
 	}
 	IEnumerator NextAttack(Enemy enemy, bool prepare)
@@ -672,12 +691,38 @@ public class Game : MonoSingleton<Game>
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 
         hand.Remove(card);
-        // animate to discard pile
-        var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
-        while (tween.IsActive() && !tween.IsComplete())
-        {
-            yield return null;
-        }
+
+		// animate to attack
+
+		int iterations = (card.cardTemplate.MultHit <= 1) ? 1 : card.cardTemplate.MultHit;
+		for (int i = 0; i < iterations; ++i)
+		{
+			var enemyRect = enemy.GetComponent<RectTransform>();
+			var initialPosition = enemyRect.position.xy() - new Vector2(0, 500);
+			var initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
+			while (initialTween.IsActive() && !initialTween.IsComplete())
+				yield return null;
+
+			yield return new WaitForSeconds(0.1f);
+
+			var finalPosition = enemyRect.position;
+			var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+
+			initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
+			while (initialTween.IsActive() && !initialTween.IsComplete())
+				yield return null;
+
+			yield return new WaitForSeconds(0.1f);
+		}
+
+		// animate to discard pile
+		{
+			var tween = card.rectTransform.DOMove(discardLocation.position, 0.2f).SetEase(Ease.InCirc);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
 
         discard.Add(card);
         card.SetInPile(discardLocation);
@@ -704,5 +749,26 @@ public class Game : MonoSingleton<Game>
 		attackInProgress = false;
 
         CheckDeadEnemies();
+		CheckLoss();
+		CheckWin();
     }
+
+	public void CheckLoss()
+	{
+        if (player.CurrentHealth <= 0)
+        {
+			SceneManager.LoadScene("Level Select");
+            return;
+        }
+    }
+
+	public void CheckWin ()
+	{
+		if (activeEnemies.Count == 0)
+		{
+			GameProgress.Instance.CompleteCurrentLevel();
+            SceneManager.LoadScene("Level Select");
+            return;
+        }
+	}
 }

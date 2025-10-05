@@ -13,46 +13,35 @@ public class LevelSelectUI : MonoBehaviour
 
 	public void Start()
 	{
-		for (int i = 1; i < anubisButtons.Count; ++i)
-			anubisButtons[i].interactable = false;
-		for (int i = 1; i < fateButtons.Count; ++i)
-			fateButtons[i].interactable = false;
-		for (int i = 1; i < mickiButtons.Count; ++i)
-			mickiButtons[i].interactable = false;
-		for (int i = 1; i < odinButtons.Count; ++i)
-			odinButtons[i].interactable = false;
-		for (int i = 1; i < reaperButtons.Count; ++i)
-			reaperButtons[i].interactable = false;
+		SetupButtons(anubisButtons, GameProgress.Instance.anubisLevels);
+		SetupButtons(fateButtons, GameProgress.Instance.fateLevels);
+		SetupButtons(mickiButtons, GameProgress.Instance.mickiLevels);
+		SetupButtons(odinButtons, GameProgress.Instance.odinLevels);
+		SetupButtons(reaperButtons, GameProgress.Instance.reaperLevels);
 
-		SetUnlockedLevels(GameProgress.Instance);
+		SetUnlockedLevels(anubisButtons, GameProgress.Instance.anubisLevels);
+		SetUnlockedLevels(fateButtons, GameProgress.Instance.fateLevels);
+		SetUnlockedLevels(mickiButtons, GameProgress.Instance.mickiLevels);
+		SetUnlockedLevels(odinButtons, GameProgress.Instance.odinLevels);
+		SetUnlockedLevels(reaperButtons, GameProgress.Instance.reaperLevels);
 	}
 
-	public void SetUnlockedLevels(GameProgress progress)
+	void SetupButtons(List<Button> buttons, List<LevelTemplate> levels)
 	{
-		for (int i = 0; i < progress.anubisLevels.Count - 1; ++i)
+		for (int i = 0; i < buttons.Count; ++i)
 		{
-			var unlocked = progress.completedLevels[progress.anubisLevels[i]];
-			anubisButtons[i + 1].interactable = unlocked;
+			var index = i;
+			buttons[i].onClick.AddListener(() => GameProgress.Instance.SelectLevel(levels[index]));
+			buttons[i].interactable = i == 0;
 		}
-		for (int i = 0; i < progress.fateLevels.Count - 1; ++i)
+	}
+
+	public void SetUnlockedLevels(List<Button> buttons, List<LevelTemplate> levels)
+	{
+		for (int i = 0; i < levels.Count - 1; ++i)
 		{
-			var unlocked = progress.completedLevels[progress.fateLevels[i]];
-			fateButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.mickiLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.mickiLevels[i]];
-			mickiButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.odinLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.odinLevels[i]];
-			odinButtons[i + 1].interactable = unlocked;
-		}
-		for (int i = 0; i < progress.reaperLevels.Count - 1; ++i)
-		{
-			var unlocked = progress.completedLevels[progress.reaperLevels[i]];
-			reaperButtons[i + 1].interactable = unlocked;
+			var unlocked = GameProgress.Instance.completedLevels[levels[i]];
+			buttons[i + 1].interactable = unlocked;
 		}
 	}
 }
