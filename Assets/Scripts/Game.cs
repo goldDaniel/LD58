@@ -115,7 +115,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = false;
+		bool testing = true;
 
 		if (testing)
 		{
@@ -538,16 +538,6 @@ public class Game : MonoBehaviour
                 player.Lethargic = true;
             }
 
-            if (attacker.Jinxed)
-            {
-                if (Attack.TargetAllEnemies || Attack.TargetAllOtherEnemies)
-                {
-                    Attack.TargetAllEnemies = false;
-                    Attack.TargetAllOtherEnemies = false;
-                    Attack.TargetRandomEnemy = true;
-                }
-            }
-
             List<Enemy> targets = new();
             if (Attack.TargetAllEnemies)
                 targets.AddRange(activeEnemies);
@@ -647,6 +637,16 @@ public class Game : MonoBehaviour
                     IsConfused = UnityEngine.Random.Range(0, 100) < ConfusedChance;
                 }
 
+                var JinxedAttack = false;
+                if (attacker.Jinxed)
+                {
+                    if (UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        JinxedAttack = true;
+                        attacker.Jinxed = false;
+                    }
+                }
+
                 int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
                 for (int i = 0; i < attackcount; i++)
                 {
@@ -657,13 +657,22 @@ public class Game : MonoBehaviour
                         yield return attacker.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
                     }
-                    else
-                    {
+					else if (JinxedAttack)
+					{
+						var RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+
                         AudioManager.Instance.Play("Hit");
-                        yield return effect.MoveTo(playerDamageLocation.transform.position);
-                        yield return player.TakeDamage(TotalDamage);
+                        yield return effect.MoveTo(RandomEnemy.transform.position);
+                        yield return RandomEnemy.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
                     }
+					else
+					{
+						AudioManager.Instance.Play("Hit");
+						yield return effect.MoveTo(endTurnButton.transform.position);
+						yield return player.TakeDamage(TotalDamage);
+						yield return effect.MoveTo(initialPosition);
+					}
 
                 }
             }

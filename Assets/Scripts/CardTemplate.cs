@@ -22,8 +22,8 @@ public class CardTemplate : ScriptableObject
     public int MaxDamage = -1;
     public int BloodyStrike = -1; //take % health damage, do amount to enemy
     public int Doomed = -1; //if Doom >= 3, enemy instantly dies
-    public bool Jinxed = false; //enemy has a 50% chance to miss
-    public bool FateSealed = false; //enemy goes to next attack in cycle
+    public bool Jinxed = false; //enemy has a 50% chance to other enemy
+    public bool FateSealed = false; //enemy skips attack
     public bool Confuse = false; //enemy has a chance to hit itself
     public int Souls = -1;
     public int Curse = -1; //DoT

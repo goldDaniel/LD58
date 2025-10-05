@@ -140,7 +140,8 @@ public class Enemy : MonoBehaviour
         get => _jinxed;
         set
         {
-            if (value)
+            _jinxed = value;
+            if (_jinxed)
             {
                 jinxText.text = "Jinxed!";
             }
@@ -160,7 +161,8 @@ public class Enemy : MonoBehaviour
         get => _confused;
         set
         {
-            if (value)
+            _confused = value;
+            if (_confused)
             {
                 confusedText.text = "Confused!";
             }
@@ -192,6 +194,7 @@ public class Enemy : MonoBehaviour
         Weak = 0;
         Jinxed = false;
         Confused = false;
+        FateSealed = false;
 
 		image.sprite = EnemyArtContainer.Instance.FindSprite(template.EnemyModel);
 
