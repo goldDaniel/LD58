@@ -158,9 +158,11 @@ public class Game : MonoBehaviour
 			var card = discard.Draw();
 			deck.Add(card);
 
-			var tween = card.rectTransform.DOMove(deckLocation.position, 0.15f).SetEase(Ease.InBounce);
+			var tween = card.rectTransform.DOMove(deckLocation.anchoredPosition, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
+
+			card.SetInPile(deckLocation);
 		}
 
 		yield return ShuffleDeckAnimation();
@@ -706,7 +708,6 @@ public class Game : MonoBehaviour
 		hand.Remove(card);
 		discard.Add(card);
 		card.SetInPile(discardLocation);
-		card.rectTransform.position = discardLocation.position;
 	}
 
 	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)
