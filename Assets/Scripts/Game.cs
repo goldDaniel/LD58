@@ -187,7 +187,7 @@ public class Game : MonoBehaviour
 
 		for (int i = 0; i < CardsToDraw; i++)
 		{
-			if (hand.Size < 15)
+			if (hand.Size < maxHandSize)
 			{
 				yield return DrawCardFromDeck(false);
 			}
