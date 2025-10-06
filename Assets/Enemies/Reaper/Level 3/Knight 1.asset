@@ -16,8 +16,8 @@ MonoBehaviour:
   EnemyModel: 8
   MaxHealth: 12
   Block: 3
-  Attack:
+  AttackList:
     Attacks:
-    - {fileID: 11400000, guid: 8345451fc0e7bb74ba1149e0083ee089, type: 2}
-    - {fileID: 11400000, guid: 09e90de23ea832e44803dafe21874624, type: 2}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 5ca565a5475814f4aabd5f3a8782b4c8, type: 2}
+    - {fileID: 11400000, guid: c3cd20d23dfaac2448caa1b2d21a108f, type: 2}
+    - {fileID: 11400000, guid: b4a1df915340a854d827842c46d51e76, type: 2}

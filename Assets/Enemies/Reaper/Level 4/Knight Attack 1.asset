@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eede47d100e224a964b5941cfa2550, type: 3}
   m_Name: Knight Attack 1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackTemplate
-  Description: Recruit!
+  Description: Arm Up!
   Damage: -1
   Heal: -1
-  Block: -1
+  Block: 10
   Curse: -1
   NumberOfAttacks: -1
-  Strength: -1
+  Strength: 3
   ClearNegative: 0
   SpawnEnemy: {fileID: 11400000, guid: e01b0df588c006141b9e5555d9ab5afa, type: 2}
   MassBonus: 0

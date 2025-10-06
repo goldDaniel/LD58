@@ -20,7 +20,7 @@ MonoBehaviour:
   mickiReward: 0
   anubisReward: 0
   reaperReward: 0
-  fatesReward: 5
+  fatesReward: 4
   Enemies:
   - {fileID: 11400000, guid: d564b31b9ee9ea04ea34eaba77cbb7e2, type: 2}
   - {fileID: 11400000, guid: e5b0e9cdeaad31c4fb3ecbf775d86b0c, type: 2}

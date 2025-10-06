@@ -15,8 +15,8 @@ MonoBehaviour:
   LevelDescription: Odin Level 3
   LevelNumber: 3
   Type: 3
-  randomReward: 4
-  odinReward: 3
+  randomReward: 6
+  odinReward: 5
   mickiReward: 0
   anubisReward: 0
   reaperReward: 0
