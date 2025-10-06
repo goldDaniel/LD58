@@ -70,7 +70,7 @@ public class Game : MonoBehaviour
 	public RectTransform playerDamageLocation;
 
 	[SerializeField]
-	private Image castEffectPrefab;
+	public Image castEffectPrefab;
 	[SerializeField]
 	private RectTransform castEffectStart;
 
@@ -661,7 +661,7 @@ public class Game : MonoBehaviour
                 foreach (var enemy in targets)
                 {
                     AudioManager.Instance.Play("Strength", null, 0.6f);
-                    yield return effect.MoveTo(playerDamageLocation.transform.position);
+                    yield return effect.MoveTo(enemy.transform.position);
                     enemy.Strength += Attack.Strength;
                     yield return effect.MoveTo(initialPosition);
                 }

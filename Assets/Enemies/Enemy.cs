@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -220,6 +221,35 @@ public class Enemy : MonoBehaviour
             Game.Instance.DeselectEnemy(this);
     }
 
+	public IEnumerator InstaKillAnimation(Sprite sprite)
+	{
+		var effect = Instantiate(Game.Instance.castEffectPrefab, UIController.Instance.transform);
+		effect.transform.position = this.transform.position;
+		effect.sprite = sprite;
+
+		var color = Color.white;
+		color.a = 0;
+		effect.color = color;
+		effect.transform.localScale = Vector2.zero;
+
+		var tween = effect.transform.DOScale(Vector2.one * 3, 0.25f).SetEase(Ease.OutBounce);
+		while(tween.IsActive() || !tween.IsComplete())
+		{
+			yield return null;
+			color.a = tween.ElapsedPercentage();
+			effect.color = color;
+		}
+
+		tween = effect.transform.DOScale(Vector2.zero, 0.25f).SetEase(Ease.InQuart);
+		while (tween.IsActive() || !tween.IsComplete())
+		{
+			yield return null;
+			color.a = tween.ElapsedPercentage();
+			effect.color = color;
+		}
+		Destroy(effect.gameObject);
+	}
+
     public IEnumerator ApplyEffectSequence(Card card, int Strength)
     {
         if (card.cardTemplate.Souls > 0)
@@ -231,6 +261,7 @@ public class Enemy : MonoBehaviour
             var DeathRoll = UnityEngine.Random.Range(0, 100);
             if (DeathRoll < card.cardTemplate.DeathChance)
             {
+				yield return InstaKillAnimation(card.deathChanceSprite);
                 TakeDamage(1000);
             }
         }
@@ -260,7 +291,8 @@ public class Enemy : MonoBehaviour
             Doom += card.cardTemplate.Doomed;
             if (Doom >= 3)
             {
-                TakeDamage(Doom * 20);
+				yield return InstaKillAnimation(card.doomSprite);
+				TakeDamage(Doom * 20);
                 Doom = 0;
             }
         }

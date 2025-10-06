@@ -90,7 +90,7 @@ MonoBehaviour:
     loop: 0
     defaultVolume: 1
   - name: Strength
-    clip: {fileID: 8300000, guid: 2f0b1ac2df86298458b7899f6ddd735b, type: 3}
+    clip: {fileID: 8300000, guid: 3a444f8ae2277b04f9e437696f7321ec, type: 3}
     channel: 0
     loop: 0
     defaultVolume: 1
