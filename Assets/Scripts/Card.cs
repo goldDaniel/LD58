@@ -46,7 +46,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public TextMeshProUGUI essenceCostText;
 
 	[SerializeField]
-	private Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite;
+	public Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite, luckSprite, essenceSprite;
 
 	public void OnCardInitialize(CardTemplate card)
 	{

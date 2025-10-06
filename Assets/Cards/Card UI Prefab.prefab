@@ -602,8 +602,10 @@ MonoBehaviour:
   rectTransform: {fileID: 534891283473844812}
   cardTemplate: {fileID: 0}
   currentCost: 0
+  originalCost: 0
   title: {fileID: 7918925377128381656}
   description: {fileID: 3932757286614691087}
+  dummy: {fileID: 0}
   displayOnly: 0
   essenceCostText: {fileID: 3753181000911521139}
   damageSprite: {fileID: 21300000, guid: 973317c3e252ebd40b1e70e392d6f7be, type: 3}
@@ -618,6 +620,8 @@ MonoBehaviour:
   bloodyStrikeSprite: {fileID: 21300000, guid: adfbd1c1e1b45374e977098fde8d0045, type: 3}
   blockSprite: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
   drawSprite: {fileID: -7112124861343603569, guid: 13b2e676d40ff3e46b5cd533fa1f7864, type: 3}
+  luckSprite: {fileID: 21300000, guid: 382edd26c41ba734691b6a88ea013117, type: 3}
+  essenceSprite: {fileID: 21300000, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
 --- !u!225 &3742981311893057475
 CanvasGroup:
   m_ObjectHideFlags: 0
