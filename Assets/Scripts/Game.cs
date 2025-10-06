@@ -811,15 +811,6 @@ public void Discard(Card card)
 		do
 		{
 			currentRepeat++;
-			if (player.PactOfPower > 0)
-			{
-				player.PowerCounter++;
-				if (player.PowerCounter >= 3)
-				{
-					yield return player.TakeDamage(3 * player.PactOfPower);
-					player.CurrentEssence += player.PactOfPower;
-				}
-			}
 
 			yield return player.ApplyEffectSequence(card);
 			foreach (var enemy in enemies)
@@ -853,16 +844,6 @@ public void Discard(Card card)
 				yield return enemy.ApplyEffectSequence(card, player.Strength);
 			}
 		} while (currentRepeat <= player.RepeatAllCurrentTurn);
-						yield return player.TakeDamage(3 * player.PactOfPower);
-						player.CurrentEssence += player.PactOfPower;
-					}
-				}
-
-				yield return player.ApplyEffectSequence(card);
-
-				yield return enemy.ApplyEffectSequence(card, player.Strength);
-			} while (currentRepeat <= player.RepeatAllCurrentTurn);
-
 		attackInProgress = false;
 
 		CheckDeadEnemies();
