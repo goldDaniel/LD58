@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -487,11 +488,24 @@ public class Game : MonoBehaviour
 
 	IEnumerator DoEnemyTurn()
 	{
-		while(enemyTurnIndex < activeEnemies.Count)
+        while (enemyTurnIndex < activeEnemies.Count)
+        {
+            var active = activeEnemies[enemyTurnIndex];
+
+            yield return EnemyStatusCheck(active);
+
+            enemyTurnIndex++;
+        }
+
+        CheckDeadEnemies();
+
+        enemyTurnIndex = 0;
+        while (enemyTurnIndex < activeEnemies.Count)
 		{
 			var active = activeEnemies[enemyTurnIndex];
 			var others = activeEnemies.Where(e => e != active).ToList();
-			yield return AttackPlayerSequence(active, others, player);
+
+            yield return AttackPlayerSequence(active, others, player);
 
 			foreach(var effect in active.effects)
 				Destroy(effect.gameObject);
@@ -507,7 +521,19 @@ public class Game : MonoBehaviour
 		yield return OnTurnStart(false);
 	}
 
-	public IEnumerator NextAttack(Enemy enemy, bool prepare)
+    public IEnumerator EnemyStatusCheck(Enemy attacker)
+	{
+        if (attacker.Curse > 0)
+        {
+            AudioManager.Instance.Play("Hit");
+            attacker.TakeDamage(attacker.Curse);
+            attacker.Curse--;
+        }
+
+        return null;
+    }
+
+    public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
         //End Attack Block
 
@@ -551,13 +577,6 @@ public class Game : MonoBehaviour
         }
 		else
 		{
-            if (attacker.Curse > 0)
-            {
-                AudioManager.Instance.Play("Hit");
-				attacker.TakeDamage(attacker.Curse);
-                attacker.Curse--;
-            }
-
             //Start Attack Block
             if (Attack.ClearNegative)
             {
@@ -924,7 +943,6 @@ public class Game : MonoBehaviour
 		attackInProgress = false;
 
 		CheckDeadEnemies();
-
 
 		// animate to discard pile
 		{
