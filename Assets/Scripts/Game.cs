@@ -688,9 +688,14 @@ public class Game : MonoBehaviour
                     }
 					else if (JinxedAttack)
 					{
-						var RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+						var RandomEnemy = attacker;
 
-                        AudioManager.Instance.Play("Hit");
+                        if (otherEnemies.Count > 0)
+						{
+                            RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+                        }
+
+						AudioManager.Instance.Play("Hit");
                         yield return effect.MoveTo(RandomEnemy.transform.position);
                         yield return RandomEnemy.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
