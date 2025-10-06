@@ -175,7 +175,7 @@ public class Player
     {
         if (card.cardTemplate.SelfDamage > 0)
         {
-            yield return TakeDamage(card.cardTemplate.SelfDamage);
+            TakeDamage(card.cardTemplate.SelfDamage);
         }
         if (card.cardTemplate.Draw > 0)
         {
@@ -220,7 +220,7 @@ public class Player
 
         yield return null;
     }
-    public IEnumerator TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
 
         // TODO (danielg): animate the damage indicator from the enemy to the player
@@ -237,9 +237,6 @@ public class Player
         }
 
         CurrentHealth -= damage;
-
-        yield return null;
-        
     }
     public void Heal(int healing)
     {
