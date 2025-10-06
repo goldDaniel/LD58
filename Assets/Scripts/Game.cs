@@ -787,7 +787,7 @@ public class Game : MonoBehaviour
 
 		// move card to starting location
 		{
-			var tween = card.rectTransform.DOMove(cardStartingLocation, 0.3f).SetEase(Ease.InOutQuad);
+			var tween = card.rectTransform.DOMove(cardStartingLocation.xy() + Vector2.up * 200f, 0.3f).SetEase(Ease.InOutQuad);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
