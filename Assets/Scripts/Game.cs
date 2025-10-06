@@ -138,7 +138,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = false;
+		bool testing = true;
 
 		if (testing)
 		{
@@ -841,15 +841,6 @@ public void Discard(Card card)
 			do
 			{
 				currentRepeat++;
-				if (player.PactOfPower > 0)
-				{
-					player.PowerCounter++;
-					if (player.PowerCounter >= 3)
-					{
-						yield return player.TakeDamage(3 * player.PactOfPower);
-						player.CurrentEssence += player.PactOfPower;
-					}
-				}
 
 				yield return player.ApplyEffectSequence(card);
 

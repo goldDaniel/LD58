@@ -150,9 +150,26 @@ public class Player
     [NonSerialized] public int RepeatAllNext = 0;
     [NonSerialized] public int RepeatAllCurrentTurn = 0;
     [NonSerialized] public int doubleDamageHit = 0;
-	[NonSerialized] public int PactOfPower = 0;
-	[NonSerialized] public int PactOfSacrifice = 0;
 	[NonSerialized] public int PowerCounter = 0;
+
+    public Player()
+    {
+        MaxEssence = 3;
+        CurrentEssence = 3;
+        Block = 0;
+        IncomingDamage = 0;
+        MaxHealth = 100;
+        CurrentHealth = 100;
+        Strength = 0;
+        Curse = 0;
+        Lucky = 0;
+        Lethargic = false;
+        CurseEachPlay = 0;
+        RepeatAllNext = 0;
+        RepeatAllCurrentTurn = 0;
+        doubleDamageHit = 0;
+        PowerCounter = 0;
+    }
 
     public IEnumerator ApplyEffectSequence(Card card)
     {
@@ -183,14 +200,6 @@ public class Player
         if (card.cardTemplate.EssenceGain > 0)
         {
             CurrentEssence += card.cardTemplate.EssenceGain;
-        }
-        if (card.cardTemplate.Power)
-        {
-            PactOfPower += 1;
-        }
-        if (card.cardTemplate.Sacrifice)
-        {
-            PactOfSacrifice += 1;
         }
         if (card.cardTemplate.RepeatAllNext)
         {
