@@ -3591,6 +3591,7 @@ MonoBehaviour:
   castEffectStart: {fileID: 1102268108}
   cardsRemainingText: {fileID: 919282911}
   howToPlayPanel: {fileID: 851566271}
+  handCanvasGroup: {fileID: 0}
   odinStartingCards:
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}

@@ -78,8 +78,6 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private RectTransform howToPlayPanel;
 
-	[SerializeField]
-	private CanvasGroup handCanvasGroup;
 
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
@@ -798,7 +796,6 @@ public void Discard(Card card)
 			}
 		}
 		yield return new WaitForSeconds(0.1f);
-
 
 
 		if (card.cardTemplate.SelfDamage > 0)
