@@ -152,7 +152,7 @@ public class Player
     [NonSerialized] public int doubleDamageHit = 0;
 	[NonSerialized] public int PowerCounter = 0;
 
-    public Player()
+    public void Init()
     {
         MaxEssence = 3;
         CurrentEssence = 3;

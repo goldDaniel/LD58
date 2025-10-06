@@ -127,8 +127,7 @@ public class Game : MonoBehaviour
 
 	private IEnumerator LoadLevel_Internal()
 	{
-		player.CurrentHealth = player.MaxHealth;
-		player.CurrentEssence = player.MaxEssence;
+		player.Init();
 
 		AudioManager.Instance.PlayMusicCrossfade("CombatMusic", 2f);
 
