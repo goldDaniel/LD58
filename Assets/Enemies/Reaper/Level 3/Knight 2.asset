@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Glorious Knight!
   EnemyModel: 8
-  MaxHealth: 12
+  MaxHealth: 26
   Block: 3
   AttackList:
     Attacks:

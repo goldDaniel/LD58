@@ -13,16 +13,9 @@ MonoBehaviour:
   m_Name: Test Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Spooky Spirit
-  EnemyModel: 1
+  EnemyModel: 9
   MaxHealth: 10
   Block: 0
   AttackList:
     Attacks:
-    - {fileID: 11400000, guid: c08ce64469bcaa149b726c60e2c5f6b8, type: 2}
-    - {fileID: 11400000, guid: 950d19e3734f3254bacd4d62100f1858, type: 2}
-    - {fileID: 11400000, guid: 3cd7c1ced42ea5d4e98b812706b9dcbd, type: 2}
-    - {fileID: 11400000, guid: 8345451fc0e7bb74ba1149e0083ee089, type: 2}
     - {fileID: 11400000, guid: 08a9d476872c2dd4fb8feffd961f464a, type: 2}
-    - {fileID: 11400000, guid: afcfd311f8c2d0844a7cc36a6d673bd3, type: 2}
-    - {fileID: 11400000, guid: 4244a80fab574ac4bb08fa9cb61585a5, type: 2}
-    - {fileID: 11400000, guid: d5e7bc1b1aff8b841aed1a9564381a6e, type: 2}

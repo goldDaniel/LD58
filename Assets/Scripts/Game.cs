@@ -138,7 +138,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = false;
+		bool testing = true;
 
 		if (testing)
 		{
@@ -701,9 +701,14 @@ public class Game : MonoBehaviour
                     }
 					else if (JinxedAttack)
 					{
-						var RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+						var RandomEnemy = attacker;
 
-                        AudioManager.Instance.Play("Hit");
+                        if (otherEnemies.Count > 0)
+						{
+                            RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+                        }
+
+						AudioManager.Instance.Play("Hit");
                         yield return effect.MoveTo(RandomEnemy.transform.position);
                         yield return RandomEnemy.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
@@ -835,15 +840,6 @@ public class Game : MonoBehaviour
 			do
 			{
 				currentRepeat++;
-				if (player.PactOfPower > 0)
-				{
-					player.PowerCounter++;
-					if (player.PowerCounter >= 3)
-					{
-						yield return player.TakeDamage(3 * player.PactOfPower);
-						player.CurrentEssence += player.PactOfPower;
-					}
-				}
 
 				yield return player.ApplyEffectSequence(card);
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Proud Chiefton!
   EnemyModel: 4
-  MaxHealth: 13
+  MaxHealth: 23
   Block: 1
   AttackList:
     Attacks:
