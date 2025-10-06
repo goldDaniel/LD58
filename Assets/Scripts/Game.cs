@@ -1,17 +1,13 @@
 using Assets.Scripts;
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Game : MonoBehaviour
 {
@@ -33,10 +29,10 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private List<CardTemplate> defaultDeck;
 
-    [SerializeField]
-    private List<CardTemplate> testDeck;
+	[SerializeField]
+	private List<CardTemplate> testDeck;
 
-    [SerializeField]
+	[SerializeField]
 	private RectTransform handContainer;
 
 	[SerializeField] 
@@ -84,12 +80,12 @@ public class Game : MonoBehaviour
 
 
 	[SerializeField] public List<CardTemplate> odinStartingCards;
-    [SerializeField] public List<CardTemplate> mickiStartingCards;
-    [SerializeField] public List<CardTemplate> anubisStartingCards;
-    [SerializeField] public List<CardTemplate> reaperStartingCards;
-    [SerializeField] public List<CardTemplate> fatesStartingCards;
+	[SerializeField] public List<CardTemplate> mickiStartingCards;
+	[SerializeField] public List<CardTemplate> anubisStartingCards;
+	[SerializeField] public List<CardTemplate> reaperStartingCards;
+	[SerializeField] public List<CardTemplate> fatesStartingCards;
 
-    private int enemyTurnIndex;
+	private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
 	public void Awake()
@@ -138,8 +134,8 @@ public class Game : MonoBehaviour
 		var level = GameProgress.Instance.selectedLevel ?? testLevel;
 		foreach (var enemyTemplate in level.Enemies)
 		{
-            SpawnEnemy(enemyTemplate);
-        }
+			SpawnEnemy(enemyTemplate);
+		}
 
 		bool testing = false;
 
@@ -172,30 +168,30 @@ public class Game : MonoBehaviour
 			}
 		}
 
-        yield return ShuffleDeckAnimation();
-        deck.Shuffle();
+		yield return ShuffleDeckAnimation();
+		deck.Shuffle();
 
 		yield return OnTurnStart(true);
 	}
 
 	private void SpawnEnemy(EnemyTemplate enemyTemplate)
 	{
-        var enemy = Instantiate(enemyPrefab, enemyContainer);
-        enemy.OnIntitialize(enemyTemplate);
-        activeEnemies.Add(enemy);
-    }
+		var enemy = Instantiate(enemyPrefab, enemyContainer);
+		enemy.OnIntitialize(enemyTemplate);
+		activeEnemies.Add(enemy);
+	}
 
 	public IEnumerator DrawHand(int CardsToDraw)
 	{
 		CardsToDraw -= (player.Lethargic ? 1 : 0);
 
-        for (int i = 0; i < CardsToDraw; i++)
+		for (int i = 0; i < CardsToDraw; i++)
 		{
 			if (hand.Size < 15)
 			{
-                yield return DrawCardFromDeck(false);
-            }
-        }
+				yield return DrawCardFromDeck(false);
+			}
+		}
 		player.Lethargic = false;
 	}
 
@@ -223,7 +219,7 @@ public class Game : MonoBehaviour
 			card.rectTransform.SetParent(handContainer);
 			hand.Add(card);
 		}
-    }
+	}
 
 	IEnumerator RefillDeck()
 	{
@@ -233,7 +229,7 @@ public class Game : MonoBehaviour
 
 			card.UpdateCost(card.originalCost);
 
-            deck.Add(card);
+			deck.Add(card);
 
 			var tween = card.rectTransform.DOMove(deckLocation.anchoredPosition, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())
@@ -274,7 +270,7 @@ public class Game : MonoBehaviour
 
 			tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
 		}
-    }
+	}
 
 	public void SelectEnemy(Enemy enemy)
 	{
@@ -313,26 +309,26 @@ public class Game : MonoBehaviour
 		if (attackInProgress)
 			return false;
 
-        if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
-        {
-            player.CurrentEssence -= card.currentCost;
+		if (player.CurrentEssence >= card.currentCost && selectedEnemy != null)
+		{
+			player.CurrentEssence -= card.currentCost;
 			
 			var enemy = selectedEnemy;
 			DeselectEnemy(selectedEnemy);
 
 			attackInProgress = true;
-            PlayerStatus();
+			PlayerStatus();
 
-            StartCoroutine(AttackEnemySeqeunce(enemy, card));
+			StartCoroutine(AttackEnemySeqeunce(enemy, card));
 
-            return true;
-        }
-        
+			return true;
+		}
+		
 
 		return false;
 	}
 
-    public IEnumerator PlayerStatus ()
+	public IEnumerator PlayerStatus ()
 	{
 		if (player.CurseEachPlay > 0)
 		{
@@ -346,7 +342,7 @@ public class Game : MonoBehaviour
 	}
 
 
-    public void OnTurnEnd()
+	public void OnTurnEnd()
 	{
 		Debug.Assert(IsPlayerTurn, "Cannot end turn!");
 		if (!IsPlayerTurn)
@@ -367,8 +363,8 @@ public class Game : MonoBehaviour
 
 		if (player.CurrentEssence < player.MaxEssence)
 		{
-            player.CurrentEssence = player.MaxEssence;
-        }
+			player.CurrentEssence = player.MaxEssence;
+		}
 		
 		player.Block = 0;
 		player.RepeatAllCurrentTurn = player.RepeatAllNext;
@@ -382,17 +378,17 @@ public class Game : MonoBehaviour
 
 		yield return StartCoroutine(DrawHand(Draw));
 
-        ApplyStatusEffects();
+		ApplyStatusEffects();
 	}
 
 	public void ApplyStatusEffects()
 	{
 		if (player.Curse > 0)
 		{
-            player.TakeDamage(player.Curse);
+			player.TakeDamage(player.Curse);
 			player.Curse--;
-            CheckWinLoss();
-        }
+			CheckWinLoss();
+		}
 
 		if (player.Lucky > 0)
 		{
@@ -403,60 +399,60 @@ public class Game : MonoBehaviour
 		{
 			player.TakeDamage(player.IncomingDamage);
 			player.IncomingDamage = 0;
-            CheckWinLoss();
-        }
+			CheckWinLoss();
+		}
 	}
 
 	IEnumerator PrepareAttack(Enemy enemy)
 	{
 		yield return enemy.OnTurnStart();
 
-        var attack = enemy.Attacks.Attacks.FirstOrDefault();
-        if (attack.ClearNegative)
-            yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
+		var attack = enemy.Attacks.Attacks.FirstOrDefault();
+		if (attack.ClearNegative)
+			yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
 
-        if (attack.ApplyLethergy)
-            yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
+		if (attack.ApplyLethergy)
+			yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
 
 
-        if (attack.Heal != -1)
-        {
-            if (attack.TargetAllEnemies)
-                yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All\n{attack.Heal}");
-            else if (attack.TargetAllOtherEnemies)
+		if (attack.Heal != -1)
+		{
+			if (attack.TargetAllEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All\n{attack.Heal}");
+			else if (attack.TargetAllOtherEnemies)
 				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal All Other\n{attack.Heal}");
-            else if (attack.TargetRandomEnemy)
+			else if (attack.TargetRandomEnemy)
 				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Random\n{attack.Heal}");
-            else if (attack.TargetSelf)
+			else if (attack.TargetSelf)
 				yield return CreateEnemyEffect(enemy, EffectType.Heal, 0, $"Heal Self\n{attack.Heal}");
-        }
+		}
 
-        if (attack.Block != -1)
-        {
-            if (attack.TargetAllEnemies)
+		if (attack.Block != -1)
+		{
+			if (attack.TargetAllEnemies)
 				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give All\n{attack.Block}");
-            else if (attack.TargetAllOtherEnemies)
+			else if (attack.TargetAllOtherEnemies)
 				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give All Other\n{attack.Block}");
-            else if (attack.TargetRandomEnemy)
+			else if (attack.TargetRandomEnemy)
 				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give Random\n{attack.Block}");
-            else if (attack.TargetSelf)
+			else if (attack.TargetSelf)
 				yield return CreateEnemyEffect(enemy, EffectType.Shield, 0, $"Give Self\n{attack.Block}");
-        }
+		}
 
-        if (attack.Curse != -1)
+		if (attack.Curse != -1)
 			yield return CreateEnemyEffect(enemy, EffectType.Curse, 0, $"Curse\n{attack.Curse}");
 
-        if (attack.Strength != -1)
-        {
-            if (attack.TargetAllEnemies)
-                yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} All");
-            else if (attack.TargetAllOtherEnemies)
+		if (attack.Strength != -1)
+		{
+			if (attack.TargetAllEnemies)
+				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} All");
+			else if (attack.TargetAllOtherEnemies)
 				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Other");
-            else if (attack.TargetRandomEnemy)
+			else if (attack.TargetRandomEnemy)
 				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Random");
-            else if (attack.TargetSelf)
+			else if (attack.TargetSelf)
 				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Self");
-        }
+		}
 		string bonusDamages = "";
 		if (attack.MassBonus)
 		{
@@ -470,14 +466,14 @@ public class Game : MonoBehaviour
 		}
 
 
-        if (attack.Damage != -1)
-        {
+		if (attack.Damage != -1)
+		{
 			if (attack.NumberOfAttacks > 1)
 				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"{attack.Damage}x{attack.NumberOfAttacks}{bonusDamages}");
 			else
 				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"Damage\n{attack.Damage}{bonusDamages}");
-        }
-    }
+		}
+	}
 
 	IEnumerator CreateEnemyEffect(Enemy enemy, EffectType type, int value, string textOverride)
 	{
@@ -490,24 +486,24 @@ public class Game : MonoBehaviour
 
 	IEnumerator DoEnemyTurn()
 	{
-        while (enemyTurnIndex < activeEnemies.Count)
-        {
-            var active = activeEnemies[enemyTurnIndex];
+		while (enemyTurnIndex < activeEnemies.Count)
+		{
+			var active = activeEnemies[enemyTurnIndex];
 
-            yield return EnemyStatusCheck(active);
+			yield return EnemyStatusCheck(active);
 
-            enemyTurnIndex++;
-        }
+			enemyTurnIndex++;
+		}
 
-        CheckDeadEnemies();
+		CheckDeadEnemies();
 
-        enemyTurnIndex = 0;
-        while (enemyTurnIndex < activeEnemies.Count)
+		enemyTurnIndex = 0;
+		while (enemyTurnIndex < activeEnemies.Count)
 		{
 			var active = activeEnemies[enemyTurnIndex];
 			var others = activeEnemies.Where(e => e != active).ToList();
 
-            yield return AttackPlayerSequence(active, others, player);
+			yield return AttackPlayerSequence(active, others, player);
 
 			foreach(var effect in active.effects)
 				Destroy(effect.gameObject);
@@ -519,34 +515,34 @@ public class Game : MonoBehaviour
 		CheckDeadEnemies();
 		CheckWinLoss();
 
-        enemyTurnIndex = -1;
+		enemyTurnIndex = -1;
 		yield return OnTurnStart(false);
 	}
 
-    public IEnumerator EnemyStatusCheck(Enemy attacker)
+	public IEnumerator EnemyStatusCheck(Enemy attacker)
 	{
-        if (attacker.Curse > 0)
-        {
-            AudioManager.Instance.Play("Hit");
-            attacker.TakeDamage(attacker.Curse);
-            attacker.Curse--;
-        }
+		if (attacker.Curse > 0)
+		{
+			AudioManager.Instance.Play("Hit");
+			attacker.TakeDamage(attacker.Curse);
+			attacker.Curse--;
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    public IEnumerator NextAttack(Enemy enemy, bool prepare)
+	public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
-        //End Attack Block
+		//End Attack Block
 
-        EnemyAttackTemplate OldAttack = enemy.Attacks.Attacks[0];
-        enemy.Attacks.Attacks.RemoveAt(0);
-        enemy.Attacks.Attacks.Add(OldAttack);
-        if (prepare)
-        {
-            yield return PrepareAttack(enemy);
-        }
-    }
+		EnemyAttackTemplate OldAttack = enemy.Attacks.Attacks[0];
+		enemy.Attacks.Attacks.RemoveAt(0);
+		enemy.Attacks.Attacks.Add(OldAttack);
+		if (prepare)
+		{
+			yield return PrepareAttack(enemy);
+		}
+	}
 
 	//Ben
 	public void CheckDeadEnemies()
@@ -561,7 +557,7 @@ public class Game : MonoBehaviour
 			}
 		}
 
-        foreach (var Enemy in savedEnemies)
+		foreach (var Enemy in savedEnemies)
 		{
 			Destroy(Enemy.gameObject);
 			activeEnemies.Remove(Enemy);
@@ -575,167 +571,167 @@ public class Game : MonoBehaviour
 
 		if (attacker.FateSealed)
 		{
-            attacker.FateSealed = false;
-        }
+			attacker.FateSealed = false;
+		}
 		else
 		{
-            //Start Attack Block
-            if (Attack.ClearNegative)
-            {
-                attacker.Doom = 0;
-                attacker.Jinxed = false;
-                attacker.Confused = false;
-                attacker.Weak = 0;
-                attacker.Curse = 0;
-            }
+			//Start Attack Block
+			if (Attack.ClearNegative)
+			{
+				attacker.Doom = 0;
+				attacker.Jinxed = false;
+				attacker.Confused = false;
+				attacker.Weak = 0;
+				attacker.Curse = 0;
+			}
 
-            if (Attack.SpawnEnemy != null)
-            {
-                SpawnEnemy(Attack.SpawnEnemy);
-            }
+			if (Attack.SpawnEnemy != null)
+			{
+				SpawnEnemy(Attack.SpawnEnemy);
+			}
 
-            if (Attack.ApplyLethergy)
-            {
-                player.Lethargic = true;
-            }
+			if (Attack.ApplyLethergy)
+			{
+				player.Lethargic = true;
+			}
 
-            List<Enemy> targets = new();
-            if (Attack.TargetAllEnemies)
-                targets.AddRange(activeEnemies);
-            else if (Attack.TargetAllOtherEnemies)
-                targets.AddRange(otherEnemies);
-            else if (Attack.TargetRandomEnemy)
-                targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
-            else if (Attack.TargetSelf)
-                targets.Add(attacker);
+			List<Enemy> targets = new();
+			if (Attack.TargetAllEnemies)
+				targets.AddRange(activeEnemies);
+			else if (Attack.TargetAllOtherEnemies)
+				targets.AddRange(otherEnemies);
+			else if (Attack.TargetRandomEnemy)
+				targets.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
+			else if (Attack.TargetSelf)
+				targets.Add(attacker);
 
-            if (Attack.Heal != -1)
-            {
-                var effect = attacker.effects[0];
-                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-                var initialPosition = effect.transform.position;
+			if (Attack.Heal != -1)
+			{
+				var effect = attacker.effects[0];
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+				var initialPosition = effect.transform.position;
 
-                foreach (var enemy in targets)
-                {
-                    AudioManager.Instance.Play("Heal");
-                    yield return effect.MoveTo(enemy.transform.position);
-                    enemy.CurrentHealth += Attack.Heal;
-                    yield return effect.MoveTo(initialPosition);
-                }
-                yield return effect.FadeDestroy(attacker.effects);
-            }
+				foreach (var enemy in targets)
+				{
+					AudioManager.Instance.Play("Heal");
+					yield return effect.MoveTo(enemy.transform.position);
+					enemy.CurrentHealth += Attack.Heal;
+					yield return effect.MoveTo(initialPosition);
+				}
+				yield return effect.FadeDestroy(attacker.effects);
+			}
 
-            if (Attack.Block != -1)
-            {
-                var effect = attacker.effects[0];
-                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-                var initialPosition = effect.transform.position;
+			if (Attack.Block != -1)
+			{
+				var effect = attacker.effects[0];
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+				var initialPosition = effect.transform.position;
 
-                foreach (var enemy in targets)
-                {
-                    AudioManager.Instance.Play("Shield");
-                    yield return effect.MoveTo(enemy.transform.position);
-                    enemy.Block += Attack.Block;
-                    yield return effect.MoveTo(initialPosition);
-                }
-                yield return effect.FadeDestroy(attacker.effects);
-            }
+				foreach (var enemy in targets)
+				{
+					AudioManager.Instance.Play("Shield");
+					yield return effect.MoveTo(enemy.transform.position);
+					enemy.Block += Attack.Block;
+					yield return effect.MoveTo(initialPosition);
+				}
+				yield return effect.FadeDestroy(attacker.effects);
+			}
 
-            if (Attack.Curse != -1)
-            {
-                var effect = attacker.effects[0];
-                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-                var initialPosition = effect.transform.position;
+			if (Attack.Curse != -1)
+			{
+				var effect = attacker.effects[0];
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+				var initialPosition = effect.transform.position;
 
-                AudioManager.Instance.Play("Curse");
-                yield return effect.MoveTo(player.CurseText.transform.position);
-                player.Curse += Attack.Curse;
-                yield return effect.MoveTo(initialPosition);
-                yield return effect.FadeDestroy(attacker.effects);
-            }
+				AudioManager.Instance.Play("Curse");
+				yield return effect.MoveTo(player.CurseText.transform.position);
+				player.Curse += Attack.Curse;
+				yield return effect.MoveTo(initialPosition);
+				yield return effect.FadeDestroy(attacker.effects);
+			}
 
-            if (Attack.Strength != -1)
-            {
-                var effect = attacker.effects[0];
-                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-                var initialPosition = effect.transform.position;
+			if (Attack.Strength != -1)
+			{
+				var effect = attacker.effects[0];
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+				var initialPosition = effect.transform.position;
 
-                foreach (var enemy in targets)
-                {
-                    AudioManager.Instance.Play("Strength", null, 0.6f);
-                    yield return effect.MoveTo(enemy.transform.position);
-                    enemy.Strength += Attack.Strength;
-                    yield return effect.MoveTo(initialPosition);
-                }
-                yield return effect.FadeDestroy(attacker.effects);
+				foreach (var enemy in targets)
+				{
+					AudioManager.Instance.Play("Strength", null, 0.6f);
+					yield return effect.MoveTo(enemy.transform.position);
+					enemy.Strength += Attack.Strength;
+					yield return effect.MoveTo(initialPosition);
+				}
+				yield return effect.FadeDestroy(attacker.effects);
 
 
-            }
+			}
 
-            if (Attack.Damage != -1)
-            {
-                var effect = attacker.effects[0];
-                effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
-                var initialPosition = effect.transform.position;
+			if (Attack.Damage != -1)
+			{
+				var effect = attacker.effects[0];
+				effect.GetComponent<RectTransform>().SetParent(UIController.Instance.GetComponent<RectTransform>());
+				var initialPosition = effect.transform.position;
 
-                int TotalDamage = Attack.Damage;
+				int TotalDamage = Attack.Damage;
 
-                if (attacker.Weak != -1)
-                    TotalDamage -= attacker.Weak;
-                if (attacker.Strength != -1)
-                    TotalDamage += attacker.Strength;
-                if (Attack.MassBonus)
-                    TotalDamage += otherEnemies.Count;
-                if (Attack.BlockBonus)
-                    TotalDamage += attacker.Block;
-                if (Attack.MissingHealthBonus)
-                    TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
+				if (attacker.Weak != -1)
+					TotalDamage -= attacker.Weak;
+				if (attacker.Strength != -1)
+					TotalDamage += attacker.Strength;
+				if (Attack.MassBonus)
+					TotalDamage += otherEnemies.Count;
+				if (Attack.BlockBonus)
+					TotalDamage += attacker.Block;
+				if (Attack.MissingHealthBonus)
+					TotalDamage += (attacker.CurrentHealth / attacker.maxHealth) * 10;
 
-                var IsConfused = false;
-                if (attacker.Confused)
-                {
-                    var ConfusedChance = 50;
+				var IsConfused = false;
+				if (attacker.Confused)
+				{
+					var ConfusedChance = 50;
 					if (UnityEngine.Random.Range(0, 100) < ConfusedChance)
 					{
 						IsConfused = true;
 						attacker.Confused = false;
 					}
-                }
+				}
 
-                var JinxedAttack = false;
-                if (attacker.Jinxed)
-                {
-                    if (UnityEngine.Random.Range(0, 2) == 0)
-                    {
-                        JinxedAttack = true;
-                        attacker.Jinxed = false;
-                    }
-                }
+				var JinxedAttack = false;
+				if (attacker.Jinxed)
+				{
+					if (UnityEngine.Random.Range(0, 2) == 0)
+					{
+						JinxedAttack = true;
+						attacker.Jinxed = false;
+					}
+				}
 
-                int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
-                for (int i = 0; i < attackcount; i++)
-                {
-                    if (IsConfused)
-                    {
-                        AudioManager.Instance.Play("Hit");
-                        yield return effect.MoveTo(attacker.transform.position);
-                        attacker.TakeDamage(TotalDamage);
-                        yield return effect.MoveTo(initialPosition);
-                    }
+				int attackcount = Attack.NumberOfAttacks > 1 ? Attack.NumberOfAttacks : 1;
+				for (int i = 0; i < attackcount; i++)
+				{
+					if (IsConfused)
+					{
+						AudioManager.Instance.Play("Hit");
+						yield return effect.MoveTo(attacker.transform.position);
+						attacker.TakeDamage(TotalDamage);
+						yield return effect.MoveTo(initialPosition);
+					}
 					else if (JinxedAttack)
 					{
 						var RandomEnemy = attacker;
 
-                        if (otherEnemies.Count > 0)
+						if (otherEnemies.Count > 0)
 						{
-                            RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
-                        }
+							RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+						}
 
 						AudioManager.Instance.Play("Hit");
-                        yield return effect.MoveTo(RandomEnemy.transform.position);
-                        RandomEnemy.TakeDamage(TotalDamage);
-                        yield return effect.MoveTo(initialPosition);
-                    }
+						yield return effect.MoveTo(RandomEnemy.transform.position);
+						RandomEnemy.TakeDamage(TotalDamage);
+						yield return effect.MoveTo(initialPosition);
+					}
 					else
 					{
 						AudioManager.Instance.Play("Hit");
@@ -744,9 +740,9 @@ public class Game : MonoBehaviour
 						yield return effect.MoveTo(initialPosition);
 					}
 
-                }
-            }
-        }
+				}
+			}
+		}
 		
 		yield return NextAttack(attacker, false);
 	}
@@ -968,21 +964,21 @@ public class Game : MonoBehaviour
 
 	public void CheckWinLoss()
 	{
-        if (player.CurrentHealth <= 0)
-        {
+		if (player.CurrentHealth <= 0)
+		{
 			GameProgress.Instance.pendingRandomCards += 1;
 			SceneManager.LoadScene("Level Select");
 			GameProgress.Instance.hasCompletedTutorial = true;
-        }
+		}
 
-        else if (activeEnemies.Count == 0)
-        {
+		else if (activeEnemies.Count == 0)
+		{
 			GameProgress.Instance.AddRewardsFromCurrentLevel();
-            GameProgress.Instance.CompleteCurrentLevel();
-            SceneManager.LoadScene("Level Select");
+			GameProgress.Instance.CompleteCurrentLevel();
+			SceneManager.LoadScene("Level Select");
 			GameProgress.Instance.hasCompletedTutorial = true;
 		}
-    }
+	}
 
 	public bool HasCardInHand(Card card) => hand.Contains(card);
 }

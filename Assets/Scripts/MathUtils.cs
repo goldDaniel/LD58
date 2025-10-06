@@ -62,13 +62,13 @@ public static class MathUtils
 		return Mathf.Abs(value) < epsilon;
 	}
 
-    public static Rect RectTransformToScreenSpace(RectTransform transform)
-    {
-        Vector2 size = Vector2.Scale(transform.rect.size, transform.lossyScale);
-        float x = transform.position.x - (transform.pivot.x * size.x);
-        float y = transform.position.y - ((1.0f - transform.pivot.y) * size.y);
-        return new Rect(x, y, size.x, size.y);
-    }
+	public static Rect RectTransformToScreenSpace(RectTransform transform)
+	{
+		Vector2 size = Vector2.Scale(transform.rect.size, transform.lossyScale);
+		float x = transform.position.x - (transform.pivot.x * size.x);
+		float y = transform.position.y - ((1.0f - transform.pivot.y) * size.y);
+		return new Rect(x, y, size.x, size.y);
+	}
 }
 
 // swizzles

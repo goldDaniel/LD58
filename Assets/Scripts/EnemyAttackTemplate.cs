@@ -1,5 +1,3 @@
-
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyAttack", menuName = "Enemy Attack", order = 1)]

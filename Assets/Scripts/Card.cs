@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -58,11 +56,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		essenceCostText.text = $"{currentCost}";
 		originalCost = currentCost;
 
-        dummy = Instantiate(this, UIController.Instance.transform);
-        dummy.EnableRaycast = false;
-        dummy.SetupIcons(card);
+		dummy = Instantiate(this, UIController.Instance.transform);
+		dummy.EnableRaycast = false;
+		dummy.SetupIcons(card);
 
-        dummy.enabled = false;
+		dummy.enabled = false;
 		dummy.transform.localScale = new Vector2(1.75f, 1.75f);
 		dummy.gameObject.SetActive(false);
 
@@ -71,10 +69,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void UpdateCost(int cost)
 	{
-        currentCost = cost;
-        essenceCostText.text = $"{cost}";
+		currentCost = cost;
+		essenceCostText.text = $"{cost}";
 		dummy.essenceCostText.text = essenceCostText.text;
-    }
+	}
 
 	private void SetupIcons(CardTemplate card)
 	{
@@ -257,26 +255,26 @@ public class CardGroup
 
 	public void ForEach(Action<Card> action) => cards.ForEach(action);
 
-    public void ForEachReverse(Action<Card> action)
+	public void ForEachReverse(Action<Card> action)
 	{
 		for(int i = cards.Count - 1; i >= 0; --i)
 			action(cards[i]);
 	}
 
-    public void Shuffle()
+	public void Shuffle()
 	{
-        System.Random rng = new();
+		System.Random rng = new();
 
-        int n = cards.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            Card value = cards[k];
-            cards[k] = cards[n];
-            cards[n] = value;
-        }
-    }
+		int n = cards.Count;
+		while (n > 1)
+		{
+			n--;
+			int k = rng.Next(n + 1);
+			Card value = cards[k];
+			cards[k] = cards[n];
+			cards[n] = value;
+		}
+	}
 
 	public Card Draw()
 	{

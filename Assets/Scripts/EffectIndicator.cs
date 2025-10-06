@@ -9,20 +9,20 @@ public enum EffectType { Damage, Shield, Heal, Other, Curse, Strength };
 
 public class EffectIndicator : MonoBehaviour
 {
-    [SerializeField]
-    public Image icon;
+	[SerializeField]
+	public Image icon;
 
-    [SerializeField]
-    private TextMeshProUGUI valueText;
-    [SerializeField]
-    private CanvasGroup canvasGroup;
+	[SerializeField]
+	private TextMeshProUGUI valueText;
+	[SerializeField]
+	private CanvasGroup canvasGroup;
 
-    [SerializeField]
-    private Sprite damageIcon;
-    [SerializeField] private Sprite shieldIcon;
-    [SerializeField] private Sprite healIcon;
-    [SerializeField] private Sprite OtherIcon;
-    [SerializeField] private Sprite CurseIcon;
+	[SerializeField]
+	private Sprite damageIcon;
+	[SerializeField] private Sprite shieldIcon;
+	[SerializeField] private Sprite healIcon;
+	[SerializeField] private Sprite OtherIcon;
+	[SerializeField] private Sprite CurseIcon;
 	[SerializeField] private Sprite StrengthIcon;
 	private RectTransform rectTransform;
 
@@ -74,17 +74,17 @@ public class EffectIndicator : MonoBehaviour
 	}
 
 	public IEnumerator FadeOut(float time)
-    {
-        float t = time;
+	{
+		float t = time;
 		canvasGroup.alpha = 1f;
-        while (t > 0)
-        {
-            canvasGroup.alpha = Mathf.Clamp01(t / time);
-            t -= Time.deltaTime;
-            yield return null;
-        }
-        canvasGroup.alpha = 0;
-    }
+		while (t > 0)
+		{
+			canvasGroup.alpha = Mathf.Clamp01(t / time);
+			t -= Time.deltaTime;
+			yield return null;
+		}
+		canvasGroup.alpha = 0;
+	}
 
 	public IEnumerator MoveTo(Vector2 position)
 	{
