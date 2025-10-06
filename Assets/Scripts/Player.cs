@@ -122,6 +122,7 @@ public class Player
         get => _lethargic;
         set
         {
+            _lethargic = value;
             if (_lethargic)
             {
                 LethargicText.text = "Lethargic!";

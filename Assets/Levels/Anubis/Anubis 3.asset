@@ -18,7 +18,7 @@ MonoBehaviour:
   randomReward: 6
   odinReward: 0
   mickiReward: 0
-  anubisReward: 7
+  anubisReward: 5
   reaperReward: 0
   fatesReward: 0
   Enemies:

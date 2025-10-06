@@ -21,8 +21,8 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 16; // 5
-	private int roundDraw = 10; // 2
+	private int handSize = 5; // 5
+	private int roundDraw = 2; // 2
 	private CardGroup hand = new();
 
 	[SerializeField]
