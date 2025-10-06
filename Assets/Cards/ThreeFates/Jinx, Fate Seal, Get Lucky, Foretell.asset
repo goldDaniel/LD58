@@ -42,6 +42,6 @@ MonoBehaviour:
   Power: 0
   Sacrifice: 0
   RepeatAllNext: 0
-  Foretell: 0
+  Foretell: 1
   CurseEachPlay: 0
   NextTurnDamage: -1
