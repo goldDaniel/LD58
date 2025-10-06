@@ -17,11 +17,11 @@ MonoBehaviour:
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 2
-  SelfDamage: 2
+  SelfDamage: 10
   TargetAllEnemies: 1
   RandomEnemy: 0
-  MinDamage: 4
-  MaxDamage: 4
+  MinDamage: 12
+  MaxDamage: 12
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0

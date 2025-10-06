@@ -16,7 +16,7 @@ MonoBehaviour:
   CardDescription: Gain Lucky
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
-  EssenceCost: 1
+  EssenceCost: 0
   SelfDamage: -1
   TargetAllEnemies: 0
   RandomEnemy: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1

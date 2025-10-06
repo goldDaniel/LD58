@@ -40,7 +40,7 @@ MonoBehaviour:
   MultHit: -1
   doubleDamageHits: -1
   Power: 0
-  Sacrifice: 1
+  Sacrifice: 0
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
