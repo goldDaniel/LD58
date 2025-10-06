@@ -36,7 +36,7 @@ public class Player
         set
         {
             _block = Math.Max(value, 0);
-            blockText.text = $"Block {_block}";
+            blockText.text = $"{_block}";
         }
     }
 
@@ -48,7 +48,7 @@ public class Player
         set
         {
             _incomingDamage = Math.Max(value, 0);
-            IncomingDamageText.text = $"Incoming Damage: {_incomingDamage}";
+            IncomingDamageText.text = $"{_incomingDamage}";
         }
     }
 
@@ -87,7 +87,7 @@ public class Player
         set
         {
             _strength = Math.Max(value, 0);
-            StrengthText.text = $"Strength: {_strength}";
+            StrengthText.text = $"{_strength}";
         }
     }
 
@@ -99,7 +99,7 @@ public class Player
         set
         {
             _curse = Math.Max(value, 0);
-            CurseText.text = $"Curse: {_curse}";
+            CurseText.text = $"{_curse}";
         }
     }
 
@@ -111,7 +111,7 @@ public class Player
         set
         {
             _lucky = Math.Max(value, 0);
-            LuckyText.text = $"Lucky: {_lucky}";
+            LuckyText.text = $"{_lucky}";
         }
     }
 
@@ -142,7 +142,7 @@ public class Player
         set
         {
             _curseEachPlay = Math.Max(value, 0);
-            CurseEachPlayText.text = $"Afflict: {_curseEachPlay}";
+            CurseEachPlayText.text = $"{_curseEachPlay}";
         }
     }
 
