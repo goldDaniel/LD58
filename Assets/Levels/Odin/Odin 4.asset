@@ -15,8 +15,8 @@ MonoBehaviour:
   LevelDescription: Odin Level 4
   LevelNumber: 4
   Type: 3
-  randomReward: 4
-  odinReward: 4
+  randomReward: 7
+  odinReward: 6
   mickiReward: 0
   anubisReward: 0
   reaperReward: 0

@@ -15,9 +15,9 @@ MonoBehaviour:
   LevelDescription: Micki Level 5
   LevelNumber: 5
   Type: 2
-  randomReward: 4
+  randomReward: 8
   odinReward: 0
-  mickiReward: 5
+  mickiReward: 7
   anubisReward: 0
   reaperReward: 0
   fatesReward: 0

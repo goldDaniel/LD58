@@ -15,11 +15,11 @@ MonoBehaviour:
   LevelDescription: Reaper Level 5
   LevelNumber: 5
   Type: 4
-  randomReward: 4
+  randomReward: 8
   odinReward: 0
   mickiReward: 0
   anubisReward: 0
-  reaperReward: 5
+  reaperReward: 7
   fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: 5433f4065e7b1694c96d7aa8ad4fc312, type: 2}

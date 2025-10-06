@@ -15,11 +15,11 @@ MonoBehaviour:
   LevelDescription: Reaper Level 4
   LevelNumber: 4
   Type: 4
-  randomReward: 4
+  randomReward: 7
   odinReward: 0
   mickiReward: 0
   anubisReward: 0
-  reaperReward: 4
+  reaperReward: 6
   fatesReward: 0
   Enemies:
   - {fileID: 11400000, guid: a5627fcfb17cb1347b805c564a80e914, type: 2}

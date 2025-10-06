@@ -15,8 +15,8 @@ MonoBehaviour:
   LevelDescription: Odin Level 2
   LevelNumber: 2
   Type: 3
-  randomReward: 4
-  odinReward: 2
+  randomReward: 5
+  odinReward: 4
   mickiReward: 0
   anubisReward: 0
   reaperReward: 0
