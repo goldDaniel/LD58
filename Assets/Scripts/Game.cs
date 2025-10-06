@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -624,7 +625,7 @@ public class Game : MonoBehaviour
                 var initialPosition = effect.transform.position;
 
                 AudioManager.Instance.Play("Curse");
-                yield return effect.MoveTo(playerDamageLocation.transform.position);
+                yield return effect.MoveTo(player.CurseText.transform.position);
                 player.Curse += Attack.Curse;
                 yield return effect.MoveTo(initialPosition);
                 yield return effect.FadeDestroy(attacker.effects);
@@ -715,7 +716,7 @@ public class Game : MonoBehaviour
 					else
 					{
 						AudioManager.Instance.Play("Hit");
-						yield return effect.MoveTo(endTurnButton.transform.position);
+						yield return effect.MoveTo(player.healthText.transform.position);
 						player.TakeDamage(TotalDamage);
 						yield return effect.MoveTo(initialPosition);
 					}
@@ -744,17 +745,11 @@ public class Game : MonoBehaviour
 
 		List<Enemy> enemies = new();
 		if (targetAll)
-		{
 			enemies.AddRange(activeEnemies);
-		}
 		else if (targetRandom)
-		{
 			enemies.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
-		}
 		else
-		{
 			enemies.Add(target);
-		}
 
 
 		var cardStartingLocation = handContainer.position; // capture since we need to adjust/restore
@@ -798,10 +793,99 @@ public class Game : MonoBehaviour
 				tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
 			}
 		}
+
 		if (card.cardTemplate.SelfDamage > 0)
 		{
-			// animate self damage
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.damageSprite;
+			
+			// punch health in the heart >:)
+			{
+				var tween = effect.transform.DOMove(player.healthText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
 		}
+		if (card.cardTemplate.Heal > 0)
+		{
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.healSprite;
+
+			// Heal health in the heart <3
+			{
+				var tween = effect.transform.DOMove(player.healthText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+		}
+		if (card.cardTemplate.Block > 0)
+		{
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.blockSprite;
+
+			// Block player in the... shield?
+			{
+				var tween = effect.transform.DOMove(player.blockText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+		}
+		if (card.cardTemplate.GetLucky)
+		{
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.luckSprite;
+
+			// Luck player in the clover :O
+			{
+				var tween = effect.transform.DOMove(player.LuckyText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+		}
+		if (card.cardTemplate.Strength > 0)
+		{
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.strengthSprite;
+
+			// Strength player in the bicep 0_0
+			{
+				var tween = effect.transform.DOMove(player.StrengthText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+		}
+		if (card.cardTemplate.EssenceGain > 0)
+		{
+			var effect = Instantiate(effectPrefab, UIController.Instance.transform);
+			effect.transform.position = card.transform.position;
+			effect.icon.sprite = card.essenceSprite;
+
+			// Essence player in the soul ~_~
+			{
+				var tween = effect.transform.DOMove(player.essenceText.transform.position, 0.4f)
+											.SetEase(Ease.OutSine)
+											.OnComplete(() => Destroy(effect.gameObject));
+				while (tween.IsActive() && !tween.IsComplete())
+					yield return null;
+			}
+		}
+
+
 		int currentRepeat = 0;
 		do
 		{

@@ -10,7 +10,7 @@ public enum EffectType { Damage, Shield, Heal, Other, Curse, Strength };
 public class EffectIndicator : MonoBehaviour
 {
     [SerializeField]
-    private Image icon;
+    public Image icon;
 
     [SerializeField]
     private TextMeshProUGUI valueText;
