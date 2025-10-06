@@ -36,7 +36,7 @@ public class Player
         set
         {
             _block = Math.Max(value, 0);
-            blockText.text = $"Block {_block}";
+            blockText.text = $"{_block}";
         }
     }
 
@@ -48,7 +48,7 @@ public class Player
         set
         {
             _incomingDamage = Math.Max(value, 0);
-            IncomingDamageText.text = $"Incoming Damage: {_incomingDamage}";
+            IncomingDamageText.text = $"{_incomingDamage}";
         }
     }
 
