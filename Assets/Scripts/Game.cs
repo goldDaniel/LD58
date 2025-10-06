@@ -88,6 +88,9 @@ public class Game : MonoBehaviour
 	private int enemyTurnIndex;
 	public bool IsPlayerTurn { get; private set; }
 
+	private Vector3 _cardStartingLocation;
+	public Vector3 CardStartingLocation => _cardStartingLocation;
+
 	public void Awake()
 	{
 		Instance = this;
@@ -127,6 +130,7 @@ public class Game : MonoBehaviour
 
 	private IEnumerator LoadLevel_Internal()
 	{
+		_cardStartingLocation = handContainer.position; // capture since we need to adjust/restore
 		player.Init();
 
 		AudioManager.Instance.PlayMusicCrossfade("CombatMusic", 2f);
@@ -274,7 +278,7 @@ public class Game : MonoBehaviour
 
 	public void SelectEnemy(Enemy enemy)
 	{
-		if (attackInProgress)
+		if (attackInProgress || !endTurnButton.interactable)
 			return;
 		
 		if (UIController.Instance.IsSelectedCard(null))
@@ -298,7 +302,7 @@ public class Game : MonoBehaviour
 
 	public void DeselectEnemy(Enemy enemy)
 	{
-		if (attackInProgress)
+		if (attackInProgress || !endTurnButton.interactable)
 			return;
 
 		if (selectedEnemy == enemy)
@@ -361,7 +365,6 @@ public class Game : MonoBehaviour
 
 	public IEnumerator OnTurnStart(bool firstTurn)
 	{
-		endTurnButton.interactable = true;
 		IsPlayerTurn = true;
 		enemyTurnIndex = -1;
 
@@ -381,6 +384,7 @@ public class Game : MonoBehaviour
 		int Draw = firstTurn ? handSize : roundDraw;
 
 		yield return StartCoroutine(DrawHand(Draw));
+		endTurnButton.interactable = true;
 
 		ApplyStatusEffects();
 	}
@@ -760,6 +764,8 @@ public class Game : MonoBehaviour
 
 	IEnumerator AttackEnemySeqeunce(Enemy target, Card card)
 	{
+		endTurnButton.interactable = false;
+
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 		hand.Remove(card);
 
@@ -775,11 +781,9 @@ public class Game : MonoBehaviour
 			enemies.Add(target);
 
 
-		var cardStartingLocation = handContainer.position; // capture since we need to adjust/restore
-
 		// move hand out of view 
 		{
-			var targetPos = cardStartingLocation.xy() + Vector2.down * 800f;
+			var targetPos = CardStartingLocation.xy() + Vector2.down * 800f;
 			var tween = handContainer.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
@@ -787,7 +791,7 @@ public class Game : MonoBehaviour
 
 		// move card to starting location
 		{
-			var tween = card.rectTransform.DOMove(cardStartingLocation.xy() + Vector2.up * 200f, 0.3f).SetEase(Ease.InOutQuad);
+			var tween = card.rectTransform.DOMove(CardStartingLocation.xy() + Vector2.up * 200f, 0.3f).SetEase(Ease.InOutQuad);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
@@ -959,12 +963,13 @@ public class Game : MonoBehaviour
 		// restore hand location
 		// move card to starting location
 		{
-			var tween = handContainer.DOMove(cardStartingLocation, 0.5f).SetEase(Ease.InOutQuad);
+			var tween = handContainer.DOMove(CardStartingLocation, 0.5f).SetEase(Ease.InOutQuad);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
 
 		CheckWinLoss();
+		endTurnButton.interactable = true;
 	}
 
 	public void CheckWinLoss()
