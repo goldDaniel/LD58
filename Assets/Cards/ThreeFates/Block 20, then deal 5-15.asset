@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
   m_Name: Block 20, then deal 5-15
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: Protextion From the Future
+  CardName: Protection From the Future
   CardDescription: Block 20, then deal 5-15
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
