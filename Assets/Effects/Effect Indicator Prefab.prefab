@@ -129,7 +129,7 @@ MonoBehaviour:
   icon: {fileID: 3549309318686079657}
   valueText: {fileID: 313346868940562055}
   canvasGroup: {fileID: -6718600625796810217}
-  damageIcon: {fileID: 7145864476781540566, guid: 62bf66a45c248c64582c80ee223811ec, type: 3}
+  damageIcon: {fileID: 21300000, guid: 973317c3e252ebd40b1e70e392d6f7be, type: 3}
   shieldIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
   healIcon: {fileID: 21300000, guid: 62578a856a8dbfa4f9b838c816ba7821, type: 3}
   OtherIcon: {fileID: 21300000, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
