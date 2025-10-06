@@ -87,7 +87,7 @@ public class Player
         set
         {
             _strength = Math.Max(value, 0);
-            StrengthText.text = $"Strength: {_strength}";
+            StrengthText.text = $"{_strength}";
         }
     }
 
@@ -99,7 +99,7 @@ public class Player
         set
         {
             _curse = Math.Max(value, 0);
-            CurseText.text = $"Curse: {_curse}";
+            CurseText.text = $"{_curse}";
         }
     }
 
@@ -111,7 +111,7 @@ public class Player
         set
         {
             _lucky = Math.Max(value, 0);
-            LuckyText.text = $"Lucky: {_lucky}";
+            LuckyText.text = $"{_lucky}";
         }
     }
 
@@ -142,7 +142,7 @@ public class Player
         set
         {
             _curseEachPlay = Math.Max(value, 0);
-            CurseEachPlayText.text = $"Afflict: {_curseEachPlay}";
+            CurseEachPlayText.text = $"{_curseEachPlay}";
         }
     }
 
