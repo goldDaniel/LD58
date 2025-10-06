@@ -23,7 +23,7 @@ public class Game : MonoBehaviour
 	private Enemy selectedEnemy = null;
 
 	private int handSize = 5; // 5
-	private int roundDraw = 2; // 2
+	private int roundDraw = 3; // 2
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -137,7 +137,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = true;
+		bool testing = false;
 
 		if (testing)
 		{
