@@ -3111,7 +3111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5, y: -29.6255}
+  m_AnchoredPosition: {x: -9.9507, y: -4}
   m_SizeDelta: {x: 1900, y: 600}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1198677414
@@ -3135,7 +3135,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 256, y: 334}
-  m_Spacing: {x: -58, y: 64}
+  m_Spacing: {x: 0, y: 80}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1213034950
@@ -3417,7 +3417,7 @@ MonoBehaviour:
   cardPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
   deckLocation: {fileID: 1015732010}
   discardLocation: {fileID: 1755593977}
-  testLevel: {fileID: 11400000, guid: 5cd9c5f6db30541478dfb34b7f5cb478, type: 2}
+  testLevel: {fileID: 11400000, guid: 06b87cf7f05eca242bca9b3965b78500, type: 2}
   enemyContainer: {fileID: 1198677413}
   enemyPrefab: {fileID: 126998755492266350, guid: 0fe19e96d4a723143901c72c6056867b, type: 3}
   endTurnButton: {fileID: 386296896}
@@ -4314,11 +4314,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1015732010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1506984800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4373,7 +4373,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4965,11 +4965,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1755593977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &1922053494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5024,7 +5024,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0

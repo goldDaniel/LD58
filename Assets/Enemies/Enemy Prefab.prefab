@@ -1436,6 +1436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2749918144243590502}
   - component: {fileID: 126998755492266350}
+  - component: {fileID: 6846272930928386011}
   m_Layer: 5
   m_Name: Enemy Prefab
   m_TagString: Untagged
@@ -1495,6 +1496,14 @@ MonoBehaviour:
   BonusSouls: 0
   Attacks:
     Attacks: []
+--- !u!222 &6846272930928386011
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636235617501978197}
+  m_CullTransparentMesh: 1
 --- !u!1 &7135372183249928319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,8 +1796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 15
+    m_Right: 15
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
