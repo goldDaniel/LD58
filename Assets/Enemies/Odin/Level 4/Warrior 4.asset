@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Steadfast Warrior!
   EnemyModel: 3
-  MaxHealth: 8
+  MaxHealth: 11
   Block: -1
   AttackList:
     Attacks:

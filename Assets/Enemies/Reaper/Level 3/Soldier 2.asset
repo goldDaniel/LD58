@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Common Foot Solider
   EnemyModel: 7
-  MaxHealth: 10
+  MaxHealth: 20
   Block: 1
   AttackList:
     Attacks:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Huge Skeleton Monster!
   EnemyModel: 6
-  MaxHealth: 16
+  MaxHealth: 30
   Block: -1
   AttackList:
     Attacks:
