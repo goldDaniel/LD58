@@ -3577,6 +3577,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8701470f302a4a24dac8ab0709f9b848, type: 2}
   - {fileID: 11400000, guid: 9a08a32a7b4292f4d8fa561e416272bd, type: 2}
   - {fileID: 11400000, guid: 2e66a0b120318d0478703ab82157a24e, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
+  - {fileID: 11400000, guid: afd4b856866578e498b7415903a593c1, type: 2}
   handContainer: {fileID: 2056663529}
   cardPrefab: {fileID: -1727461106696980366, guid: 3217144e745aa8d4e9a8e30cb3f32ccb, type: 3}
   deckLocation: {fileID: 1015732010}
@@ -3591,7 +3602,6 @@ MonoBehaviour:
   castEffectStart: {fileID: 1102268108}
   cardsRemainingText: {fileID: 919282911}
   howToPlayPanel: {fileID: 851566271}
-  handCanvasGroup: {fileID: 0}
   odinStartingCards:
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
