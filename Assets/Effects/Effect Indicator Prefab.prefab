@@ -130,7 +130,7 @@ MonoBehaviour:
   valueText: {fileID: 313346868940562055}
   canvasGroup: {fileID: -6718600625796810217}
   damageIcon: {fileID: 21300000, guid: 973317c3e252ebd40b1e70e392d6f7be, type: 3}
-  shieldIcon: {fileID: -5806125809501813694, guid: a656fac678682574e9ece3445e3a05be, type: 3}
+  shieldIcon: {fileID: 21300000, guid: 6de1a407959bf3941b05ece00ba3f573, type: 3}
   healIcon: {fileID: 21300000, guid: 62578a856a8dbfa4f9b838c816ba7821, type: 3}
   OtherIcon: {fileID: 21300000, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
   CurseIcon: {fileID: 21300000, guid: 800a80fb305bc344ba363a25ce51fb5a, type: 3}

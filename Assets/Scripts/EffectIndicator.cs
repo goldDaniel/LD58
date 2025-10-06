@@ -46,9 +46,7 @@ public class EffectIndicator : MonoBehaviour
 			case EffectType.Damage:
 				icon.sprite = damageIcon; break;
 			case EffectType.Shield:
-				icon.sprite = shieldIcon;
-				icon.transform.localScale = Vector3.one * 0.8f;
-				break;
+				icon.sprite = shieldIcon; break;
 			case EffectType.Heal:
 				icon.sprite = healIcon; break;
 			case EffectType.Curse:
