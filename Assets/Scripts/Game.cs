@@ -127,8 +127,7 @@ public class Game : MonoBehaviour
 
 	private IEnumerator LoadLevel_Internal()
 	{
-		player.CurrentHealth = player.MaxHealth;
-		player.CurrentEssence = player.MaxEssence;
+		player.Init();
 
 		AudioManager.Instance.PlayMusicCrossfade("CombatMusic", 2f);
 
@@ -728,7 +727,7 @@ public class Game : MonoBehaviour
 		yield return NextAttack(attacker, false);
 	}
 
-public void Discard(Card card)
+	public void Discard(Card card)
 	{
 		hand.Remove(card);
 		discard.Add(card);
@@ -739,7 +738,6 @@ public void Discard(Card card)
 	{
 		Debug.Assert(hand.Contains(card), "Attempting to attack with a card not in hand!");
 		hand.Remove(card);
-
 
 		bool targetAll = card.cardTemplate.TargetAllEnemies;
 		bool targetRandom = card.cardTemplate.RandomEnemy;
