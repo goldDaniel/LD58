@@ -5219,6 +5219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056663529}
   - component: {fileID: 2056663530}
+  - component: {fileID: 2056663531}
   m_Layer: 5
   m_Name: Hand Container
   m_TagString: Untagged
@@ -5271,6 +5272,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 1
+--- !u!225 &2056663531
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056663528}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2089822807
 GameObject:
   m_ObjectHideFlags: 0
