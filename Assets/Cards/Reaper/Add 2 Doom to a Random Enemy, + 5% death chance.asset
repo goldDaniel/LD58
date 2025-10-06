@@ -29,7 +29,7 @@ MonoBehaviour:
   Confuse: 0
   Souls: -1
   Curse: -1
-  DeathChance: -1
+  DeathChance: 5
   Weak: -1
   Draw: -1
   Heal: -1
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
