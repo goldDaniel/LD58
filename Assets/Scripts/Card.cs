@@ -201,7 +201,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 			var rect = dummy.GetComponent<RectTransform>();
 			rect.position = this.rectTransform.position;
 
-			dummy.gameObject.transform.SetSiblingIndex(2);
+			dummy.gameObject.transform.SetAsLastSibling();
 			dummy.gameObject.SetActive(true);
 		}
 	}
