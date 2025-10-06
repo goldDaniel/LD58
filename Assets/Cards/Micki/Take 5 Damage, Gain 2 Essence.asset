@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Take 5 Damage, Gain 2 Essence
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Bloodlet
-  CardDescription: Take 5 Damage, Gain 2 Essence
+  CardDescription: Take 5 Damage, Gain 2 Soul Power
   Type: 2
   cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   RepeatAllNext: 0
   Foretell: 0
   CurseEachPlay: 0
+  NextTurnDamage: -1
