@@ -932,6 +932,7 @@ public class Game : MonoBehaviour
 
 					var finalPosition = enemyRect.position;
 					var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
+					AudioManager.Instance.Play("PlayCard");
 					while (tween.IsActive() && !tween.IsComplete())
 						yield return null;
 
