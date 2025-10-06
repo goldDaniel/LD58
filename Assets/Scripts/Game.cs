@@ -78,6 +78,7 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private RectTransform howToPlayPanel;
 
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -700,9 +701,14 @@ public class Game : MonoBehaviour
                     }
 					else if (JinxedAttack)
 					{
-						var RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+						var RandomEnemy = attacker;
 
-                        AudioManager.Instance.Play("Hit");
+                        if (otherEnemies.Count > 0)
+						{
+                            RandomEnemy = otherEnemies[UnityEngine.Random.Range(0, otherEnemies.Count)];
+                        }
+
+						AudioManager.Instance.Play("Hit");
                         yield return effect.MoveTo(RandomEnemy.transform.position);
                         yield return RandomEnemy.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
@@ -752,14 +758,56 @@ public void Discard(Card card)
             enemies.Add(target);
         }
 
-		if (card.cardTemplate.SelfDamage > 0)
+
+		var cardStartingLocation = handContainer.position; // capture since we need to adjust/restore
+
+		// move hand out of view 
 		{
-			var tween = card.rectTransform.DOMove(playerDamageLocation.transform.position, 0.4f).SetEase(Ease.InBack);
+			var targetPos = cardStartingLocation.xy() + Vector2.down * 800f;
+			var tween = handContainer.DOMove(targetPos, 0.5f).SetEase(Ease.InOutQuad);
 			while (tween.IsActive() && !tween.IsComplete())
 				yield return null;
 		}
 
-		bool hasAnimatedEssence = false;
+		// move card to starting location
+		{
+			var tween = card.rectTransform.DOMove(cardStartingLocation, 0.5f).SetEase(Ease.InOutQuad);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
+
+		// animate essence
+		{
+			List<Tweener> tweens = new();
+			for (int j = 0; j < card.currentCost; ++j)
+			{
+				var cast = Instantiate(castEffectPrefab, UIController.Instance.transform);
+				cast.transform.position = castEffectStart.position;
+				tweens.Add(cast.transform.DOMove(card.essenceCostText.transform.position, 0.4f)
+										.SetEase(Ease.InOutSine)
+										.SetDelay(j * 0.08f)
+										.OnComplete(() => Destroy(cast)));
+			}
+
+			while (tweens.Count > 0)
+			{
+				foreach (var t in tweens)
+				{
+					if (t.IsActive() && !t.IsComplete())
+						yield return null;
+				}
+
+				tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
+			}
+		}
+		yield return new WaitForSeconds(0.1f);
+
+
+		if (card.cardTemplate.SelfDamage > 0)
+		{
+			// animate self damage
+		}
+
 		foreach (var enemy in enemies)
 		{
 			if (enemy.CurrentHealth <= 0)
@@ -774,36 +822,6 @@ public void Discard(Card card)
 				var initialTween = card.rectTransform.DOMove(initialPosition, 0.4f).SetEase(Ease.OutCubic);
 				while (initialTween.IsActive() && !initialTween.IsComplete())
 					yield return null;
-
-				if(!hasAnimatedEssence)
-				{
-					hasAnimatedEssence = true;
-					// animate essence
-					{
-						List<Tweener> tweens = new();
-						for (int j = 0; j < card.currentCost; ++j)
-						{
-							var cast = Instantiate(castEffectPrefab, UIController.Instance.transform);
-							cast.transform.position = castEffectStart.position;
-							tweens.Add(cast.transform.DOMove(card.essenceCostText.transform.position, 0.4f)
-													.SetEase(Ease.InOutSine)
-													.SetDelay(j * 0.08f)
-													.OnComplete(() => Destroy(cast)));
-						}
-
-						while (tweens.Count > 0)
-						{
-							foreach (var t in tweens)
-							{
-								if (t.IsActive() && !t.IsComplete())
-									yield return null;
-							}
-
-							tweens = tweens.Where(x => x.IsActive() && !x.IsComplete()).ToList();
-						}
-					}
-					yield return new WaitForSeconds(0.1f);
-				}
 
 				yield return new WaitForSeconds(0.1f);
 
@@ -852,6 +870,14 @@ public void Discard(Card card)
 		}
 		discard.Add(card);
 		card.SetInPile(discardLocation);
+
+		// restore hand location
+		// move card to starting location
+		{
+			var tween = handContainer.DOMove(cardStartingLocation, 0.5f).SetEase(Ease.InOutQuad);
+			while (tween.IsActive() && !tween.IsComplete())
+				yield return null;
+		}
 
 		CheckWinLoss();
     }
