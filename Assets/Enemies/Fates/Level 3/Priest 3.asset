@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Follower of the Gods!
   EnemyModel: 9
-  MaxHealth: 7
+  MaxHealth: 10
   Block: -1
   AttackList:
     Attacks:

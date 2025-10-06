@@ -25,7 +25,7 @@ MonoBehaviour:
   BlockBonus: 0
   MissingHealthBonus: 0
   ApplyLethergy: 0
-  TargetAllEnemies: 1
-  TargetAllOtherEnemies: 0
+  TargetAllEnemies: 0
+  TargetAllOtherEnemies: 1
   TargetRandomEnemy: 0
   TargetSelf: 0

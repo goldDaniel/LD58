@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTemplate
   EnemyDescription: A Descendent of the Gods!
   EnemyModel: 10
-  MaxHealth: 15
+  MaxHealth: 40
   Block: -1
   AttackList:
     Attacks:

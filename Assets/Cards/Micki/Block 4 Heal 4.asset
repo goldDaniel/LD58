@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Mending Block
   CardDescription: Block 4 Heal 4
   Type: 2
-  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
