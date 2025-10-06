@@ -24,8 +24,10 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 20; // 5
-	private int roundDraw = 3; // 2
+	private int handSize = 5; // 5
+	private int roundDraw = 3; // 3
+	private int maxHandSize = 15; // 15
+
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -139,7 +141,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = true;
+		bool testing = false;
 
 		if (testing)
 		{
@@ -189,7 +191,10 @@ public class Game : MonoBehaviour
 
         for (int i = 0; i < CardsToDraw; i++)
 		{
-            yield return DrawCardFromDeck(false);
+			if (hand.Size < 15)
+			{
+                yield return DrawCardFromDeck(false);
+            }
         }
 		player.Lethargic = false;
 	}
