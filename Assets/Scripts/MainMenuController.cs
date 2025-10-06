@@ -14,6 +14,11 @@ public class MainMenuController : MonoBehaviour
 	public CanvasGroup panel1;
 	public CanvasGroup panel2;
 
+	public void Start()
+	{
+		AudioManager.Instance.PlayMusicCrossfade("CombatMusic");
+	}
+
 	public void OnPlayPressed()
 	{
 		if (GameProgress.Instance.hasCompletedTutorial)
