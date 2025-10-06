@@ -622,7 +622,7 @@ MonoBehaviour:
   drawSprite: {fileID: -7112124861343603569, guid: 13b2e676d40ff3e46b5cd533fa1f7864, type: 3}
   luckSprite: {fileID: 21300000, guid: 382edd26c41ba734691b6a88ea013117, type: 3}
   essenceSprite: {fileID: 21300000, guid: 82fb3fc40347b5544a634b4c7ea8d954, type: 3}
-  fateSealedSprite: {fileID: 5258372964804691132, guid: a090b8dee4255364c9820d6a1f40911f, type: 3}
+  fateSealedSprite: {fileID: 21300000, guid: a090b8dee4255364c9820d6a1f40911f, type: 3}
 --- !u!225 &3742981311893057475
 CanvasGroup:
   m_ObjectHideFlags: 0
