@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,8 +24,10 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 20; // 5
-	private int roundDraw = 3; // 2
+	private int handSize = 5; // 5
+	private int roundDraw = 3; // 3
+	private int maxHandSize = 15; // 15
+
 	private CardGroup hand = new();
 
 	[SerializeField]
@@ -138,7 +141,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = true;
+		bool testing = false;
 
 		if (testing)
 		{
@@ -188,7 +191,10 @@ public class Game : MonoBehaviour
 
         for (int i = 0; i < CardsToDraw; i++)
 		{
-            yield return DrawCardFromDeck(false);
+			if (hand.Size < 15)
+			{
+                yield return DrawCardFromDeck(false);
+            }
         }
 		player.Lethargic = false;
 	}
@@ -487,11 +493,24 @@ public class Game : MonoBehaviour
 
 	IEnumerator DoEnemyTurn()
 	{
-		while(enemyTurnIndex < activeEnemies.Count)
+        while (enemyTurnIndex < activeEnemies.Count)
+        {
+            var active = activeEnemies[enemyTurnIndex];
+
+            yield return EnemyStatusCheck(active);
+
+            enemyTurnIndex++;
+        }
+
+        CheckDeadEnemies();
+
+        enemyTurnIndex = 0;
+        while (enemyTurnIndex < activeEnemies.Count)
 		{
 			var active = activeEnemies[enemyTurnIndex];
 			var others = activeEnemies.Where(e => e != active).ToList();
-			yield return AttackPlayerSequence(active, others, player);
+
+            yield return AttackPlayerSequence(active, others, player);
 
 			foreach(var effect in active.effects)
 				Destroy(effect.gameObject);
@@ -507,7 +526,19 @@ public class Game : MonoBehaviour
 		yield return OnTurnStart(false);
 	}
 
-	public IEnumerator NextAttack(Enemy enemy, bool prepare)
+    public IEnumerator EnemyStatusCheck(Enemy attacker)
+	{
+        if (attacker.Curse > 0)
+        {
+            AudioManager.Instance.Play("Hit");
+            attacker.TakeDamage(attacker.Curse);
+            attacker.Curse--;
+        }
+
+        return null;
+    }
+
+    public IEnumerator NextAttack(Enemy enemy, bool prepare)
 	{
         //End Attack Block
 
@@ -551,13 +582,6 @@ public class Game : MonoBehaviour
         }
 		else
 		{
-            if (attacker.Curse > 0)
-            {
-                AudioManager.Instance.Play("Hit");
-				attacker.TakeDamage(attacker.Curse);
-                attacker.Curse--;
-            }
-
             //Start Attack Block
             if (Attack.ClearNegative)
             {
@@ -924,7 +948,6 @@ public class Game : MonoBehaviour
 		attackInProgress = false;
 
 		CheckDeadEnemies();
-
 
 		// animate to discard pile
 		{
