@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameProgress
   selectedLevel: {fileID: 0}
+  hasCompletedTutorial: 0
   anubisLevels:
   - {fileID: 11400000, guid: 5cd9c5f6db30541478dfb34b7f5cb478, type: 2}
   - {fileID: 11400000, guid: 24d4a18daf2c7f64a933357931b7641c, type: 2}
@@ -98,12 +99,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc571fc9f5edb684c8b96603eda29941, type: 2}
   - {fileID: 11400000, guid: 1c855cf5dfba49042862365c3ccb3b6c, type: 2}
   anubisStartingCards:
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
-  - {fileID: 11400000, guid: 7f8abb5840ae0cc42be08d08ee7cb5c3, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
+  - {fileID: 11400000, guid: dfc43d063b551874fbc9b70b9b4ea121, type: 2}
   - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
   - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
   - {fileID: 11400000, guid: 242c95cca641abc4a9c9a15f21fdcda5, type: 2}
