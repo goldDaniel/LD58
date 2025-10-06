@@ -23,7 +23,7 @@ public class Game : MonoBehaviour
 
 	private Enemy selectedEnemy = null;
 
-	private int handSize = 5; // 5
+	private int handSize = 20; // 5
 	private int roundDraw = 3; // 2
 	private CardGroup hand = new();
 
@@ -138,7 +138,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = false;
+		bool testing = true;
 
 		if (testing)
 		{
@@ -385,7 +385,8 @@ public class Game : MonoBehaviour
 		{
             player.TakeDamage(player.Curse);
 			player.Curse--;
-		}
+            CheckWinLoss();
+        }
 
 		if (player.Lucky > 0)
 		{
@@ -396,7 +397,8 @@ public class Game : MonoBehaviour
 		{
 			player.TakeDamage(player.IncomingDamage);
 			player.IncomingDamage = 0;
-		}
+            CheckWinLoss();
+        }
 	}
 
 	IEnumerator PrepareAttack(Enemy enemy)
