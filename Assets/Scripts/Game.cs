@@ -853,6 +853,15 @@ public void Discard(Card card)
 				yield return enemy.ApplyEffectSequence(card, player.Strength);
 			}
 		} while (currentRepeat <= player.RepeatAllCurrentTurn);
+						yield return player.TakeDamage(3 * player.PactOfPower);
+						player.CurrentEssence += player.PactOfPower;
+					}
+				}
+
+				yield return player.ApplyEffectSequence(card);
+
+				yield return enemy.ApplyEffectSequence(card, player.Strength);
+			} while (currentRepeat <= player.RepeatAllCurrentTurn);
 
 		attackInProgress = false;
 
