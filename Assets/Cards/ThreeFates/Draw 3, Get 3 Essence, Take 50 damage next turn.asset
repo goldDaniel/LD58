@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Draw 3, Get 3 Essence, Take 50 damage next turn
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Impending Disaster
-  CardDescription: Draw 3, Get 3 Essence, Take 50 damage next turn
+  CardDescription: Draw 3, Get 3 Soul Power, Take 50 damage next turn
   Type: 5
   cardFront: {fileID: -5925624609616643352, guid: ba58253bd0c6fb542a6724e443b5a067, type: 3}
   EssenceCost: 2
