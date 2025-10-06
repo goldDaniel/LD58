@@ -214,25 +214,21 @@ public class Player
     public IEnumerator TakeDamage(int damage)
     {
 
-		// TODO (danielg): animate the damage indicator from the enemy to the player
+        // TODO (danielg): animate the damage indicator from the enemy to the player
 
-		//var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
-  //      effect.Initialize(EffectType.Damage, damage,true, null);
-  //      GameObject.Destroy(effect.gameObject);
+        //var effect = GameObject.Instantiate(Game.Instance.effectPrefab,Game.Instance.playerDamageLocation);
+        //      effect.Initialize(EffectType.Damage, damage,true, null);
+        //      GameObject.Destroy(effect.gameObject);
 
 
-        if (Block >= damage)
+        while (damage > 0 && Block > 0)
         {
-            Block -= damage;
-        } else
-        {
-            CurrentHealth -= damage - Block;
-            Block = 0;
-            if (CurrentHealth <= 0)
-            {
-                //TODO die-
-            }
+            Block--;
+            damage--;
         }
+
+        CurrentHealth -= damage;
+
         yield return null;
         
     }

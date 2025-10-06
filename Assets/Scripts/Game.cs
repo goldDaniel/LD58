@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -74,6 +75,9 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI cardsRemainingText;
 
+	[SerializeField]
+	private RectTransform howToPlayPanel;
+
 	[SerializeField] public List<CardTemplate> odinStartingCards;
     [SerializeField] public List<CardTemplate> mickiStartingCards;
     [SerializeField] public List<CardTemplate> anubisStartingCards;
@@ -98,6 +102,24 @@ public class Game : MonoBehaviour
 	public void Update()
 	{
 		cardsRemainingText.text = $"{deck.Size}";
+
+		if(Keyboard.current.escapeKey.wasPressedThisFrame)
+			PauseUnPause();
+	}
+
+	public void PauseUnPause()
+	{
+		bool paused = Time.timeScale == 0;
+		if (paused)
+		{
+			Time.timeScale = 1;
+			howToPlayPanel.gameObject.SetActive(false);
+		}
+		else
+		{
+			Time.timeScale = 0;
+			howToPlayPanel.gameObject.SetActive(true);
+		}
 	}
 
 	public void LoadLevel() => StartCoroutine(LoadLevel_Internal());
@@ -180,7 +202,7 @@ public class Game : MonoBehaviour
 			Card card = deck.Draw();
 			if (isFree)
 			{
-				card.currentCost = 0;
+				card.UpdateCost(0);
 			}
 			card.gameObject.SetActive(true);
 			card.SetInHand();
@@ -201,7 +223,10 @@ public class Game : MonoBehaviour
 		while (discard.Size > 0)
 		{
 			var card = discard.Draw();
-			deck.Add(card);
+
+			card.UpdateCost(card.originalCost);
+
+            deck.Add(card);
 
 			var tween = card.rectTransform.DOMove(deckLocation.anchoredPosition, 0.15f).SetEase(Ease.InBounce);
 			while (tween.IsActive() && !tween.IsComplete())
@@ -699,12 +724,21 @@ public void Discard(Card card)
 
 
 		bool targetAll = card.cardTemplate.TargetAllEnemies;
+		bool targetRandom = card.cardTemplate.RandomEnemy;
 
 		List<Enemy> enemies = new();
 		if (targetAll)
-			enemies.AddRange(activeEnemies);
+		{
+            enemies.AddRange(activeEnemies);
+        }
+		else if (targetRandom)
+		{
+			enemies.Add(activeEnemies[UnityEngine.Random.Range(0, activeEnemies.Count)]);
+        }
 		else
-			enemies.Add(target);
+		{
+            enemies.Add(target);
+        }
 
 		if (card.cardTemplate.SelfDamage > 0)
 		{
