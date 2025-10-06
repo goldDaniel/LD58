@@ -375,14 +375,14 @@ public class Game : MonoBehaviour
 
 		yield return StartCoroutine(DrawHand(Draw));
 
-        yield return ApplyStatusEffects();
+        ApplyStatusEffects();
 	}
 
-	public IEnumerator ApplyStatusEffects()
+	public void ApplyStatusEffects()
 	{
 		if (player.Curse > 0)
 		{
-            yield return player.TakeDamage(player.Curse);
+            player.TakeDamage(player.Curse);
 			player.Curse--;
 		}
 
@@ -393,7 +393,7 @@ public class Game : MonoBehaviour
 
 		if (player.IncomingDamage > 0)
 		{
-			yield return player.TakeDamage(player.IncomingDamage);
+			player.TakeDamage(player.IncomingDamage);
 			player.IncomingDamage = 0;
 		}
 	}
@@ -551,7 +551,7 @@ public class Game : MonoBehaviour
             if (attacker.Curse > 0)
             {
                 AudioManager.Instance.Play("Hit");
-                yield return attacker.TakeDamage(attacker.Curse);
+				attacker.TakeDamage(attacker.Curse);
                 attacker.Curse--;
             }
 
@@ -695,7 +695,7 @@ public class Game : MonoBehaviour
                     {
                         AudioManager.Instance.Play("Hit");
                         yield return effect.MoveTo(attacker.transform.position);
-                        yield return attacker.TakeDamage(TotalDamage);
+                        attacker.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
                     }
 					else if (JinxedAttack)
@@ -709,14 +709,14 @@ public class Game : MonoBehaviour
 
 						AudioManager.Instance.Play("Hit");
                         yield return effect.MoveTo(RandomEnemy.transform.position);
-                        yield return RandomEnemy.TakeDamage(TotalDamage);
+                        RandomEnemy.TakeDamage(TotalDamage);
                         yield return effect.MoveTo(initialPosition);
                     }
 					else
 					{
 						AudioManager.Instance.Play("Hit");
 						yield return effect.MoveTo(endTurnButton.transform.position);
-						yield return player.TakeDamage(TotalDamage);
+						player.TakeDamage(TotalDamage);
 						yield return effect.MoveTo(initialPosition);
 					}
 
@@ -821,8 +821,6 @@ public class Game : MonoBehaviour
 				while (initialTween.IsActive() && !initialTween.IsComplete())
 					yield return null;
 
-				yield return new WaitForSeconds(0.1f);
-
 				var finalPosition = enemyRect.position;
 				var tween = card.rectTransform.DOMove(finalPosition, 0.3f).SetEase(Ease.InBack);
 				while (tween.IsActive() && !tween.IsComplete())
@@ -831,8 +829,6 @@ public class Game : MonoBehaviour
 				initialTween = card.rectTransform.DOMove(initialPosition, 0.15f).SetEase(Ease.OutCubic);
 				while (initialTween.IsActive() && !initialTween.IsComplete())
 					yield return null;
-
-				yield return new WaitForSeconds(0.1f);
 			}
 
 			int currentRepeat = 0;

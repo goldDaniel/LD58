@@ -231,7 +231,7 @@ public class Enemy : MonoBehaviour
             var DeathRoll = UnityEngine.Random.Range(0, 100);
             if (DeathRoll < card.cardTemplate.DeathChance)
             {
-                yield return TakeDamage(1000);
+                TakeDamage(1000);
             }
         }
         int repeatCount = 0;
@@ -252,7 +252,7 @@ public class Enemy : MonoBehaviour
                     damage += Strength;
                 }
 
-                yield return TakeDamage(damage);
+                TakeDamage(damage);
             }
         } while (repeatCount < card.cardTemplate.MultHit);
         if (card.cardTemplate.Doomed > 0)
@@ -260,7 +260,7 @@ public class Enemy : MonoBehaviour
             Doom += card.cardTemplate.Doomed;
             if (Doom >= 3)
             {
-                yield return TakeDamage(Doom * 20);
+                TakeDamage(Doom * 20);
                 Doom = 0;
             }
         }
@@ -271,8 +271,8 @@ public class Enemy : MonoBehaviour
         if (card.cardTemplate.BloodyStrike > 0)
         {
             int currentHealth = Game.Instance.player.CurrentHealth;
-            yield return Game.Instance.player.TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
-            yield return TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
+            Game.Instance.player.TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
+            TakeDamage(currentHealth * card.cardTemplate.BloodyStrike / 100);
         }
         if (card.cardTemplate.Confuse)
         {
@@ -308,18 +308,8 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-		// HACK (danielg): must have a branch returning an IEnumerator
-		if (false)
-			yield return null;
-
-		// TODO (danielg): Animate when enemy takes damage 
-
-		//var effect = GameObject.Instantiate(Game.Instance.effectPrefab, damageLocation);
-		//yield return effect.DoEffectVisual(EffectType.Damage, damage, true, null);
-		//GameObject.Destroy(effect.gameObject);
-
         while (Block > 0 && damage > 0)
         {
             Block--;
