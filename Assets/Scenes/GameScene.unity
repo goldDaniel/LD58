@@ -289,7 +289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -360, y: -12.799988}
+  m_AnchoredPosition: {x: -360, y: -12.800049}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &275988245
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Essence
+  m_text: Souls
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
   m_sharedMaterial: {fileID: -6481622213993735138, guid: 373e9cfa080444a469a4ab524c39b938, type: 2}
@@ -1640,7 +1640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -591.5, y: -5.299988}
+  m_AnchoredPosition: {x: -591.5, y: -5.300049}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &520843722
@@ -3591,7 +3591,6 @@ MonoBehaviour:
   castEffectStart: {fileID: 1102268108}
   cardsRemainingText: {fileID: 919282911}
   howToPlayPanel: {fileID: 851566271}
-  handCanvasGroup: {fileID: 0}
   odinStartingCards:
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
   - {fileID: 11400000, guid: 247744fa1445f7f4ab87bb830f2a27b6, type: 2}
@@ -4528,7 +4527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -245.35, y: -12.799988}
+  m_AnchoredPosition: {x: -245.35, y: -12.800049}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1740374492
