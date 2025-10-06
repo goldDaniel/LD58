@@ -94,3 +94,8 @@ MonoBehaviour:
     channel: 0
     loop: 0
     defaultVolume: 1
+  - name: PlayCard
+    clip: {fileID: 8300000, guid: 48c78a85dfac7d04da25f94bbb62ce26, type: 3}
+    channel: 0
+    loop: 0
+    defaultVolume: 1

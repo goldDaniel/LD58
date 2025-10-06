@@ -232,22 +232,28 @@ public class Enemy : MonoBehaviour
 		effect.color = color;
 		effect.transform.localScale = Vector2.zero;
 
-		var tween = effect.transform.DOScale(Vector2.one * 3, 0.25f).SetEase(Ease.OutBounce);
-		while(tween.IsActive() || !tween.IsComplete())
 		{
-			yield return null;
-			color.a = tween.ElapsedPercentage();
-			effect.color = color;
+			var tween = effect.transform.DOScale(Vector2.one * 3, 0.5f).SetEase(Ease.InSine);
+			while (tween.IsActive())
+			{
+				color.a = tween.ElapsedPercentage();
+				effect.color = color;
+				yield return null;
+			}
 		}
-
-		tween = effect.transform.DOScale(Vector2.zero, 0.25f).SetEase(Ease.InQuart);
-		while (tween.IsActive() || !tween.IsComplete())
+		color.a = 1f;
+		effect.color = color;
+		yield return new WaitForSeconds(0.1f);
 		{
-			yield return null;
-			color.a = tween.ElapsedPercentage();
-			effect.color = color;
+			var tween = effect.transform.DOScale(Vector2.zero, 0.5f).SetEase(Ease.InSine);
+			while (tween.IsActive())
+			{
+				color.a = tween.ElapsedPercentage();
+				effect.color = color;
+				yield return null;
+			}
+			Destroy(effect.gameObject);
 		}
-		Destroy(effect.gameObject);
 	}
 
 	public IEnumerator ApplyEffectSequence(Card card, int Strength)
