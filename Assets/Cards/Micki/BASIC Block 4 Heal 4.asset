@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Block 5 Curse 2
+  m_Name: BASIC Block 4 Heal 4
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: Cursed Block
-  CardDescription: Block 5 Curse 2
-  Type: 1
-  cardFront: {fileID: -8943912892533642598, guid: d521d97d62c2c1b4a910a952c98cb1dc, type: 3}
+  CardName: Mending Block
+  CardDescription: Block 4 Heal 4
+  Type: 2
+  cardFront: {fileID: -7138059422692554161, guid: ee846a5862f8340469c6bff51bfd9bd3, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
@@ -28,12 +28,12 @@ MonoBehaviour:
   FateSealed: 0
   Confuse: 0
   Souls: -1
-  Curse: 2
+  Curse: -1
   DeathChance: -1
   Weak: -1
   Draw: -1
-  Heal: -1
-  Block: 5
+  Heal: 4
+  Block: 4
   GetLucky: 0
   Strength: -1
   EssenceGain: -1

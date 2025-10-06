@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Deal 8 Damage, 5% Chance to Instant Kill
+  m_Name: BASIC Deal 8 Damage, 5% Chance to Instant Kill
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
   CardName: Slash
   CardDescription: Deal 8 Damage, 5% Chance to Instant Kill

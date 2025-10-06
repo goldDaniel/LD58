@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542b95123162f9e408bc32f8290443dd, type: 3}
-  m_Name: Block 5 Draw 1
+  m_Name: BASIC Block 8 Damage 1
   m_EditorClassIdentifier: Assembly-CSharp::CardTemplate
-  CardName: Strategic Block
-  CardDescription: Block 5 Draw 1
-  Type: 3
-  cardFront: {fileID: 8621882239388952961, guid: 5ed243bcd1dc01b449af61cebef33267, type: 3}
+  CardName: Unusual Odds
+  CardDescription: Block 8, 1 Damage, 5% Death Chance
+  Type: 4
+  cardFront: {fileID: -8884643653436324813, guid: 9d218ae5b63b06c4c89de799c3309850, type: 3}
   EssenceCost: 1
   SelfDamage: -1
   TargetAllEnemies: 0
   RandomEnemy: 0
-  MinDamage: -1
-  MaxDamage: -1
+  MinDamage: 1
+  MaxDamage: 1
   BloodyStrike: -1
   Doomed: -1
   Jinxed: 0
@@ -29,11 +29,11 @@ MonoBehaviour:
   Confuse: 0
   Souls: -1
   Curse: -1
-  DeathChance: -1
+  DeathChance: 5
   Weak: -1
-  Draw: 1
+  Draw: -1
   Heal: -1
-  Block: 5
+  Block: 8
   GetLucky: 0
   Strength: -1
   EssenceGain: -1
