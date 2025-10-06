@@ -140,7 +140,7 @@ public class Game : MonoBehaviour
             SpawnEnemy(enemyTemplate);
         }
 
-		bool testing = true;
+		bool testing = false;
 
 		if (testing)
 		{
@@ -454,13 +454,25 @@ public class Game : MonoBehaviour
             else if (attack.TargetSelf)
 				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Self");
         }
+		string bonusDamages = "";
+		if (attack.MassBonus)
+		{
+			bonusDamages = bonusDamages + " + 1 per enemy";
+		}
+		if (attack.BlockBonus) {
+			bonusDamages = bonusDamages + " + 1 per block";
+		}
+		if (attack.MissingHealthBonus) {
+			bonusDamages = bonusDamages + $" + 1 per 10% missing health";
+		}
+
 
         if (attack.Damage != -1)
         {
-            if (attack.NumberOfAttacks > 1)
-				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"{attack.Damage}x{attack.NumberOfAttacks}");
-            else
-				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"Damage\n{attack.Damage}" );
+			if (attack.NumberOfAttacks > 1)
+				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"{attack.Damage}x{attack.NumberOfAttacks}{bonusDamages}");
+			else
+				yield return CreateEnemyEffect(enemy, EffectType.Damage, attack.Damage, $"Damage\n{attack.Damage}{bonusDamages}");
         }
     }
 
