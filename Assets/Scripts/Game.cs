@@ -287,7 +287,11 @@ public class Game : MonoBehaviour
 			return;
 
 		if(enemy != null)
+		{
 			enemy.SetHighlight(true);
+			foreach (var e in activeEnemies.Where(x => x != enemy))
+				e.SetHighlight(false);
+		}
 
 		selectedEnemy = enemy;
 	}
