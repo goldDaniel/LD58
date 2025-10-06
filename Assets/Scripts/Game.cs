@@ -415,9 +415,6 @@ public class Game : MonoBehaviour
         if (attack.ClearNegative)
             yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Cleanse");
 
-        if (attack.SpawnEnemy != null)
-			yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Spawn");
-
         if (attack.ApplyLethergy)
             yield return CreateEnemyEffect(enemy, EffectType.Other, 0, "Lethargy");
 
@@ -452,13 +449,13 @@ public class Game : MonoBehaviour
         if (attack.Strength != -1)
         {
             if (attack.TargetAllEnemies)
-                yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} All");
+                yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} All");
             else if (attack.TargetAllOtherEnemies)
-				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Other");
+				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Other");
             else if (attack.TargetRandomEnemy)
-				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Random");
+				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Random");
             else if (attack.TargetSelf)
-				yield return CreateEnemyEffect(enemy, EffectType.Other, 0, $"Strengthen {attack.Strength} Self");
+				yield return CreateEnemyEffect(enemy, EffectType.Strength, 0, $"Strengthen {attack.Strength} Self");
         }
 		string bonusDamages = "";
 		if (attack.MassBonus)

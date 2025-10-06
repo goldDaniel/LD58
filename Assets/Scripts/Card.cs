@@ -46,7 +46,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	public TextMeshProUGUI essenceCostText;
 
 	[SerializeField]
-	public Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite, luckSprite, essenceSprite;
+	public Sprite damageSprite, deathChanceSprite, doomSprite, healSprite, strengthSprite, weakSprite, jinxSprite, confuseSprite, curseSprite, bloodyStrikeSprite, blockSprite, drawSprite, luckSprite, essenceSprite, fateSealedSprite;
 
 	public void OnCardInitialize(CardTemplate card)
 	{
@@ -99,7 +99,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 			icon.sprite = jinxSprite;
 		}
 
-		// Fate sealed? stupid
+		if(card.FateSealed)
+		{
+			var icon = Instantiate(cardIconPrefab, cardIconRegion);
+			icon.sprite = fateSealedSprite;
+		}
 
 		if (card.Confuse)
 		{
